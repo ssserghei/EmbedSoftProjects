@@ -1,0 +1,577 @@
+23:03:02 **** Build of configuration Debug for project 001_F3Disco_TestOled ****
+make -j8 all 
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_exti.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_exti.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_exti.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_exti.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pcd.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pcd.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pcd.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pcd.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pcd_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pcd_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pcd_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pcd_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_ll_usb.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_ll_usb.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_ll_usb.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_ll_usb.o"
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Startup/startup_stm32f303vctx.d" -MT"Core/Startup/startup_stm32f303vctx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Startup/startup_stm32f303vctx.o" "../Core/Startup/startup_stm32f303vctx.s"
+arm-none-eabi-gcc "../Core/Src/fonts.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/fonts.d" -MT"Core/Src/fonts.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/fonts.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Src/fonts.c:19:
+../Core/Inc/fonts.h:54:2: error: unknown type name 'uint8_t'
+   54 |  uint8_t FontWidth;    /*!< Font width in pixels */
+      |  ^~~~~~~
+../Core/Inc/fonts.h:55:2: error: unknown type name 'uint8_t'
+   55 |  uint8_t FontHeight;   /*!< Font height in pixels */
+      |  ^~~~~~~
+../Core/Inc/fonts.h:56:8: error: unknown type name 'uint16_t'
+   56 |  const uint16_t *data; /*!< Pointer to data font data array */
+      |        ^~~~~~~~
+../Core/Inc/fonts.h:63:2: error: unknown type name 'uint16_t'
+   63 |  uint16_t Length;      /*!< String length in units of pixels */
+      |  ^~~~~~~~
+../Core/Inc/fonts.h:64:2: error: unknown type name 'uint16_t'
+   64 |  uint16_t Height;      /*!< String height in units of pixels */
+      |  ^~~~~~~~
+../Core/Src/fonts.c:21:7: error: unknown type name 'uint16_t'
+   21 | const uint16_t Font7x10 [] = {
+      |       ^~~~~~~~
+../Core/Src/fonts.c:119:7: error: unknown type name 'uint16_t'
+  119 | const uint16_t Font11x18 [] = {
+      |       ^~~~~~~~
+../Core/Src/fonts.c:217:7: error: unknown type name 'uint16_t'
+  217 | const uint16_t Font16x26 [] = {
+      |       ^~~~~~~~
+arm-none-eabi-gcc "../Core/Src/ssd1306.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xC -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/ssd1306.d" -MT"Core/Src/ssd1306.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ssd1306.o"
+make: *** [Core/Src/subdir.mk:40: Core/Src/fonts.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:127:30: error: 'logo' undeclared (first use in this function)
+  127 |       SSD1306_DrawBitmap(0,0,logo, 128, 64, 1);
+      |                              ^~~~
+../Core/Src/main.c:127:30: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:185:28: error: 'horse1' undeclared (first use in this function)
+  185 |     SSD1306_DrawBitmap(0,0,horse1,128,64,1);
+      |                            ^~~~~~
+../Core/Src/main.c:189:28: error: 'horse2' undeclared (first use in this function)
+  189 |     SSD1306_DrawBitmap(0,0,horse2,128,64,1);
+      |                            ^~~~~~
+In file included from ../Core/Inc/ssd1306.h:50,
+                 from ../Core/Src/ssd1306.c:23:
+../Core/Inc/fonts.h:54:2: error: unknown type name 'uint8_t'
+   54 |  uint8_t FontWidth;    /*!< Font width in pixels */
+      |  ^~~~~~~
+../Core/Inc/fonts.h:55:2: error: unknown type name 'uint8_t'
+   55 |  uint8_t FontHeight;   /*!< Font height in pixels */
+      |  ^~~~~~~
+../Core/Inc/fonts.h:56:8: error: unknown type name 'uint16_t'
+   56 |  const uint16_t *data; /*!< Pointer to data font data array */
+      |        ^~~~~~~~
+../Core/Inc/fonts.h:63:2: error: unknown type name 'uint16_t'
+   63 |  uint16_t Length;      /*!< String length in units of pixels */
+      |  ^~~~~~~~
+../Core/Inc/fonts.h:64:2: error: unknown type name 'uint16_t'
+   64 |  uint16_t Height;      /*!< String height in units of pixels */
+      |  ^~~~~~~~
+../Core/Src/main.c:193:28: error: 'horse3' undeclared (first use in this function)
+  193 |     SSD1306_DrawBitmap(0,0,horse3,128,64,1);
+      |                            ^~~~~~
+../Core/Src/main.c:197:28: error: 'horse4' undeclared (first use in this function)
+  197 |     SSD1306_DrawBitmap(0,0,horse4,128,64,1);
+      |                            ^~~~~~
+In file included from ../Core/Src/ssd1306.c:23:
+../Core/Inc/ssd1306.h:89:1: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+   89 | uint8_t SSD1306_Init(void);
+      | ^~~~~~~
+      | wint_t
+../Core/Inc/ssd1306.h:123:24: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  123 | void SSD1306_DrawPixel(uint16_t x, uint16_t y, SSD1306_COLOR_t color);
+      |                        ^~~~~~~~
+      |                        wint_t
+../Core/Src/main.c:201:28: error: 'horse5' undeclared (first use in this function)
+  201 |     SSD1306_DrawBitmap(0,0,horse5,128,64,1);
+      |                            ^~~~~~
+../Core/Inc/ssd1306.h:123:36: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  123 | void SSD1306_DrawPixel(uint16_t x, uint16_t y, SSD1306_COLOR_t color);
+      |                                    ^~~~~~~~
+      |                                    wint_t
+../Core/Inc/ssd1306.h:131:21: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  131 | void SSD1306_GotoXY(uint16_t x, uint16_t y);
+      |                     ^~~~~~~~
+      |                     wint_t
+../Core/Inc/ssd1306.h:131:33: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  131 | void SSD1306_GotoXY(uint16_t x, uint16_t y);
+      |                                 ^~~~~~~~
+      |                                 wint_t
+../Core/Src/main.c:205:28: error: 'horse6' undeclared (first use in this function)
+  205 |     SSD1306_DrawBitmap(0,0,horse6,128,64,1);
+      |                            ^~~~~~
+../Core/Inc/ssd1306.h:163:23: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  163 | void SSD1306_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, SSD1306_COLOR_t c);
+      |                       ^~~~~~~~
+      |                       wint_t
+../Core/Inc/ssd1306.h:163:36: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  163 | void SSD1306_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, SSD1306_COLOR_t c);
+      |                                    ^~~~~~~~
+      |                                    wint_t
+../Core/Src/main.c:210:28: error: 'horse7' undeclared (first use in this function)
+  210 |     SSD1306_DrawBitmap(0,0,horse7,128,64,1);
+      |                            ^~~~~~
+../Core/Inc/ssd1306.h:163:49: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  163 | void SSD1306_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, SSD1306_COLOR_t c);
+      |                                                 ^~~~~~~~
+      |                                                 wint_t
+../Core/Inc/ssd1306.h:163:62: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  163 | void SSD1306_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, SSD1306_COLOR_t c);
+      |                                                              ^~~~~~~~
+      |                                                              wint_t
+../Core/Src/main.c:214:28: error: 'horse8' undeclared (first use in this function)
+  214 |     SSD1306_DrawBitmap(0,0,horse8,128,64,1);
+      |                            ^~~~~~
+../Core/Inc/ssd1306.h:175:28: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  175 | void SSD1306_DrawRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c);
+      |                            ^~~~~~~~
+      |                            wint_t
+../Core/Inc/ssd1306.h:175:40: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  175 | void SSD1306_DrawRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c);
+      |                                        ^~~~~~~~
+      |                                        wint_t
+../Core/Src/main.c:219:28: error: 'horse9' undeclared (first use in this function)
+  219 |     SSD1306_DrawBitmap(0,0,horse9,128,64,1);
+      |                            ^~~~~~
+../Core/Inc/ssd1306.h:175:52: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  175 | void SSD1306_DrawRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c);
+      |                                                    ^~~~~~~~
+      |                                                    wint_t
+../Core/Inc/ssd1306.h:175:64: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  175 | void SSD1306_DrawRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c);
+      |                                                                ^~~~~~~~
+      |                                                                wint_t
+../Core/Src/main.c:224:28: error: 'horse10' undeclared (first use in this function)
+  224 |     SSD1306_DrawBitmap(0,0,horse10,128,64,1);
+      |                            ^~~~~~~
+../Core/Inc/ssd1306.h:187:34: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  187 | void SSD1306_DrawFilledRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c);
+      |                                  ^~~~~~~~
+      |                                  wint_t
+../Core/Inc/ssd1306.h:187:46: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  187 | void SSD1306_DrawFilledRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c);
+      |                                              ^~~~~~~~
+      |                                              wint_t
+../Core/Inc/ssd1306.h:187:58: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  187 | void SSD1306_DrawFilledRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c);
+      |                                                          ^~~~~~~~
+      |                                                          wint_t
+../Core/Inc/ssd1306.h:187:70: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  187 | void SSD1306_DrawFilledRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c);
+      |                                                                      ^~~~~~~~
+      |                                                                      wint_t
+../Core/Inc/ssd1306.h:201:27: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  201 | void SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color);
+      |                           ^~~~~~~~
+      |                           wint_t
+../Core/Inc/ssd1306.h:201:40: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  201 | void SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color);
+      |                                        ^~~~~~~~
+      |                                        wint_t
+../Core/Inc/ssd1306.h:201:53: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  201 | void SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color);
+      |                                                     ^~~~~~~~
+      |                                                     wint_t
+../Core/Inc/ssd1306.h:201:66: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  201 | void SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color);
+      |                                                                  ^~~~~~~~
+      |                                                                  wint_t
+../Core/Inc/ssd1306.h:201:79: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  201 | void SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color);
+      |                                                                               ^~~~~~~~
+      |                                                                               wint_t
+../Core/Inc/ssd1306.h:201:92: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  201 | void SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color);
+      |                                                                                            ^~~~~~~~
+      |                                                                                            wint_t
+In file included from ../Core/Src/ssd1306.c:23:
+../Core/Inc/ssd1306.h:212:25: error: unknown type name 'int16_t'
+  212 | void SSD1306_DrawCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c);
+      |                         ^~~~~~~
+../Core/Inc/ssd1306.h:212:37: error: unknown type name 'int16_t'
+  212 | void SSD1306_DrawCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c);
+      |                                     ^~~~~~~
+../Core/Inc/ssd1306.h:212:49: error: unknown type name 'int16_t'
+  212 | void SSD1306_DrawCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c);
+      |                                                 ^~~~~~~
+../Core/Inc/ssd1306.h:223:31: error: unknown type name 'int16_t'
+  223 | void SSD1306_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c);
+      |                               ^~~~~~~
+../Core/Inc/ssd1306.h:223:43: error: unknown type name 'int16_t'
+  223 | void SSD1306_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c);
+      |                                           ^~~~~~~
+../Core/Inc/ssd1306.h:223:55: error: unknown type name 'int16_t'
+  223 | void SSD1306_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c);
+      |                                                       ^~~~~~~
+../Core/Inc/ssd1306.h:248:24: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  248 | void ssd1306_I2C_Write(uint8_t address, uint8_t reg, uint8_t data);
+      |                        ^~~~~~~
+      |                        wint_t
+../Core/Inc/ssd1306.h:248:41: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  248 | void ssd1306_I2C_Write(uint8_t address, uint8_t reg, uint8_t data);
+      |                                         ^~~~~~~
+      |                                         wint_t
+../Core/Inc/ssd1306.h:248:54: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  248 | void ssd1306_I2C_Write(uint8_t address, uint8_t reg, uint8_t data);
+      |                                                      ^~~~~~~
+      |                                                      wint_t
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+../Core/Inc/ssd1306.h:259:29: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  259 | void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);
+      |                             ^~~~~~~
+      |                             wint_t
+../Core/Inc/ssd1306.h:259:46: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  259 | void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);
+      |                                              ^~~~~~~
+      |                                              wint_t
+../Core/Inc/ssd1306.h:259:59: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  259 | void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);
+      |                                                           ^~~~~~~
+      |                                                           wint_t
+../Core/Inc/ssd1306.h:259:74: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  259 | void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);
+      |                                                                          ^~~~~~~~
+      |                                                                          wint_t
+../Core/Inc/ssd1306.h:270:25: error: unknown type name 'int16_t'
+  270 | void SSD1306_DrawBitmap(int16_t x, int16_t y, const unsigned char* bitmap, int16_t w, int16_t h, uint16_t color);
+      |                         ^~~~~~~
+../Core/Inc/ssd1306.h:270:36: error: unknown type name 'int16_t'
+  270 | void SSD1306_DrawBitmap(int16_t x, int16_t y, const unsigned char* bitmap, int16_t w, int16_t h, uint16_t color);
+      |                                    ^~~~~~~
+../Core/Inc/ssd1306.h:270:76: error: unknown type name 'int16_t'
+  270 | void SSD1306_DrawBitmap(int16_t x, int16_t y, const unsigned char* bitmap, int16_t w, int16_t h, uint16_t color);
+      |                                                                            ^~~~~~~
+../Core/Inc/ssd1306.h:270:87: error: unknown type name 'int16_t'
+  270 | void SSD1306_DrawBitmap(int16_t x, int16_t y, const unsigned char* bitmap, int16_t w, int16_t h, uint16_t color);
+      |                                                                                       ^~~~~~~
+../Core/Inc/ssd1306.h:270:98: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  270 | void SSD1306_DrawBitmap(int16_t x, int16_t y, const unsigned char* bitmap, int16_t w, int16_t h, uint16_t color);
+      |                                                                                                  ^~~~~~~~
+      |                                                                                                  wint_t
+../Core/Inc/ssd1306.h:274:26: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  274 | void SSD1306_ScrollRight(uint8_t start_row, uint8_t end_row);
+      |                          ^~~~~~~
+      |                          wint_t
+../Core/Inc/ssd1306.h:274:45: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  274 | void SSD1306_ScrollRight(uint8_t start_row, uint8_t end_row);
+      |                                             ^~~~~~~
+      |                                             wint_t
+../Core/Inc/ssd1306.h:277:25: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  277 | void SSD1306_ScrollLeft(uint8_t start_row, uint8_t end_row);
+      |                         ^~~~~~~
+      |                         wint_t
+../Core/Inc/ssd1306.h:277:44: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  277 | void SSD1306_ScrollLeft(uint8_t start_row, uint8_t end_row);
+      |                                            ^~~~~~~
+      |                                            wint_t
+../Core/Inc/ssd1306.h:280:30: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  280 | void SSD1306_Scrolldiagright(uint8_t start_row, uint8_t end_row);
+      |                              ^~~~~~~
+      |                              wint_t
+../Core/Inc/ssd1306.h:280:49: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  280 | void SSD1306_Scrolldiagright(uint8_t start_row, uint8_t end_row);
+      |                                                 ^~~~~~~
+      |                                                 wint_t
+../Core/Inc/ssd1306.h:283:29: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  283 | void SSD1306_Scrolldiagleft(uint8_t start_row, uint8_t end_row);
+      |                             ^~~~~~~
+      |                             wint_t
+../Core/Inc/ssd1306.h:283:48: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  283 | void SSD1306_Scrolldiagleft(uint8_t start_row, uint8_t end_row);
+      |                                                ^~~~~~~
+      |                                                wint_t
+../Core/Src/ssd1306.c:25:8: error: unknown type name 'I2C_HandleTypeDef'
+   25 | extern I2C_HandleTypeDef hi2c1;
+      |        ^~~~~~~~~~~~~~~~~
+../Core/Src/ssd1306.c:34:8: error: unknown type name 'uint8_t'
+   34 | static uint8_t SSD1306_Buffer[SSD1306_WIDTH * SSD1306_HEIGHT / 8];
+      |        ^~~~~~~
+../Core/Src/ssd1306.c:38:2: error: unknown type name 'uint16_t'
+   38 |  uint16_t CurrentX;
+      |  ^~~~~~~~
+../Core/Src/ssd1306.c:39:2: error: unknown type name 'uint16_t'
+   39 |  uint16_t CurrentY;
+      |  ^~~~~~~~
+../Core/Src/ssd1306.c:40:2: error: unknown type name 'uint8_t'
+   40 |  uint8_t Inverted;
+      |  ^~~~~~~
+../Core/Src/ssd1306.c:41:2: error: unknown type name 'uint8_t'
+   41 |  uint8_t Initialized;
+      |  ^~~~~~~
+../Core/Src/ssd1306.c:60:26: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+   60 | void SSD1306_ScrollRight(uint8_t start_row, uint8_t end_row)
+      |                          ^~~~~~~
+      |                          wint_t
+../Core/Src/ssd1306.c:60:45: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+   60 | void SSD1306_ScrollRight(uint8_t start_row, uint8_t end_row)
+      |                                             ^~~~~~~
+      |                                             wint_t
+../Core/Src/ssd1306.c:73:25: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+   73 | void SSD1306_ScrollLeft(uint8_t start_row, uint8_t end_row)
+      |                         ^~~~~~~
+      |                         wint_t
+../Core/Src/ssd1306.c:73:44: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+   73 | void SSD1306_ScrollLeft(uint8_t start_row, uint8_t end_row)
+      |                                            ^~~~~~~
+      |                                            wint_t
+../Core/Src/ssd1306.c:86:30: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+   86 | void SSD1306_Scrolldiagright(uint8_t start_row, uint8_t end_row)
+      |                              ^~~~~~~
+      |                              wint_t
+../Core/Src/ssd1306.c:86:49: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+   86 | void SSD1306_Scrolldiagright(uint8_t start_row, uint8_t end_row)
+      |                                                 ^~~~~~~
+      |                                                 wint_t
+../Core/Src/ssd1306.c:102:29: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  102 | void SSD1306_Scrolldiagleft(uint8_t start_row, uint8_t end_row)
+      |                             ^~~~~~~
+      |                             wint_t
+../Core/Src/ssd1306.c:102:48: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  102 | void SSD1306_Scrolldiagleft(uint8_t start_row, uint8_t end_row)
+      |                                                ^~~~~~~
+      |                                                wint_t
+../Core/Src/ssd1306.c: In function 'SSD1306_Stopscroll':
+../Core/Src/ssd1306.c:27:44: warning: implicit declaration of function 'ssd1306_I2C_Write'; did you mean 'ssd1306_I2C_Init'? [-Wimplicit-function-declaration]
+   27 | #define SSD1306_WRITECOMMAND(command)      ssd1306_I2C_Write(SSD1306_I2C_ADDR, 0x00, (command))
+      |                                            ^~~~~~~~~~~~~~~~~
+../Core/Src/ssd1306.c:120:2: note: in expansion of macro 'SSD1306_WRITECOMMAND'
+  120 |  SSD1306_WRITECOMMAND(SSD1306_DEACTIVATE_SCROLL);
+      |  ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/ssd1306.c: At top level:
+../Core/Src/ssd1306.c:134:25: error: unknown type name 'int16_t'
+  134 | void SSD1306_DrawBitmap(int16_t x, int16_t y, const unsigned char* bitmap, int16_t w, int16_t h, uint16_t color)
+      |                         ^~~~~~~
+../Core/Src/ssd1306.c:134:36: error: unknown type name 'int16_t'
+  134 | void SSD1306_DrawBitmap(int16_t x, int16_t y, const unsigned char* bitmap, int16_t w, int16_t h, uint16_t color)
+      |                                    ^~~~~~~
+../Core/Src/ssd1306.c:134:76: error: unknown type name 'int16_t'
+  134 | void SSD1306_DrawBitmap(int16_t x, int16_t y, const unsigned char* bitmap, int16_t w, int16_t h, uint16_t color)
+      |                                                                            ^~~~~~~
+../Core/Src/ssd1306.c:134:87: error: unknown type name 'int16_t'
+  134 | void SSD1306_DrawBitmap(int16_t x, int16_t y, const unsigned char* bitmap, int16_t w, int16_t h, uint16_t color)
+      |                                                                                       ^~~~~~~
+../Core/Src/ssd1306.c:134:98: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  134 | void SSD1306_DrawBitmap(int16_t x, int16_t y, const unsigned char* bitmap, int16_t w, int16_t h, uint16_t color)
+      |                                                                                                  ^~~~~~~~
+      |                                                                                                  wint_t
+../Core/Src/ssd1306.c:164:1: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  164 | uint8_t SSD1306_Init(void) {
+      | ^~~~~~~
+      | wint_t
+../Core/Src/ssd1306.c: In function 'SSD1306_Init':
+../Core/Src/ssd1306.c:170:6: warning: implicit declaration of function 'HAL_I2C_IsDeviceReady' [-Wimplicit-function-declaration]
+  170 |  if (HAL_I2C_IsDeviceReady(&hi2c1, SSD1306_I2C_ADDR, 1, 20000) != HAL_OK) {
+      |      ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/ssd1306.c:170:67: error: 'HAL_OK' undeclared (first use in this function)
+  170 |  if (HAL_I2C_IsDeviceReady(&hi2c1, SSD1306_I2C_ADDR, 1, 20000) != HAL_OK) {
+      |                                                                   ^~~~~~
+../Core/Src/ssd1306.c:170:67: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/ssd1306.c:176:2: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+  176 |  uint32_t p = 2500;
+      |  ^~~~~~~~
+      |  wint_t
+../Core/Src/ssd1306.c: In function 'SSD1306_UpdateScreen':
+../Core/Src/ssd1306.c:231:2: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  231 |  uint8_t m;
+      |  ^~~~~~~
+      |  wint_t
+../Core/Src/ssd1306.c:239:3: warning: implicit declaration of function 'ssd1306_I2C_WriteMulti'; did you mean 'ssd1306_I2C_Init'? [-Wimplicit-function-declaration]
+  239 |   ssd1306_I2C_WriteMulti(SSD1306_I2C_ADDR, 0x40, &SSD1306_Buffer[SSD1306_WIDTH * m], SSD1306_WIDTH);
+      |   ^~~~~~~~~~~~~~~~~~~~~~
+      |   ssd1306_I2C_Init
+../Core/Src/ssd1306.c: In function 'SSD1306_ToggleInvert':
+../Core/Src/ssd1306.c:244:2: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  244 |  uint16_t i;
+      |  ^~~~~~~~
+      |  wint_t
+../Core/Src/ssd1306.c: At top level:
+../Core/Src/ssd1306.c:260:24: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  260 | void SSD1306_DrawPixel(uint16_t x, uint16_t y, SSD1306_COLOR_t color) {
+      |                        ^~~~~~~~
+      |                        wint_t
+../Core/Src/ssd1306.c:260:36: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  260 | void SSD1306_DrawPixel(uint16_t x, uint16_t y, SSD1306_COLOR_t color) {
+      |                                    ^~~~~~~~
+      |                                    wint_t
+../Core/Src/ssd1306.c:282:21: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  282 | void SSD1306_GotoXY(uint16_t x, uint16_t y) {
+      |                     ^~~~~~~~
+      |                     wint_t
+../Core/Src/ssd1306.c:282:33: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  282 | void SSD1306_GotoXY(uint16_t x, uint16_t y) {
+      |                                 ^~~~~~~~
+      |                                 wint_t
+../Core/Src/ssd1306.c: In function 'SSD1306_Putc':
+../Core/Src/ssd1306.c:289:2: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+  289 |  uint32_t i, b, j;
+      |  ^~~~~~~~
+      |  wint_t
+../Core/Src/ssd1306.c:305:5: warning: implicit declaration of function 'SSD1306_DrawPixel' [-Wimplicit-function-declaration]
+  305 |     SSD1306_DrawPixel(SSD1306.CurrentX + j, (SSD1306.CurrentY + i), (SSD1306_COLOR_t) color);
+      |     ^~~~~~~~~~~~~~~~~
+../Core/Src/ssd1306.c: At top level:
+../Core/Src/ssd1306.c:337:23: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  337 | void SSD1306_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, SSD1306_COLOR_t c) {
+      |                       ^~~~~~~~
+      |                       wint_t
+../Core/Src/ssd1306.c:337:36: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  337 | void SSD1306_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, SSD1306_COLOR_t c) {
+      |                                    ^~~~~~~~
+      |                                    wint_t
+../Core/Src/ssd1306.c:337:49: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  337 | void SSD1306_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, SSD1306_COLOR_t c) {
+      |                                                 ^~~~~~~~
+      |                                                 wint_t
+../Core/Src/ssd1306.c:337:62: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  337 | void SSD1306_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, SSD1306_COLOR_t c) {
+      |                                                              ^~~~~~~~
+      |                                                              wint_t
+../Core/Src/ssd1306.c:421:28: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  421 | void SSD1306_DrawRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c) {
+      |                            ^~~~~~~~
+      |                            wint_t
+../Core/Src/ssd1306.c:421:40: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  421 | void SSD1306_DrawRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c) {
+      |                                        ^~~~~~~~
+      |                                        wint_t
+../Core/Src/ssd1306.c:421:52: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  421 | void SSD1306_DrawRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c) {
+      |                                                    ^~~~~~~~
+      |                                                    wint_t
+../Core/Src/ssd1306.c:421:64: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  421 | void SSD1306_DrawRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c) {
+      |                                                                ^~~~~~~~
+      |                                                                wint_t
+../Core/Src/ssd1306.c:446:34: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  446 | void SSD1306_DrawFilledRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c) {
+      |                                  ^~~~~~~~
+      |                                  wint_t
+../Core/Src/ssd1306.c:446:46: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  446 | void SSD1306_DrawFilledRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c) {
+      |                                              ^~~~~~~~
+      |                                              wint_t
+../Core/Src/ssd1306.c:446:58: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  446 | void SSD1306_DrawFilledRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c) {
+      |                                                          ^~~~~~~~
+      |                                                          wint_t
+../Core/Src/ssd1306.c:446:70: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  446 | void SSD1306_DrawFilledRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c) {
+      |                                                                      ^~~~~~~~
+      |                                                                      wint_t
+../Core/Src/ssd1306.c:473:27: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  473 | void SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color) {
+      |                           ^~~~~~~~
+      |                           wint_t
+../Core/Src/ssd1306.c:473:40: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  473 | void SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color) {
+      |                                        ^~~~~~~~
+      |                                        wint_t
+../Core/Src/ssd1306.c:473:53: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  473 | void SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color) {
+      |                                                     ^~~~~~~~
+      |                                                     wint_t
+../Core/Src/ssd1306.c:473:66: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  473 | void SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color) {
+      |                                                                  ^~~~~~~~
+      |                                                                  wint_t
+../Core/Src/ssd1306.c:473:79: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  473 | void SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color) {
+      |                                                                               ^~~~~~~~
+      |                                                                               wint_t
+../Core/Src/ssd1306.c:473:92: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  473 | void SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color) {
+      |                                                                                            ^~~~~~~~
+      |                                                                                            wint_t
+../Core/Src/ssd1306.c:481:33: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  481 | void SSD1306_DrawFilledTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color) {
+      |                                 ^~~~~~~~
+      |                                 wint_t
+../Core/Src/ssd1306.c:481:46: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  481 | void SSD1306_DrawFilledTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color) {
+      |                                              ^~~~~~~~
+      |                                              wint_t
+../Core/Src/ssd1306.c:481:59: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  481 | void SSD1306_DrawFilledTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color) {
+      |                                                           ^~~~~~~~
+      |                                                           wint_t
+../Core/Src/ssd1306.c:481:72: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  481 | void SSD1306_DrawFilledTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color) {
+      |                                                                        ^~~~~~~~
+      |                                                                        wint_t
+../Core/Src/ssd1306.c:481:85: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  481 | void SSD1306_DrawFilledTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color) {
+      |                                                                                     ^~~~~~~~
+      |                                                                                     wint_t
+../Core/Src/ssd1306.c:481:98: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  481 | void SSD1306_DrawFilledTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color) {
+      |                                                                                                  ^~~~~~~~
+      |                                                                                                  wint_t
+../Core/Src/ssd1306.c:537:25: error: unknown type name 'int16_t'
+  537 | void SSD1306_DrawCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c) {
+      |                         ^~~~~~~
+../Core/Src/ssd1306.c:537:37: error: unknown type name 'int16_t'
+  537 | void SSD1306_DrawCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c) {
+      |                                     ^~~~~~~
+../Core/Src/ssd1306.c:537:49: error: unknown type name 'int16_t'
+  537 | void SSD1306_DrawCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c) {
+      |                                                 ^~~~~~~
+../Core/Src/ssd1306.c:571:31: error: unknown type name 'int16_t'
+  571 | void SSD1306_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c) {
+      |                               ^~~~~~~
+../Core/Src/ssd1306.c:571:43: error: unknown type name 'int16_t'
+  571 | void SSD1306_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c) {
+      |                                           ^~~~~~~
+../Core/Src/ssd1306.c:571:55: error: unknown type name 'int16_t'
+  571 | void SSD1306_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c) {
+      |                                                       ^~~~~~~
+../Core/Src/ssd1306.c: In function 'ssd1306_I2C_Init':
+../Core/Src/ssd1306.c:632:2: error: unknown type name 'uint32_t'; did you mean 'wint_t'?
+  632 |  uint32_t p = 250000;
+      |  ^~~~~~~~
+      |  wint_t
+../Core/Src/ssd1306.c: At top level:
+../Core/Src/ssd1306.c:642:29: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  642 | void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {
+      |                             ^~~~~~~
+      |                             wint_t
+../Core/Src/ssd1306.c:642:46: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  642 | void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {
+      |                                              ^~~~~~~
+      |                                              wint_t
+../Core/Src/ssd1306.c:642:59: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  642 | void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {
+      |                                                           ^~~~~~~
+      |                                                           wint_t
+../Core/Src/ssd1306.c:642:74: error: unknown type name 'uint16_t'; did you mean 'wint_t'?
+  642 | void ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {
+      |                                                                          ^~~~~~~~
+      |                                                                          wint_t
+../Core/Src/ssd1306.c:652:24: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  652 | void ssd1306_I2C_Write(uint8_t address, uint8_t reg, uint8_t data) {
+      |                        ^~~~~~~
+      |                        wint_t
+../Core/Src/ssd1306.c:652:41: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  652 | void ssd1306_I2C_Write(uint8_t address, uint8_t reg, uint8_t data) {
+      |                                         ^~~~~~~
+      |                                         wint_t
+../Core/Src/ssd1306.c:652:54: error: unknown type name 'uint8_t'; did you mean 'wint_t'?
+  652 | void ssd1306_I2C_Write(uint8_t address, uint8_t reg, uint8_t data) {
+      |                                                      ^~~~~~~
+      |                                                      wint_t
+make: *** [Core/Src/subdir.mk:40: Core/Src/ssd1306.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+23:03:05 Build Failed. 144 errors, 4 warnings. (took 2s.222ms)
+

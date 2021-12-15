@@ -59,8 +59,8 @@ all: main-build
 main-build: 001_BlPi_Bare_LED_On_Off.elf secondary-outputs
 
 # Tool invocations
-001_BlPi_Bare_LED_On_Off.elf: $(OBJS) $(USER_OBJS) D:\GitHub\SoftEduProjects\Proj_BluePill\001_BlPi_Bare_LED_On_Off\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "001_BlPi_Bare_LED_On_Off.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\GitHub\SoftEduProjects\Proj_BluePill\001_BlPi_Bare_LED_On_Off\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="001_BlPi_Bare_LED_On_Off.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+001_BlPi_Bare_LED_On_Off.elf: $(OBJS) $(USER_OBJS) D:\GitHub\EmbedSoftProjects\Proj_BluePill\001_BlPi_Bare_LED_On_Off\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "001_BlPi_Bare_LED_On_Off.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\GitHub\EmbedSoftProjects\Proj_BluePill\001_BlPi_Bare_LED_On_Off\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="001_BlPi_Bare_LED_On_Off.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
