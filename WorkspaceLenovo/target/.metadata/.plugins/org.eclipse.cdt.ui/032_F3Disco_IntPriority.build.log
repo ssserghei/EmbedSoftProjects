@@ -1,0 +1,26 @@
+21:23:47 **** Incremental Build of configuration Debug for project 032_F3Disco_IntPriority ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f303vctx.d" -MT"Startup/startup_stm32f303vctx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f303vctx.o" "../Startup/startup_stm32f303vctx.s"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F303VCTx -DSTM32 -DSTM32F3 -DSTM32F3DISCOVERY -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F303VCTx -DSTM32 -DSTM32F3 -DSTM32F3DISCOVERY -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F303VCTx -DSTM32 -DSTM32F3 -DSTM32F3DISCOVERY -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+../Src/main.c:27:4: warning: #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use." [-Wcpp]
+   27 |   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
+      |    ^~~~~~~
+arm-none-eabi-gcc -o "032_F3Disco_IntPriority.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\GitHub\SoftEduProjects\Proj_STM32F3DISCOVERY\032_F3Disco_IntPriority\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="032_F3Disco_IntPriority.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 032_F3Disco_IntPriority.elf
+ 
+arm-none-eabi-size   032_F3Disco_IntPriority.elf 
+arm-none-eabi-objdump -h -S  032_F3Disco_IntPriority.elf  > "032_F3Disco_IntPriority.list"
+arm-none-eabi-objcopy  -O binary  032_F3Disco_IntPriority.elf  "032_F3Disco_IntPriority.bin"
+   text	   data	    bss	    dec	    hex	filename
+   3832	    120	   1592	   5544	   15a8	032_F3Disco_IntPriority.elf
+Finished building: default.size.stdout
+ 
+Finished building: 032_F3Disco_IntPriority.bin
+Finished building: 032_F3Disco_IntPriority.list
+ 
+ 
+
+21:23:48 Build Finished. 0 errors, 1 warnings. (took 552ms)
+

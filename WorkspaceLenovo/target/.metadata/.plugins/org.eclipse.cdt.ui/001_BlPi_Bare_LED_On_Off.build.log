@@ -1,0 +1,10 @@
+22:30:57 **** Incremental Build of configuration Debug for project 001_BlPi_Bare_LED_On_Off ****
+make -j8 all 
+arm-none-eabi-size   001_BlPi_Bare_LED_On_Off.elf 
+   text	   data	    bss	    dec	    hex	filename
+    640	      8	   1568	   2216	    8a8	001_BlPi_Bare_LED_On_Off.elf
+Finished building: default.size.stdout
+ 
+
+22:30:57 Build Finished. 0 errors, 0 warnings. (took 161ms)
+
