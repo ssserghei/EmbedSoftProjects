@@ -9,6 +9,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\GitHub\EmbedSoftProjects\Proj_BluePill\001_BlPi_Bare_LED_On_Off"/>
 			<item value="D:\GitHub\EmbedSoftProjects\Proj_STM32F3DISCOVERY\001_F3Disco_TestOled"/>
 			<item value="D:\GitHub\EmbedSoftProjects\Proj_BluePill\015_BluePillHallTogleAll"/>
 			<item value="D:\GitHub\EmbedSoftProjects\Proj_BluePill\013_BluePill_AlBlinkHal"/>

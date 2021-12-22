@@ -5,10 +5,6 @@ arm-none-eabi-size   001_BlPi_Bare_LED_On_Off.elf
     640	      8	   1568	   2216	    8a8	001_BlPi_Bare_LED_On_Off.elf
 Finished building: default.size.stdout
  
-23:50:15 **** Incremental Build of configuration Debug for project 001_Disco_But_LED ****
-make -j8 all 
-arm-none-eabi-size   001_Disco_But_LED.elf 
-   text	   data	    bss	    dec	    hex	filename
-  10700	     20	   2492	  13212	   339c	001_Disco_But_LED.elf
-Finished building: default.size.stdout
- 
+
+23:49:24 Build Finished. 0 errors, 0 warnings. (took 164ms)
+
