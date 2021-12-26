@@ -830,3 +830,7 @@
 2021-12-26 20:23:29,473 [INFO] ApiDb:280 - User favorites MCUs=[]
 2021-12-26 20:23:29,474 [INFO] ApiDb:276 - Save user favorites file C:\Users\Maxim/.stm32cubeide/favorites.boards.txt: 0 item(s)
 2021-12-26 20:23:29,474 [INFO] ApiDb:280 - User favorites Boards=[]
+2021-12-26 21:11:40,385 [INFO] Activator:177 - 
+
+
+2021-12-26 21:11:40,387 [INFO] Activator:178 - !SESSION log4j initialized

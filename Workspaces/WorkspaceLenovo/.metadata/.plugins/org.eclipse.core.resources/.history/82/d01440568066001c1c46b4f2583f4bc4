@@ -16,8 +16,8 @@
  ******************************************************************************
  */
 
-/*Проект рабочий!!! мигает  LD4
- * битовыми операциями мигаю LED GPIOE, GPIO_PIN_8;
+/*Проект рабочий!!! зажигается LD4
+ * битовыми операциями включу LED GPIOE, GPIO_PIN_8;
  *
  	HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_8); //LD4
 	HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_9);
@@ -55,13 +55,4 @@ int main(void)
 	//set 8 bit of the output data register(turn on LED GPIOE, GPIO_PIN_8)
 //	*pPortEOutReg |=0x00000100;
 	*pPortEOutReg |=(1<<8);
-
-	while(1)
-	{
-			*pPortEOutReg &=~(1<<8);
-		for(uint32_t i=0; i<500000; i++);
-			*pPortEOutReg |=(1<<8);
-		for(uint32_t i=0; i<500000; i++);
-	}
-
 }
