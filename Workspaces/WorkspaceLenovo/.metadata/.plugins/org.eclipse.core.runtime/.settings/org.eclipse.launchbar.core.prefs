@@ -1,12 +1,13 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
-configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:015_BluePillHallTogleAll Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:001_Disco_But_LED Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:001_BlPi_Bare_LED_On_Off Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:001_Disco_Bare_LED Debug
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:015_BluePillHallTogleAll Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:001_Disco_But_LED Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:001_BlPi_Bare_LED_On_Off Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:001_Disco_Bare_LED Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:002_Disco_Bare_BitShift_LED
 eclipse.preferences.version=1
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:001_BlPi_Bare_LED_On_Off\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:001_BlPi_Bare_LED_On_Off\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:001_Disco_Bare_LED\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:001_Disco_But_LED\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:001_Disco_But_LED\ Debug/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:002_Disco_Bare_BitShift_LED/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:015_BluePillHallTogleAll\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:015_BluePillHallTogleAll\ Debug/activeLaunchTarget=null\:---
