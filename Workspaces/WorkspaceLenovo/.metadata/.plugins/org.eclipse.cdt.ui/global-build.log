@@ -1,14 +1,17 @@
-23:49:24 **** Incremental Build of configuration Debug for project 001_BlPi_Bare_LED_On_Off ****
+20:14:28 **** Incremental Build of configuration Debug for project 001_Disco_Bare_LED ****
 make -j8 all 
-arm-none-eabi-size   001_BlPi_Bare_LED_On_Off.elf 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F303VCTx -DSTM32 -DSTM32F3 -DSTM32F3DISCOVERY -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "001_Disco_Bare_LED.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\GitHub\EmbedSoftProjects\Proj_STM32F3DISCOVERY\001_Disco_Bare_LED\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="001_Disco_Bare_LED.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 001_Disco_Bare_LED.elf
+ 
+arm-none-eabi-size   001_Disco_Bare_LED.elf 
+arm-none-eabi-objdump -h -S  001_Disco_Bare_LED.elf  > "001_Disco_Bare_LED.list"
+arm-none-eabi-objcopy  -O binary  001_Disco_Bare_LED.elf  "001_Disco_Bare_LED.bin"
    text	   data	    bss	    dec	    hex	filename
-    640	      8	   1568	   2216	    8a8	001_BlPi_Bare_LED_On_Off.elf
+    740	      8	   1568	   2316	    90c	001_Disco_Bare_LED.elf
 Finished building: default.size.stdout
  
-23:50:15 **** Incremental Build of configuration Debug for project 001_Disco_But_LED ****
-make -j8 all 
-arm-none-eabi-size   001_Disco_But_LED.elf 
-   text	   data	    bss	    dec	    hex	filename
-  10700	     20	   2492	  13212	   339c	001_Disco_But_LED.elf
-Finished building: default.size.stdout
+Finished building: 001_Disco_Bare_LED.bin
+Finished building: 001_Disco_Bare_LED.list
+ 
  
