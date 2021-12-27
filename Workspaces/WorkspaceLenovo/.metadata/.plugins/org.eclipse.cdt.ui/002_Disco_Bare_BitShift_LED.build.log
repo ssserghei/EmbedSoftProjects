@@ -1,4 +1,4 @@
-21:20:52 **** Incremental Build of configuration Debug for project 002_Disco_Bare_BitShift_LED ****
+14:45:17 **** Incremental Build of configuration Debug for project 002_Disco_Bare_BitShift_LED ****
 make -j8 all 
 arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F303VCTx -DSTM32 -DSTM32F3 -DSTM32F3DISCOVERY -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
 ../Src/main.c: In function 'main':
@@ -23,5 +23,5 @@ Finished building: 002_Disco_Bare_BitShift_LED.list
  
  
 
-21:20:53 Build Finished. 0 errors, 1 warnings. (took 416ms)
+14:45:18 Build Finished. 0 errors, 1 warnings. (took 411ms)
 

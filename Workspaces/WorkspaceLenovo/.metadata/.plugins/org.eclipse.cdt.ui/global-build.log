@@ -1,86 +1,34 @@
-21:18:56 **** Incremental Build of configuration Debug for project 002_Disco_Bare_BitShift_LED ****
-make -j8 all 
-arm-none-eabi-size   002_Disco_Bare_BitShift_LED.elf 
-   text	   data	    bss	    dec	    hex	filename
-    752	      8	   1568	   2328	    918	002_Disco_Bare_BitShift_LED.elf
-Finished building: default.size.stdout
- 
-21:19:03 **** Incremental Build of configuration Debug for project 002_Disco_Bare_BitShift_LED ****
-make -j8 all 
-arm-none-eabi-size   002_Disco_Bare_BitShift_LED.elf 
-   text	   data	    bss	    dec	    hex	filename
-    752	      8	   1568	   2328	    918	002_Disco_Bare_BitShift_LED.elf
-Finished building: default.size.stdout
- 
-21:19:50 **** Incremental Build of configuration Debug for project 002_Disco_Bare_BitShift_LED ****
+22:58:11 **** Incremental Build of configuration Debug for project 003_Disco_Bare_But_LED ****
 make -j8 all 
 arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F303VCTx -DSTM32 -DSTM32F3 -DSTM32F3DISCOVERY -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
-../Src/main.c: In function 'main':
-../Src/main.c:62:3: warning: this 'for' clause does not guard... [-Wmisleading-indentation]
-   62 |   for(uint32_t i=0; 1<500; i++);
-      |   ^~~
-../Src/main.c:63:4: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'for'
-   63 |    *pPortEOutReg |=(1<<8);
-      |    ^
-arm-none-eabi-gcc -o "002_Disco_Bare_BitShift_LED.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\GitHub\EmbedSoftProjects\Proj_STM32F3DISCOVERY\002_Disco_Bare_BitShift_LED\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="002_Disco_Bare_BitShift_LED.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: 002_Disco_Bare_BitShift_LED.elf
+arm-none-eabi-gcc -o "003_Disco_Bare_But_LED.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\GitHub\EmbedSoftProjects\Proj_STM32F3DISCOVERY\003_Disco_Bare_But_LED\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="003_Disco_Bare_But_LED.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 003_Disco_Bare_But_LED.elf
  
-arm-none-eabi-size   002_Disco_Bare_BitShift_LED.elf 
-arm-none-eabi-objdump -h -S  002_Disco_Bare_BitShift_LED.elf  > "002_Disco_Bare_BitShift_LED.list"
-arm-none-eabi-objcopy  -O binary  002_Disco_Bare_BitShift_LED.elf  "002_Disco_Bare_BitShift_LED.bin"
+arm-none-eabi-size   003_Disco_Bare_But_LED.elf 
+arm-none-eabi-objdump -h -S  003_Disco_Bare_But_LED.elf  > "003_Disco_Bare_But_LED.list"
+arm-none-eabi-objcopy  -O binary  003_Disco_Bare_But_LED.elf  "003_Disco_Bare_But_LED.bin"
    text	   data	    bss	    dec	    hex	filename
-    752	      8	   1568	   2328	    918	002_Disco_Bare_BitShift_LED.elf
+    852	      8	   1568	   2428	    97c	003_Disco_Bare_But_LED.elf
 Finished building: default.size.stdout
  
-Finished building: 002_Disco_Bare_BitShift_LED.bin
-Finished building: 002_Disco_Bare_BitShift_LED.list
+Finished building: 003_Disco_Bare_But_LED.bin
+Finished building: 003_Disco_Bare_But_LED.list
  
  
-21:20:33 **** Incremental Build of configuration Debug for project 002_Disco_Bare_BitShift_LED ****
+23:00:37 **** Incremental Build of configuration Debug for project 003_Disco_Bare_But_LED ****
 make -j8 all 
 arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F303VCTx -DSTM32 -DSTM32F3 -DSTM32F3DISCOVERY -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
-../Src/main.c: In function 'main':
-../Src/main.c:62:3: warning: this 'for' clause does not guard... [-Wmisleading-indentation]
-   62 |   for(uint32_t i=0; i<500; i++);
-      |   ^~~
-../Src/main.c:63:4: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'for'
-   63 |    *pPortEOutReg |=(1<<8);
-      |    ^
-arm-none-eabi-gcc -o "002_Disco_Bare_BitShift_LED.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\GitHub\EmbedSoftProjects\Proj_STM32F3DISCOVERY\002_Disco_Bare_BitShift_LED\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="002_Disco_Bare_BitShift_LED.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: 002_Disco_Bare_BitShift_LED.elf
+arm-none-eabi-gcc -o "003_Disco_Bare_But_LED.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\GitHub\EmbedSoftProjects\Proj_STM32F3DISCOVERY\003_Disco_Bare_But_LED\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="003_Disco_Bare_But_LED.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 003_Disco_Bare_But_LED.elf
  
-arm-none-eabi-size   002_Disco_Bare_BitShift_LED.elf 
-arm-none-eabi-objdump -h -S  002_Disco_Bare_BitShift_LED.elf  > "002_Disco_Bare_BitShift_LED.list"
-arm-none-eabi-objcopy  -O binary  002_Disco_Bare_BitShift_LED.elf  "002_Disco_Bare_BitShift_LED.bin"
+arm-none-eabi-size   003_Disco_Bare_But_LED.elf 
+arm-none-eabi-objdump -h -S  003_Disco_Bare_But_LED.elf  > "003_Disco_Bare_But_LED.list"
+arm-none-eabi-objcopy  -O binary  003_Disco_Bare_But_LED.elf  "003_Disco_Bare_But_LED.bin"
    text	   data	    bss	    dec	    hex	filename
-    792	      8	   1568	   2368	    940	002_Disco_Bare_BitShift_LED.elf
+    852	      8	   1568	   2428	    97c	003_Disco_Bare_But_LED.elf
 Finished building: default.size.stdout
  
-Finished building: 002_Disco_Bare_BitShift_LED.bin
-Finished building: 002_Disco_Bare_BitShift_LED.list
- 
- 
-21:20:52 **** Incremental Build of configuration Debug for project 002_Disco_Bare_BitShift_LED ****
-make -j8 all 
-arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F303VCTx -DSTM32 -DSTM32F3 -DSTM32F3DISCOVERY -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
-../Src/main.c: In function 'main':
-../Src/main.c:62:3: warning: this 'for' clause does not guard... [-Wmisleading-indentation]
-   62 |   for(uint32_t i=0; i<500000; i++);
-      |   ^~~
-../Src/main.c:63:4: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'for'
-   63 |    *pPortEOutReg |=(1<<8);
-      |    ^
-arm-none-eabi-gcc -o "002_Disco_Bare_BitShift_LED.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\GitHub\EmbedSoftProjects\Proj_STM32F3DISCOVERY\002_Disco_Bare_BitShift_LED\STM32F303VCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="002_Disco_Bare_BitShift_LED.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: 002_Disco_Bare_BitShift_LED.elf
- 
-arm-none-eabi-size   002_Disco_Bare_BitShift_LED.elf 
-arm-none-eabi-objdump -h -S  002_Disco_Bare_BitShift_LED.elf  > "002_Disco_Bare_BitShift_LED.list"
-arm-none-eabi-objcopy  -O binary  002_Disco_Bare_BitShift_LED.elf  "002_Disco_Bare_BitShift_LED.bin"
-   text	   data	    bss	    dec	    hex	filename
-    796	      8	   1568	   2372	    944	002_Disco_Bare_BitShift_LED.elf
-Finished building: default.size.stdout
- 
-Finished building: 002_Disco_Bare_BitShift_LED.bin
-Finished building: 002_Disco_Bare_BitShift_LED.list
+Finished building: 003_Disco_Bare_But_LED.bin
+Finished building: 003_Disco_Bare_But_LED.list
  
  
