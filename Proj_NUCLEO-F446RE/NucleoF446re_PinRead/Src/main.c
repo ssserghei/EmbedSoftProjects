@@ -16,6 +16,10 @@
  *
  ******************************************************************************
  */
+/*кароч, не работает. нажатие не кнопку
+ *
+ * */
+
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
@@ -27,16 +31,16 @@
 
 int main(void)
 {
-	uint32_t *pCntlkCtrlReg=(uint32_t*)0x40023830;
+	uint32_t *pCntlkCtrlReg=(uint32_t*)	0x40023830;
 
-	uint32_t *pPortAModeReg=(uint32_t*)0x40020000;
-	uint32_t *pPortAOutReg=(uint32_t*)0x40020014;
+	uint32_t *pPortAModeReg=(uint32_t*)	0x40020000;
+	uint32_t *pPortAOutReg=(uint32_t*)	0x40020014;
 
-	uint32_t *pPortCModeReg=(uint32_t*)0x40020800;	//0x4002 0800 - 0x4002 0BFF		//GPIOC base adres
-	uint32_t *pPortCInReg=(uint32_t*)0x40020810;
+	uint32_t *pPortCModeReg=(uint32_t*)(0x40020800+0x00);	//0x4002 0800 - 0x4002 0BFF		//GPIOC base adres
+	uint32_t *pPortCInReg=(uint32_t*)	(0x40020800+0x10);
 
 
-	//1. Enable the Clock GPIOD, GPOIA
+	//1. Enable the Clock GPIOC, GPOIA
 	*pCntlkCtrlReg |= (1<<0);//*pClkCtrlReg |= 0x01;	//Enable Clock on PortA
 	*pCntlkCtrlReg |= (1<<2);							//Enable Clock on PortC //6.3.10 RCC AHB1 peripheral clock enable register (RCC_AHB1ENR)
 
@@ -50,9 +54,22 @@ int main(void)
 	//Configuring PC13 as input mode (GPIOC MODE Register) 00: input- reset state
 	*pPortCModeReg &=~(3<<13);
 
-	uint32_t pinStatus=*pPortCInReg;
 
+	while(1)
+	{
+		//read the pin status of the pin PA0 (GPIOA INPUT DATA REGISTER)
+		uint8_t  pinStatus = (uint8_t)(*pPortCInReg & 0b10000000000000); //zero out all other bits except bit 0
+		if(pinStatus){
+			//turn on the LED
+			*pPortAOutReg |=(1<<5);
+			for(uint32_t i=0; i<500000; i++);
+			//turn off the LED
+			*pPortAOutReg &=~(1<<5);
+			for(uint32_t i=0; i<500000; i++);
+		}
+	}
 
+/*
 	while(1){
 		//turn on LED
 				*pPortAOutReg |=(1<<5);
@@ -61,32 +78,8 @@ int main(void)
 					*pPortAOutReg &=~(1<<5);
 		for(uint32_t i=0; i<500000; i++);
 		}//end while
-
-
-/*
-	while(1){
-	//read the pin status of the pin PC13 //7.4.5 GPIO port input data register (GPIOx_IDR) (x = A..H)
-	//uint8_t pinStatus=(uint8_t)(pinStatus >>12) & 0x1FFF); /////.......
-
-	 pinStatus=pinStatus & 0x2000;
-
-	// pinStatus=((pinStatus >>12) & (0x01));
-
-	//data &~
-	if(pinStatus){
-		//turn on LED
-		*pPortAOutReg |=(1<<5);
-		}else{
-			//turn off the LED
-			*pPortAOutReg &=~(1<<5);
-			}
-
-	//set 5 bit of the output data register....
-	//*pPortAOutReg |=(1<<5);//*pPortAOutReg |=0x00000020;
-
-	}//end of while
-
 */
+
 }//endof main
 
 /*Adres of the clock control register (AHB1ENR)

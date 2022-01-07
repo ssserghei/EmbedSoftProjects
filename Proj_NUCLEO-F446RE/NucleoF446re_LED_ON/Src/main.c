@@ -16,6 +16,9 @@
  *
  ******************************************************************************
  */
+/*
+ *
+ * */
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
@@ -42,7 +45,13 @@ int main(void)
 	*pPortAOutReg |=(1<<5);//*pPortAOutReg |=0x00000020;
 
 
-	for(;;);
+	while(1)
+		{
+				*pPortAOutReg &=~(1<<5);
+			for(uint32_t i=0; i<500000; i++);
+				*pPortAOutReg |=(1<<5);
+			for(uint32_t i=0; i<500000; i++);
+		}
 }
 
 /*Adres of the clock control register (AHB1ENR)
