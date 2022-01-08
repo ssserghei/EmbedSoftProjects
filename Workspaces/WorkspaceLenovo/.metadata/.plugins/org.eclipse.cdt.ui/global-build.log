@@ -1,14 +1,4 @@
-15:28:23 **** Incremental Build of configuration Debug for project NucleoF446re_PinRead ****
-make -j8 all 
-arm-none-eabi-size   NucleoF446re_PinRead.elf 
-   text	   data	    bss	    dec	    hex	filename
-    884	      8	   1568	   2460	    99c	NucleoF446re_PinRead.elf
-Finished building: default.size.stdout
- 
-15:28:44 **** Incremental Build of configuration Debug for project NucleoF446re_PinRead ****
-make -j8 all 
-arm-none-eabi-size   NucleoF446re_PinRead.elf 
-   text	   data	    bss	    dec	    hex	filename
-    884	      8	   1568	   2460	    99c	NucleoF446re_PinRead.elf
-Finished building: default.size.stdout
- 
+19:53:50 **** Rebuild of configuration Debug for project 005_Host_Struct_ExDataPacket ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o main.o "..\\main.c" 
+gcc -o 005_Host_Struct_ExDataPacket.exe main.o 

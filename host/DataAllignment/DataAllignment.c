@@ -15,13 +15,12 @@ struct DataSet
 	char 	data3;
 	short 	data4;
 
-};
+}/*__attribute__((packed))*/;
 
 int main (void)
 {
 
 	struct DataSet data;
-
 		data.data1=0x11;		//char
 		data.data2=0XFFFFEEEE;	//int
 		data.data3=0x22;		//char
@@ -33,7 +32,7 @@ int main (void)
 
 		uint32_t totalSize=sizeof(struct DataSet);
 
-	printf("Memory address		Content\n"); fflush(stdout);
+	printf("Memory address			Content\n"); fflush(stdout);
 	printf("====================================\n");fflush(stdout);
 
 	for (uint32_t i=0; i<totalSize; i++){

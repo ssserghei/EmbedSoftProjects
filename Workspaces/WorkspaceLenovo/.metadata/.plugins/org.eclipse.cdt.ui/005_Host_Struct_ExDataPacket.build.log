@@ -1,0 +1,7 @@
+19:53:50 **** Rebuild of configuration Debug for project 005_Host_Struct_ExDataPacket ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o main.o "..\\main.c" 
+gcc -o 005_Host_Struct_ExDataPacket.exe main.o 
+
+19:53:50 Build Finished. 0 errors, 0 warnings. (took 200ms)
+
