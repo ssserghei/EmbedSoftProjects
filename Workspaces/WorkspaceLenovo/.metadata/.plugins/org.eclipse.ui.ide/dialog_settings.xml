@@ -4,7 +4,7 @@
 		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="true"/>
 	</section>
 	<section name="org.eclipse.ui.internal.ide.dialogs.ProjectContentsLocationArea">
-		<item key="OUTSIDE_LOCATION" value="D:\GitHub\EmbedSoftProjects\Host\005_Host_Struct_ExDataPacket"/>
+		<item key="OUTSIDE_LOCATION" value="D:\GitHub\EmbedSoftProjects\Host\006_Host_Struct_BitFields"/>
 	</section>
 	<section name="ChooseWorkspaceDialogSettings">
 		<item key="DIALOG_X_ORIGIN" value="606"/>

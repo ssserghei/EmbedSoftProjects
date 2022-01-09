@@ -40,10 +40,10 @@ int main (void)
 	packet.addrMode=(uint8_t)	((PacketValue>>31) & 0x1);
 
 
-	printf("crc			:%#x\n",packet.crc);
+	printf("crc		:%#x\n",packet.crc);
 	printf("status		:%#x\n",packet.status);
 	printf("payload		:%#x\n",packet.payload);
-	printf("bat			:%#x\n",packet.bat);
+	printf("bat		:%#x\n",packet.bat);
 	printf("sensor		:%#x\n",packet.sensor);
 	printf("longAddr	:%#x\n",packet.longAddr);
 	printf("shortAddr	:%#x\n",packet.shortAddr);

@@ -58,13 +58,8 @@ int main(void)
 	uint32_t pinStatus=*pPortCInReg;
 
 	pinStatus=(pinStatus >>13) & 0x1;	// PC13
-
 //	pinStatus=pinStatus & 0x2000;		//это работает
-
-
-
-
-//	pinStatus=((pinStatus >>13) & (0x01));
+//	pinStatus=((pinStatus >>13) & (0x01));	//
 
 	//data &~
 	if(pinStatus){
@@ -77,8 +72,12 @@ int main(void)
 
 	//set 5 bit of the output data register....
 	//*pPortAOutReg |=(1<<5);//*pPortAOutReg |=0x00000020;
-
 	}//end of while
+
+
+
+
+
 }//endof main
 
 /*Adres of the clock control register (AHB1ENR)
