@@ -33,13 +33,11 @@
 */
 int main(void)
 {
-
 	/*
 	GPIOx_MODER_t *pGPIOa_MODER;
 	*pGPIOa_MODER =(GPIOx_MODER_t*) 0x40020000;
 	pGPIOa_MODER->moder5=1;
 */
-
 	RCC_AHB1ENR_t *pClkCtrlReg=(RCC_AHB1ENR_t*) 0x40023830;
 	pClkCtrlReg->gpioA_en=1;
 
@@ -49,7 +47,6 @@ int main(void)
 
 	GPIOx_ODR_t *pPortAOutReg=(GPIOx_ODR_t*) 0x40020014;
 	pPortAOutReg->odr5=1;
-
 
 	/* Loop forever */
 	for(;;);
