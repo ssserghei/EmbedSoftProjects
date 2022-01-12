@@ -7,9 +7,13 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 
-/*******************************************************************************/
-//CLOCK_EN
-//6.3.10 RCC AHB1 peripheral clock enable register (RCC_AHB1ENR)
+/******************************************************************************
+ * CLOCK_EN
+ * 6.3.10 RCC AHB1 peripheral clock enable register (RCC_AHB1ENR)
+ * Address offset: 0x30
+ *
+ * */
+//
 typedef struct
 {
 	uint32_t gpioA_en		:1;
@@ -33,17 +37,19 @@ typedef struct
 	uint32_t otghsulpi_en	:1;
 	uint32_t reserved5		:1;
 }RCC_AHB1ENR_t;
-	RCC_AHB1ENR_t volatile *pClkCtrlReg=(RCC_AHB1ENR_t*) 0x40023830;
+	RCC_AHB1ENR_t volatile *pClkCtrlReg=(RCC_AHB1ENR_t*) (0x40023800+0x30);
 
 
-/*******************************************************************************/
-// PORT_MODER	//GPIOx_MODER
-//7.4.1 GPIO port mode register (GPIOx_MODER) (x = A..H)
-//These bits are written by software to configure the I/O direction mode.
-//00: Input (reset state)
-//01: General purpose output mode
-//10: Alternate function mode
-//11: Analog mode
+/******************************************************************************
+ * PORT_MODER	//GPIOx_MODER
+ * 7.4.1 GPIO port mode register (GPIOx_MODER) (x = A..H)
+ * Address offset: 0x00
+ * These bits are written by software to configure the I/O direction mode.
+ * 00: Input (reset state)
+ * 01: General purpose output mode
+ * 10: Alternate function mode
+ * 11: Analog mode
+ * */
 typedef struct
 {
 	uint32_t moder0		:2;
@@ -63,15 +69,16 @@ typedef struct
 	uint32_t moder14	:2;
 	uint32_t moder15	:2;
 }GPIOx_MODER_t;
+	// 												  		base address + ofset
+	GPIOx_MODER_t volatile *pPortAModeReg=(GPIOx_MODER_t*) (0x40020000+0x00);
+	GPIOx_MODER_t volatile *pPortBModeReg=(GPIOx_MODER_t*) (0x40020400+0x00);
+	GPIOx_MODER_t volatile *pPortCModeReg=(GPIOx_MODER_t*) (0x40020800+0x00);
+	GPIOx_MODER_t volatile *pPortDModeReg=(GPIOx_MODER_t*) (0x40020C00+0x00);
+	GPIOx_MODER_t volatile *pPortEModeReg=(GPIOx_MODER_t*) (0x40021000+0x00);
+	GPIOx_MODER_t volatile *pPortFModeReg=(GPIOx_MODER_t*) (0x40021400+0x00);
+	GPIOx_MODER_t volatile *pPortGModeReg=(GPIOx_MODER_t*) (0x40021800+0x00);
+	GPIOx_MODER_t volatile *pPortHModeReg=(GPIOx_MODER_t*) (0x40021C00+0x00);
 
-	GPIOx_MODER_t volatile *pPortAModeReg=(GPIOx_MODER_t*) 0x40020000;
-
-	/*These bits are written by software to configure the I/O direction mode.
-	00: Input (reset state)
-	01: General purpose output mode
-	10: Alternate function mode
-	11: Analog mode
-	*/
 	//pPortA3eModeReg->moder5=1;	//output
 	//pPortA3eModeReg->moder5=0;	//input
 
@@ -101,7 +108,14 @@ typedef struct
 	uint16_t odr15		:1;
 }GPIOx_ODR_t;
 	//
-	GPIOx_ODR_t volatile *pPortAOutReg=(GPIOx_ODR_t*) 0x40020014;
+	GPIOx_ODR_t volatile *pPortAOutReg=(GPIOx_ODR_t*) (0x40020000+0x14);
+	GPIOx_ODR_t volatile *pPortBOutReg=(GPIOx_ODR_t*) (0x40020400+0x14);
+	GPIOx_ODR_t volatile *pPortCOutReg=(GPIOx_ODR_t*) (0x40020800+0x14);
+	GPIOx_ODR_t volatile *pPortDOutReg=(GPIOx_ODR_t*) (0x40020C00+0x14);
+	GPIOx_ODR_t volatile *pPortEOutReg=(GPIOx_ODR_t*) (0x40021000+0x14);
+	GPIOx_ODR_t volatile *pPortFOutReg=(GPIOx_ODR_t*) (0x40021400+0x14);
+	GPIOx_ODR_t volatile *pPortGOutReg=(GPIOx_ODR_t*) (0x40021800+0x14);
+	GPIOx_ODR_t volatile *pPortHOutReg=(GPIOx_ODR_t*) (0x40021C00+0x14);
 
 /*******************************************************************************
  * 7.4.5 GPIO port input data register (GPIOx_IDR) (x = A..H)

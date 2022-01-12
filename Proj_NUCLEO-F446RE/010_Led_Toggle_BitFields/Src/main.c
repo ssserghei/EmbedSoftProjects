@@ -15,7 +15,8 @@
  *
  ******************************************************************************
  */
-/*LED connected on PA5
+/* Рабочий. Лед мигает, при удержании кнопкиу лед гаснет
+ * LED connected on PA5
  *BUT is connected on PC13
  */
 
@@ -28,21 +29,39 @@
 
 int main(void)
 {
+	pClkCtrlReg->gpioA_en=1;	//LED EN CLK on GPIOA
+	pPortAModeReg->moder5=1;	//LED Set pin as OUT
 
-	/*
-	GPIOx_MODER_t *pGPIOa_MODER;
-	*pGPIOa_MODER =(GPIOx_MODER_t*) 0x40020000;
-	pGPIOa_MODER->moder5=1;
-*/
-
-	pClkCtrlReg->gpioA_en=1;	//for LED EN CLK on GPIOA
-
-	pPortAModeReg->moder5=1;	//for LED
-
-
-	pPortAOutReg->odr5=1;
-
+	pClkCtrlReg->gpioC_en=1;	//BUT EN CLK on PC13
+	pPortCModeReg->moder13=0;	//BUT Set pin as IN
 
 	/* Loop forever */
-	for(;;);
-}
+
+
+	while(1){
+	uint8_t ButState=!pPortCIntReg->idr13;
+		if(!ButState){
+			//turn on LED
+			pPortAOutReg->odr5=1;
+			for(uint32_t i=0; i<100000; i++);
+			//turn off the LED
+			pPortAOutReg->odr5=0;
+			for(uint32_t i=0; i<100000; i++);
+		}//end if
+	}//end while
+
+/*
+	while(1){
+	uint8_t ButState=pPortCIntReg->idr13;
+
+		if(ButState){
+			//turn on LED
+			pPortAOutReg->odr5=1;
+		}else{
+			//turn off the LED
+			pPortAOutReg->odr5=0;
+		}//end if
+	}//end while
+*/
+
+}//end main
