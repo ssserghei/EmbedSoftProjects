@@ -1,35 +1,55 @@
-15:55:53 **** Incremental Build of configuration Debug for project NucleoF446re_LED_ON ****
+18:57:45 **** Incremental Build of configuration Debug for project 016_NucEmbedHelloWorld ****
 make -j8 all 
-arm-none-eabi-size   NucleoF446re_LED_ON.elf 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "016_NucEmbedHelloWorld.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\GitHub\EmbedSoftProjects\Proj_NUCLEO-F446RE\016_NucEmbedHelloWorld\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="016_NucEmbedHelloWorld.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 016_NucEmbedHelloWorld.elf
+ 
+arm-none-eabi-size   016_NucEmbedHelloWorld.elf 
+arm-none-eabi-objdump -h -S  016_NucEmbedHelloWorld.elf  > "016_NucEmbedHelloWorld.list"
+arm-none-eabi-objcopy  -O binary  016_NucEmbedHelloWorld.elf  "016_NucEmbedHelloWorld.bin"
    text	   data	    bss	    dec	    hex	filename
-    844	      8	   1568	   2420	    974	NucleoF446re_LED_ON.elf
+   3748	    108	   1596	   5452	   154c	016_NucEmbedHelloWorld.elf
 Finished building: default.size.stdout
  
-15:56:00 **** Incremental Build of configuration Debug for project NucleoF446re_LED_ON ****
+Finished building: 016_NucEmbedHelloWorld.bin
+ 
+Finished building: 016_NucEmbedHelloWorld.list
+ 
+18:57:53 **** Incremental Build of configuration Debug for project 016_NucEmbedHelloWorld ****
 make -j8 all 
-arm-none-eabi-size   NucleoF446re_LED_ON.elf 
+arm-none-eabi-size   016_NucEmbedHelloWorld.elf 
    text	   data	    bss	    dec	    hex	filename
-    844	      8	   1568	   2420	    974	NucleoF446re_LED_ON.elf
+   3748	    108	   1596	   5452	   154c	016_NucEmbedHelloWorld.elf
 Finished building: default.size.stdout
  
-15:56:00 **** Incremental Build of configuration Debug for project NucleoF446re_LED_ON ****
+19:02:35 **** Incremental Build of configuration Debug for project 016_NucEmbedHelloWorld ****
 make -j8 all 
-arm-none-eabi-size   NucleoF446re_LED_ON.elf 
+arm-none-eabi-size   016_NucEmbedHelloWorld.elf 
    text	   data	    bss	    dec	    hex	filename
-    844	      8	   1568	   2420	    974	NucleoF446re_LED_ON.elf
+   3748	    108	   1596	   5452	   154c	016_NucEmbedHelloWorld.elf
 Finished building: default.size.stdout
  
-15:56:17 **** Incremental Build of configuration Debug for project NucleoF446re_LED_ON ****
+21:09:55 **** Incremental Build of configuration Debug for project 016_NucEmbedHelloWorld ****
 make -j8 all 
-arm-none-eabi-size   NucleoF446re_LED_ON.elf 
+arm-none-eabi-size   016_NucEmbedHelloWorld.elf 
    text	   data	    bss	    dec	    hex	filename
-    844	      8	   1568	   2420	    974	NucleoF446re_LED_ON.elf
+   3748	    108	   1596	   5452	   154c	016_NucEmbedHelloWorld.elf
 Finished building: default.size.stdout
  
-15:57:57 **** Incremental Build of configuration Debug for project NucleoF446RE_ButRead ****
+21:10:46 **** Incremental Build of configuration Debug for project 016_NucEmbedHelloWorld ****
 make -j8 all 
-arm-none-eabi-size   NucleoF446RE_ButRead.elf 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "016_NucEmbedHelloWorld.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\GitHub\EmbedSoftProjects\Proj_NUCLEO-F446RE\016_NucEmbedHelloWorld\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="016_NucEmbedHelloWorld.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 016_NucEmbedHelloWorld.elf
+ 
+arm-none-eabi-size   016_NucEmbedHelloWorld.elf 
+arm-none-eabi-objdump -h -S  016_NucEmbedHelloWorld.elf  > "016_NucEmbedHelloWorld.list"
+arm-none-eabi-objcopy  -O binary  016_NucEmbedHelloWorld.elf  "016_NucEmbedHelloWorld.bin"
    text	   data	    bss	    dec	    hex	filename
-    852	      8	   1568	   2428	    97c	NucleoF446RE_ButRead.elf
+   3784	    108	   1596	   5488	   1570	016_NucEmbedHelloWorld.elf
 Finished building: default.size.stdout
+ 
+Finished building: 016_NucEmbedHelloWorld.list
+ 
+Finished building: 016_NucEmbedHelloWorld.bin
  

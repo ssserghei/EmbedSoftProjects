@@ -1,0 +1,10 @@
+21:53:22 **** Incremental Build of configuration Debug for project 016_Nuc_LED_Togle_macros ****
+make -j8 all 
+arm-none-eabi-size   016_Nuc_LED_Togle_macros.elf 
+   text	   data	    bss	    dec	    hex	filename
+    868	     28	   1564	   2460	    99c	016_Nuc_LED_Togle_macros.elf
+Finished building: default.size.stdout
+ 
+
+21:53:22 Build Finished. 0 errors, 0 warnings. (took 163ms)
+
