@@ -70,14 +70,14 @@ typedef struct
 	uint32_t moder15	:2;
 }GPIOx_MODER_t;
 	// 												  		base address + ofset
-	GPIOx_MODER_t volatile *pPortAModeReg=(GPIOx_MODER_t*) (0x40020000+0x00);
-	GPIOx_MODER_t volatile *pPortBModeReg=(GPIOx_MODER_t*) (0x40020400+0x00);
-	GPIOx_MODER_t volatile *pPortCModeReg=(GPIOx_MODER_t*) (0x40020800+0x00);
-	GPIOx_MODER_t volatile *pPortDModeReg=(GPIOx_MODER_t*) (0x40020C00+0x00);
-	GPIOx_MODER_t volatile *pPortEModeReg=(GPIOx_MODER_t*) (0x40021000+0x00);
-	GPIOx_MODER_t volatile *pPortFModeReg=(GPIOx_MODER_t*) (0x40021400+0x00);
-	GPIOx_MODER_t volatile *pPortGModeReg=(GPIOx_MODER_t*) (0x40021800+0x00);
-	GPIOx_MODER_t volatile *pPortHModeReg=(GPIOx_MODER_t*) (0x40021C00+0x00);
+GPIOx_MODER_t volatile *pPortAModeReg=(GPIOx_MODER_t*) (0x40020000+0x00);
+GPIOx_MODER_t volatile *pPortBModeReg=(GPIOx_MODER_t*) (0x40020400+0x00);
+GPIOx_MODER_t volatile *pPortCModeReg=(GPIOx_MODER_t*) (0x40020800+0x00);
+GPIOx_MODER_t volatile *pPortDModeReg=(GPIOx_MODER_t*) (0x40020C00+0x00);
+GPIOx_MODER_t volatile *pPortEModeReg=(GPIOx_MODER_t*) (0x40021000+0x00);
+GPIOx_MODER_t volatile *pPortHModeReg=(GPIOx_MODER_t*) (0x40021400+0x00);
+GPIOx_MODER_t volatile *pPortFModeReg=(GPIOx_MODER_t*) (0x40021800+0x00);
+GPIOx_MODER_t volatile *pPortGModeReg=(GPIOx_MODER_t*) (0x40021C00+0x00);
 
 	//pPortA3eModeReg->moder5=1;	//output
 	//pPortA3eModeReg->moder5=0;	//input

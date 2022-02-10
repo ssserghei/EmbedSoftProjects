@@ -20,6 +20,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\GitHub\EmbedSoftProjects\Proj_L151CC"/>
 			<item value="D:\GitHub\EmbedSoftProjects\Host\DataAllignment"/>
 			<item value="D:\GitHub\EmbedSoftProjects\Host\001_Host_StructInit"/>
 			<item value="D:\GitHub\EmbedSoftProjects\Host"/>
