@@ -18,12 +18,4 @@ void main(void){
 	scanf();
 
 
-
-
-
-
-
-
-
-
 }//end main
