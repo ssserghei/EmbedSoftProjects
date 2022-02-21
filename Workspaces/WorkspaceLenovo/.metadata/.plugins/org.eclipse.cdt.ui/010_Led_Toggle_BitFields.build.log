@@ -1,10 +1,20 @@
-21:34:26 **** Incremental Build of configuration Debug for project 010_Led_Toggle_BitFields ****
+13:20:37 **** Build of configuration Debug for project 010_Led_Toggle_BitFields ****
 make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "010_Led_Toggle_BitFields.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\GitHub\EmbedSoftProjects\Proj_NUCLEO-F446RE\010_Led_Toggle_BitFields\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="010_Led_Toggle_BitFields.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 010_Led_Toggle_BitFields.elf
+ 
 arm-none-eabi-size   010_Led_Toggle_BitFields.elf 
+arm-none-eabi-objdump -h -S  010_Led_Toggle_BitFields.elf  > "010_Led_Toggle_BitFields.list"
+arm-none-eabi-objcopy  -O binary  010_Led_Toggle_BitFields.elf  "010_Led_Toggle_BitFields.bin"
    text	   data	    bss	    dec	    hex	filename
     868	     28	   1564	   2460	    99c	010_Led_Toggle_BitFields.elf
 Finished building: default.size.stdout
  
+Finished building: 010_Led_Toggle_BitFields.bin
+Finished building: 010_Led_Toggle_BitFields.list
+ 
+ 
 
-21:34:26 Build Finished. 0 errors, 0 warnings. (took 164ms)
+13:20:37 Build Finished. 0 errors, 0 warnings. (took 473ms)
 

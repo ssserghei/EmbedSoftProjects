@@ -651,9 +651,9 @@ LOAD c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
  .debug_macro   0x0000000000001b59       0x16 ./Src/main.o
  .debug_macro   0x0000000000001b6f      0x145 ./Src/main.o
 
-.debug_line     0x0000000000000000      0x616
- .debug_line    0x0000000000000000      0x592 ./Src/main.o
- .debug_line    0x0000000000000592       0x84 ./Startup/startup_stm32f446retx.o
+.debug_line     0x0000000000000000      0x614
+ .debug_line    0x0000000000000000      0x590 ./Src/main.o
+ .debug_line    0x0000000000000590       0x84 ./Startup/startup_stm32f446retx.o
 
 .debug_str      0x0000000000000000     0x7f29
  .debug_str     0x0000000000000000     0x7ef8 ./Src/main.o
