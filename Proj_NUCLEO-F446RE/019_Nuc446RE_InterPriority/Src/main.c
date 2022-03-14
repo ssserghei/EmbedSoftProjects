@@ -20,11 +20,27 @@
 #include<stdio.h>
 
 uint32_t *pNVIC_IPRBase = (uint32_t*) 0xE000E400;	//Interrupt Priority Registers on page 4-7
-uint32_t *pNVIC_ISERase = (uint32_t*) 0xE000E100; //Interrupt Set-enable Registers on page 4-4
-uint32_t *pNVIC_ISPRase = (uint32_t*) 0xE000E200; //Interrupt Set-pending Registers on page 4-5
+uint32_t *pNVIC_ISERBase = (uint32_t*) 0xE000E100; //Interrupt Set-enable Registers on page 4-4
+uint32_t *pNVIC_ISPRBase = (uint32_t*) 0xE000E200; //Interrupt Set-pending Registers on page 4-5
 
-void configure_priority_for_irqs(uint8_t irq_no){
+void configure_priority_for_irqs(uint8_t irq_no, uint8_t priority_value){
+	/*	76543210
+		--------
+		| PRI_0 | interrupt priority register implementation
+		--------
+		  8 bits
+		   IRQ0
+	*/
+		//1. find out iprx
+		uint8_t iprx=irq_no/4;
+		uint32_t *ipr=pNVIC_IPRBase+iprx;
 
+		//2. position in iprx
+		uint8_t pos=(irq_no %4)*8;
+
+		//3. configure the priority
+		*ipr &=~(0xFF <<pos);	//clear
+		*ipr |= (priority_value << pos);
 }
 
 
@@ -39,30 +55,22 @@ void configure_priority_for_irqs(uint8_t irq_no){
 int main(void)
 {
 	//1. Configure the priority for the peripherals
-	configure_priority_for_irqs(IRQNO_TIMER2);
-/*	76543210
-	--------
-	| PRI_0 | interrupt priority register implementation
-	--------
-	  8 bits
-	   IRQ0
-*/
-	//1. find out iprx
-	//2. position in iprx
-
-
-	configure_priority_for_irqs(IRQNO_I2C1);
+	configure_priority_for_irqs(IRQNO_TIMER2,0x80);
+	configure_priority_for_irqs(IRQNO_I2C1, 0x70);
 
 	//2. Set the interrupt pending bit in the NVIC PR
+	*pNVIC_IPRBase |=(1<<IRQNO_TIMER2);
 
 	//3. Enable the IRQs in NVIC ISER
-
-
+	*pNVIC_ISERBase |=(1<<IRQNO_I2C1);
+	*pNVIC_ISERBase |=(1<<IRQNO_TIMER2);
 
 }
 
 void TIM2_IRQHandler(void){        /* TIM2 global interrupt        */
 	printf("[TIM2_IRQHandler]\n");
+	*pNVIC_ISPRBase |=(1<<IRQNO_I2C1);
+	while(1);
 }
 
 void I2C1_EV_IRQHandler(void){     /* I2C1 event interrupt     */
