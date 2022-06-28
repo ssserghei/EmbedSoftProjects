@@ -79,8 +79,8 @@ GPIOx_MODER_t volatile *pPortHModeReg=(GPIOx_MODER_t*) (0x40021400+0x00);
 GPIOx_MODER_t volatile *pPortFModeReg=(GPIOx_MODER_t*) (0x40021800+0x00);
 GPIOx_MODER_t volatile *pPortGModeReg=(GPIOx_MODER_t*) (0x40021C00+0x00);
 
-	//pPortA3eModeReg->moder5=1;	//output
-	//pPortA3eModeReg->moder5=0;	//input
+	//pPortAModeReg->moder5=1;	//output
+	//pPortAModeReg->moder5=0;	//input
 
 
 /*******************************************************************************

@@ -1,0 +1,210 @@
+window.STFED = typeof STFED === 'undefined' ? {} : STFED;
+
+/* In case if consent changes and we have changes in the groups, we need to reload the page */
+function ReloadPageOnConsentChange() {
+    var CHINESE_DOMAIN = 'stmicroelectronics.com.cn';
+	/* store groups to cookie */
+	function storeGroups(groups) {
+		/* groups contain commas which is not allowed for cookies according to RFC */
+		var cookieValue = encodeURIComponent(groups);
+        var cookieDomain = getCookieDomain (window.location.hostname);
+		/* set cookie for root path of the 2nd level domain */
+		document.cookie = "stPreviousOnetrustActiveGroups=" + cookieValue + "; Max-Age=31536000; Path=/; Domain=" + window.location.host;
+	}
+
+	function getCookieDomain (hostname){
+        if (hostname.indexOf(CHINESE_DOMAIN) > -1) {
+            /* for Chinese domain */
+            return "." + CHINESE_DOMAIN;
+        }
+
+        var domains = hostname.split(".");
+
+        if (domains.length==1) {
+            /* for localhost mostly */
+            return domains[0]
+        }
+
+        if(domains.length > 1) {
+           /* for staging and production domains */
+           return "." + domains[domains.length-2] + "." + domains[domains.length-1];
+        }
+        return '';
+    }
+
+	/* load groups from cookie */
+	function loadGroups() {
+		var value = "; " + document.cookie;
+		var parts = value.split("; stPreviousOnetrustActiveGroups=");
+		/* in case if there are multiple cookies, taking the last one, as will be the one for root "/" path */
+		if (parts.length >= 2) {
+			return decodeURIComponent(parts[parts.length-1].split(";")[0]);
+		}
+		return "";
+	}
+	/*get getQuery*/
+    function getQuery(key, value) {
+        var encodeKey = encodeURI(key);
+        var encodeValue = encodeURI(value);
+        var kvp = document.location.search.substr(1).split('&');
+        var i = kvp.length;
+        var x;
+        while(i--) {
+            x = kvp[i].split('=');
+            if (x[0] == encodeKey) {
+                x[1] = encodeValue;
+                kvp[i] = x[0] + '=' + x[1];
+                break;
+            }
+        }
+        if(i < 0 && encodeValue) {
+            kvp[kvp.length] = [encodeKey, encodeValue].join('=');
+        }
+	    res = [];
+	    for (var j = 0; j < kvp.length; j++) {
+			if (kvp[j]){
+				res.push(kvp[j]);
+			}
+        }
+        return res.join('&');
+    }
+	/* retrieve stored cookie with groups configuration */
+	var stPreviousOnetrustActiveGroups = loadGroups();
+	if (OnetrustActiveGroups != stPreviousOnetrustActiveGroups) {
+		/*if the retrieved groups value is not equal to current one, store it and reload the page, as there were changes in consent  */
+		storeGroups(OnetrustActiveGroups);
+        var cookieDomain = getCookieDomain (window.location.hostname);
+
+        if (STFED.Cookies.areCookiesEnabled()) {
+            if (sessionStorage.getItem('stReloadPerformed') !== 'true' &&
+                document.cookie.indexOf('OptanonAlertBoxClosed') > -1) {
+                document.cookie = "stOneTrustReloadPerformed=true; Max-Age=31536000; Path=/; Domain=" + window.location.host;
+                sessionStorage.setItem('stReloadPerformed', 'true');
+                if (!/[?&]ot=1/i.test(location.search)) {
+                    location.reload();
+                }
+            }
+        }
+    }
+}
+if (window.isEuropeGdpr === true && typeof Optanon !== "undefined") {
+    Optanon.OnConsentChanged(ReloadPageOnConsentChange);
+}
+
+$(document).ready(function() {
+    $(window).load(function() {
+        if (/\/common\/privacy-portal\/cookie-information.html$/i.test(window.location.pathname)){
+            $('.parbase.custom-content-block').addClass('cookies-policy');
+            $('#optanon-popup-bg').hide();
+            $('.optanon-alert-box-wrapper').hide();
+        }
+    });
+
+    $(window).on('otloadbanner', function() {
+        if (!STFED.Cookies.areCookiesEnabled()) {
+            $('#optanon, .optanon-alert-box-wrapper').hide();
+        }
+    });
+});
+
+var groupsToCookieNameMapString = '';
+var groupsToCookieNameMapXmlHttp = {};
+var groupStatusesArray = [];
+
+if (typeof OptanonActiveGroups !== 'undefined' && OptanonActiveGroups !== null && !!OptanonActiveGroups.length) {
+    groupStatusesArray = OptanonActiveGroups.split(',');
+}
+
+var getCookieGroupInfo = (function() {
+    var url ='/bin/st/one-trust-integration.json';
+    groupsToCookieNameMapXmlHttp = new XMLHttpRequest();
+    groupsToCookieNameMapXmlHttp.onreadystatechange = processCookieGroupRequest;
+    groupsToCookieNameMapXmlHttp.open("GET", url, false);
+    groupsToCookieNameMapXmlHttp.send( null );
+}());
+
+function processCookieGroupRequest(){
+    if ( groupsToCookieNameMapXmlHttp.readyState == 4 && groupsToCookieNameMapXmlHttp.status == 200 ){
+        groupsToCookieNameMapString = groupsToCookieNameMapXmlHttp.responseText || '';
+    }
+}
+
+var groupsToCookieNameMapObject = JSON.parse(groupsToCookieNameMapString);
+var cookieStatuses = getStatuses(groupsToCookieNameMapObject, groupStatusesArray);
+
+function getStatuses (groupsToCookieNameMap, groupStatusesArray){
+    var cookieNameToStatusMap = {};
+    var keys = Object.keys(groupsToCookieNameMap);
+    var maxAllowedGroupNumber = 4;
+
+     keys.forEach(function (item) {
+                        var cookieGroup = groupsToCookieNameMap[item];
+                        var cookieGroupNumber = Number(cookieGroup) || Number.MAX_SAFE_INTEGER;
+                        cookieNameToStatusMap[item] = (cookieGroupNumber <= maxAllowedGroupNumber) && (groupStatusesArray.indexOf(cookieGroup) > -1);
+                  });
+     return cookieNameToStatusMap;
+}
+
+function getCookieValue(name) {
+    var values = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return values ? values.pop() : '';
+}
+
+function isActiveCookie(name) {
+    if (window.isEuropeGdpr === false || (window.isChinesePublish && window.isChinesePublish === 'true')) {
+        return true;
+    }
+    if (!cookieStatuses){
+        return false;
+    }
+    var status = cookieStatuses[name] || false;
+    return (status) ? status : isActiveCookieByPattern(name);
+}
+
+/*
+    Please, note that Pattern in Java does not 100% compatible with RegEx in JavaScript.
+    For example, modifiers are specified differently: https://stackoverflow.com/questions/8629039/differences-in-regex-patterns-between-javascript-and-java
+*/
+function isActiveCookieByPattern(name) {
+    for(var cookieNamePattern in cookieStatuses) {
+        var regex = RegExp(cookieNamePattern);
+        if (regex.test(name)) {
+            return cookieStatuses[cookieNamePattern];
+        }
+    }
+    return false;
+}
+
+STFED.Cookies = {
+    areCookiesEnabled: (function() {
+        var isEnabled;
+
+        return function() {
+            if (isEnabled !== undefined) {
+                return isEnabled;
+            }
+
+            isEnabled = navigator.cookieEnabled;
+
+            document.cookie = 'cookietest=1';
+            if (document.cookie.indexOf('cookietest=') > -1) {
+                document.cookie = 'cookietest=1; expires=Thu, 01-Jan-1970 00:00:01 GMT';
+            } else {
+                isEnabled = false;
+            }
+
+            return isEnabled;
+        };
+    })()
+};
+
+var optanon_interval = setInterval(function(){
+    if($){
+        if($(".optanon-alert-box-wrapper").length && $(".optanon-alert-box-wrapper").is(":visible") == true){
+        	clearInterval(optanon_interval);
+        	$("body").append("<img src='" + window.location.origin + "/dev/stpix.png?a=" + (new Date).getTime() + "' />");
+        } else if($(".optanon-alert-box-wrapper").length && $(".optanon-alert-box-wrapper").is(":visible") == false) {
+        	clearInterval(optanon_interval);
+        }
+    }
+}, 100);
