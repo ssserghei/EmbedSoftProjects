@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 ../Src/main.c:32:5:main	40	static
+=======
+main.c:33:5:main	40	static
+>>>>>>> Stashed changes

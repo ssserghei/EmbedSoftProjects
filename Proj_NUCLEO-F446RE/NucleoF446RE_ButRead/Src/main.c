@@ -16,6 +16,9 @@
  *
  ******************************************************************************
  */
+/*Работает. Мигает светодиодом а при нажатии не кнопку мигание прекращается
+ *
+ * */
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
@@ -54,29 +57,20 @@ int main(void)
 	while(1){
 	//read the pin status of the pin PC13 //7.4.5 GPIO port input data register (GPIOx_IDR) (x = A..H)
 	//uint8_t pinStatus=(uint8_t)(pinStatus >>12) & 0x1FFF); /////.......
-
-	uint32_t pinStatus=*pPortCInReg;
-
-	pinStatus=(pinStatus >>13) & 0x1;	// PC13
+	uint32_t pinStatus=(uint8_t)((*pPortCInReg >>13) & 0x1);
 //	pinStatus=pinStatus & 0x2000;		//это работает
 //	pinStatus=((pinStatus >>13) & (0x01));	//
-
-	//data &~
 	if(pinStatus){
 		//turn on LED
 		*pPortAOutReg &=~(1<<5);
-		}else{
-			//turn off the LED
-			*pPortAOutReg |=(1<<5);
-			}
-
+		for(uint32_t i=0; i<500000; i++);
+		//turn off the LED
+		*pPortAOutReg |=(1<<5);
+		for(uint32_t i=0; i<500000; i++);
+		}
 	//set 5 bit of the output data register....
 	//*pPortAOutReg |=(1<<5);//*pPortAOutReg |=0x00000020;
 	}//end of while
-
-
-
-
 
 }//endof main
 

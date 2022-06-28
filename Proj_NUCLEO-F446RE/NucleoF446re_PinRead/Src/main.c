@@ -16,7 +16,8 @@
  *
  ******************************************************************************
  */
-/*кароч, не работает. нажатие не кнопку
+/*Работает но выскакивает ошибка при кромпиляции.
+ * Аналогична NucleoF446RE_ButRead пользоватся этой!!!
  *
  * */
 
@@ -37,7 +38,7 @@ int main(void)
 	uint32_t *pPortAOutReg=(uint32_t*)	0x40020014;
 
 	uint32_t *pPortCModeReg=(uint32_t*)(0x40020800+0x00);	//0x4002 0800 - 0x4002 0BFF		//GPIOC base adres
-	uint32_t *pPortCInReg=(uint32_t*)	(0x40020800+0x10);
+	uint32_t *pPortCInReg=(uint32_t*)  (0x40020800+0x10);
 
 
 	//1. Enable the Clock GPIOC, GPOIA
@@ -58,7 +59,7 @@ int main(void)
 	while(1)
 	{
 		//read the pin status of the pin PA0 (GPIOA INPUT DATA REGISTER)
-		uint8_t  pinStatus = (uint8_t)(*pPortCInReg & 0b10000000000000); //zero out all other bits except bit 0
+		uint8_t  pinStatus = (uint8_t)((*pPortCInReg >>13) & 0x1); //zero out all other bits except bit 0
 		if(pinStatus){
 			//turn on the LED
 			*pPortAOutReg |=(1<<5);
