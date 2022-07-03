@@ -15,7 +15,6 @@ Table 2. STM32L41xxx/42xxx/43xxx/44xxx/45xxx/46xxx memory map and peripheral reg
 boundary addresses
 6.4.16 AHB2 peripheral clock enable register (RCC_AHB2ENR)
 */
-
 typedef struct{
 	uint32_t gpioA_en		:1;
 	uint32_t gpioB_en		:1;

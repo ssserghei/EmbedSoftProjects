@@ -16,11 +16,15 @@
  ******************************************************************************
  */
 /*
+проект рабочий.
 тут буду блинковать ледом на плате NUCLEO-L432KC
+
 доки на плату
 https://www.st.com/en/evaluation-tools/nucleo-l432kc.html#
 доки на микроконтроллер
 https://www.st.com/en/microcontrollers-microprocessors/stm32l432kc.html#
+
+*добавид подтяжку.
 
 
  LED=ON=1=PB3
@@ -46,17 +50,24 @@ int main(void)
 //	pPortAPuPdReg->pupdr12=2;	//Pull-down connected
 
 	/* Loop forever */
-
 	while(1){
 	uint8_t ButState=pPortAIntReg->idr12;
-		if(!ButState){
+		if(!ButState){	//Джампер вставлен PA12=0
 			//turn on LED
 			pPortBOutReg->odr3=1;
 			for(uint32_t i=0; i<50000; i++);
 			//turn off the LED
 			pPortBOutReg->odr3=0;
 			for(uint32_t i=0; i<50000; i++);
-		}//end if
+		}else{
+			//turn on LED
+				pPortBOutReg->odr3=1;
+				for(uint32_t i=0; i<10000; i++);
+				//turn off the LED
+				pPortBOutReg->odr3=0;
+				for(uint32_t i=0; i<10000; i++);
+			}//end else
 	}//end while
+
 
 }//END MAIN

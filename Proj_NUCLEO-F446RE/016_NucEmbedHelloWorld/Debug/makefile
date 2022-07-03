@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (9-2020-q2-update)
+# Toolchain: GNU Tools for STM32 (10.3-2021.10)
 ################################################################################
 
 -include ../makefile.init
@@ -42,14 +42,14 @@ BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ART
 EXECUTABLES += \
 016_NucEmbedHelloWorld.elf \
 
+MAP_FILES += \
+016_NucEmbedHelloWorld.map \
+
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
 016_NucEmbedHelloWorld.list \
-
-OBJCOPY_BIN += \
-016_NucEmbedHelloWorld.bin \
 
 
 # All Target
@@ -59,7 +59,7 @@ all: main-build
 main-build: 016_NucEmbedHelloWorld.elf secondary-outputs
 
 # Tool invocations
-016_NucEmbedHelloWorld.elf: $(OBJS) $(USER_OBJS) D:\GitHub\EmbedSoftProjects\Proj_NUCLEO-F446RE\016_NucEmbedHelloWorld\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+016_NucEmbedHelloWorld.elf 016_NucEmbedHelloWorld.map: $(OBJS) $(USER_OBJS) D:\GitHub\EmbedSoftProjects\Proj_NUCLEO-F446RE\016_NucEmbedHelloWorld\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-gcc -o "016_NucEmbedHelloWorld.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\GitHub\EmbedSoftProjects\Proj_NUCLEO-F446RE\016_NucEmbedHelloWorld\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="016_NucEmbedHelloWorld.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
@@ -74,17 +74,12 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-016_NucEmbedHelloWorld.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "016_NucEmbedHelloWorld.bin"
-	@echo 'Finished building: $@'
-	@echo ' '
-
 # Other Targets
 clean:
-	-$(RM) 016_NucEmbedHelloWorld.bin 016_NucEmbedHelloWorld.elf 016_NucEmbedHelloWorld.list default.size.stdout
+	-$(RM) 016_NucEmbedHelloWorld.elf 016_NucEmbedHelloWorld.list 016_NucEmbedHelloWorld.map default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
