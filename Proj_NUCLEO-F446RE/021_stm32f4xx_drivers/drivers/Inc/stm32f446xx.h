@@ -49,6 +49,12 @@
 //
 
 
+/****************Peripheral Register Definition Structures********************/
+
+/*Note: Register of a peripheral are specific to MCU
+*e.g: Number of Register of SPI peripheral of STM32F4x family of MCUs may
+*/
+
 
 
 
