@@ -34,6 +34,26 @@ typedef struct
  * 		For more information about the APIs check the function definitions
  **************************************************************************/
 
+/*Peripheral Clock setup*/
+void GPIO_PeriClockControl(void);	//
+
+/*Init and De-init*/
+void GPIO_Init(void);				//позже решим что должно принимать и что возвращать
+void GPIO_DeInit(void);				//сбрасывает порт в исходное состояние
+
+/*Date read and write*/
+void GPIO_ReadFromInputPin(void);	//
+void GPIO_ReadFromInputPort(void);	//
+
+void GPIO_WriteToOutPin(void);		//
+void GPIO_WriteToOutPort(void);		//
+
+/*IRQ Configuration and ISR handling*/
+void GPIO_ToggleOutPin(void);		//
+void GPIO_IRQConfig(void);			//
+void GPIO_IRQHandling(void);		//
+
+
 
 
 #endif /* INC_STM32F446XX_GPIO_DRIVER_H_ */
