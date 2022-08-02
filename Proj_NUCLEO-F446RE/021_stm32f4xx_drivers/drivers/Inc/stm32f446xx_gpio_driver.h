@@ -10,6 +10,7 @@
 
 #include "stm32f446xx.h"
 
+
 /*This is a Configuration structure for a GPIO pin*/
 typedef struct
 {
@@ -35,23 +36,24 @@ typedef struct
  **************************************************************************/
 
 /*Peripheral Clock setup*/
-void GPIO_PeriClockControl(void);	//
+void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t ENorDI);	//
 
 /*Init and De-init*/
-void GPIO_Init(void);				//позже решим что должно принимать и что возвращать
-void GPIO_DeInit(void);				//сбрасывает порт в исходное состояние
+void GPIO_Init(GPIO_Handle_t *pGPIOHandle);								//позже решим что должно принимать и что возвращать
+void GPIO_DeInit(GPIO_RegDef_t *pGPIOx);				//сбрасывает порт в исходное состояние
+
 
 /*Date read and write*/
-void GPIO_ReadFromInputPin(void);	//
-void GPIO_ReadFromInputPort(void);	//
+uint8_t  GPIO_ReadFromInputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);	//возвращает булевое значение
+uint16_t  GPIO_ReadFromInputPort(GPIO_RegDef_t *pGPIOx);	//
 
-void GPIO_WriteToOutPin(void);		//
-void GPIO_WriteToOutPort(void);		//
+void GPIO_WriteToOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber, uint8_t Value);		//
+void GPIO_WriteToOutPort(GPIO_RegDef_t *pGPIOx, uint16_t Value);					//
+void GPIO_ToggleOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);		//
 
 /*IRQ Configuration and ISR handling*/
-void GPIO_ToggleOutPin(void);		//
-void GPIO_IRQConfig(void);			//
-void GPIO_IRQHandling(void);		//
+void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriority, uint8_t ENorDI);			//
+void GPIO_IRQHandling(uint8_t PinNumber);		//
 
 
 

@@ -4,6 +4,7 @@
  *  Created on: Jul 18, 2022
  *      Author: Serghei
  */
+#include <stdint.h>
 
 #ifndef INC_STM32F446XX_H_
 #define INC_STM32F446XX_H_
@@ -164,5 +165,19 @@ typedef struct					//Table 21. RCC register map and reset values
 
 
 /**/
+//some generic macros
+#define ENABLE			1
+#define DISABLE			0
+#define	SET				ENABLE
+#define	RESET			DISABLE
+#define GPIO_PIN_SET	SET
+#define GPIO_PIN_RESET	RESET
+
+
+
+
+
+
+
 
 #endif /* INC_STM32F446XX_H_ */
