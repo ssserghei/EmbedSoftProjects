@@ -1,4 +1,4 @@
-/*
+ffr/*
  * stm32f446xx_gpio_driver.h
  *
  *  Created on: 25 июл. 2022 г.
@@ -39,7 +39,7 @@ typedef struct
 void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t ENorDI);	//
 
 /*Init and De-init*/
-void GPIO_Init(GPIO_Handle_t *pGPIOHandle);								//позже решим что должно принимать и что возвращать
+void GPIO_Init(GPIO_Handle_t *pGPIOHandle);				//позже решим что должно принимать и что возвращать
 void GPIO_DeInit(GPIO_RegDef_t *pGPIOx);				//сбрасывает порт в исходное состояние
 
 
