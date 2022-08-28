@@ -110,9 +110,29 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)					//позже решим что д
 	pGPIOHandle->pGPIOx->MODER |=temp;		//setting
 	temp=0;
 	}else
-	{
-		//this part will code later. (interrupt mode)
+	{	//Interrupt mode
+		if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode<=GPIO_MODE_IT_FT)
+		{	//1.configure the FTSR
+			EXTI->FTSR |=(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+			//Clear the corresponding RTSR bit
+			EXTI->RTSR &=~(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+		}else if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode<=GPIO_MODE_IT_RT)
+		{	//1.configure the RTSR
+			EXTI->RTSR |=(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+			//Clear the corresponding RTSR bit
+			EXTI->FTSR &=~(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+		}else if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode<=GPIO_MODE_IT_RFT)
+		{	//1.configure both FTSR and RTSR
+			EXTI->RTSR |=(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+			//Clear the corresponding RTSR bit
+			EXTI->FTSR |=(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+		}
+		//2. configure GPIO port selection in SYSCFG_EXTICR
+
+		//3. enable the exti interrupt delivery using IMR
+		EXTI->IMR |=(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
 	}
+
 	temp=0;
 
 	//2.configure the speed
@@ -181,19 +201,12 @@ void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriority, uint8_t ENorDI)				/
 
 }
 
-void GPIO_IRQHandling(uint8_t PinNumber)												//
-{
-
-}
 
 
 
 
-//
-
-/*Peripheral Clock setup*/
 /*********************************
- * @fn					-
+ * @fn					- GPIO_IRQHandling
  *
  *@brief				-
  *
@@ -206,3 +219,14 @@ void GPIO_IRQHandling(uint8_t PinNumber)												//
  *@Note					-
  *
  * */
+void GPIO_IRQHandling(uint8_t PinNumber)												//
+{
+
+}
+
+
+
+
+
+
+

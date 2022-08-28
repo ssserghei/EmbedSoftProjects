@@ -55,15 +55,16 @@ typedef struct
 #define GPIO_MODE_OUT 		1
 #define GPIO_MODE_ALTFN 	2
 #define GPIO_MODE_ANALOG 	3
-#define GPIO_MODE_IT_FT		4	//interrupt mode
-#define GPIO_MODE_IT_RT		5	//interrupt mode
-#define GPIO_MODE_IT_RFT	6	//interrupt mode
+#define GPIO_MODE_IT_FT		4	//Fooling interrupt mode
+#define GPIO_MODE_IT_RT		5	//Rising interrupt mode
+#define GPIO_MODE_IT_RFT	6	//both interrupt mode
 
 /*GPIO pin possible output types*/
 #define GPIO_OP_TYPE_PP		0	//push-pull
-#define GPIO_OP_TYPE_OD		0	//open-drain
+#define GPIO_OP_TYPE_OD		1	//open-drain
 
-/*GPIO pin possible output speeds*/
+/*@GPIO_PIN_SPEED
+ * GPIO pin possible output speeds*/
 #define GPIO_LOW			0
 #define GPIO_MEDIUM			1
 #define GPIO_FAST			2

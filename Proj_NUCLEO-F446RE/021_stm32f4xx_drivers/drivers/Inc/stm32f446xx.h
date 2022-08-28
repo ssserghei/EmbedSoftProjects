@@ -111,6 +111,18 @@ typedef struct					//Table 21. RCC register map and reset values
 }RCC_RefDef_t;
 
 
+/*peripheral definition structure for EXTI*/
+typedef struct
+{
+	__vo uint32_t IMR; 				/*!<Give a short description,  Address offset: 0x00*/
+	__vo uint32_t EMR; 				/*!<Give a short description,  Address offset: 0x04*/
+	__vo uint32_t RTSR; 			/*!<Give a short description,  Address offset: 0x08*/
+	__vo uint32_t FTSR; 			/*!<Give a short description,  Address offset: 0x0C*/
+	__vo uint32_t SWIER; 			/*!<Give a short description,  Address offset: 0x10*/
+	__vo uint32_t PR; 				/*!<Give a short description,  Address offset: 0x14*/
+}EXTI_RegDef_t;
+
+
 /*peripheral definition (Peripheral base addresses typecasted to xxx_RegDef_t)
  * */
 #define GPIOA		((GPIO_RegDef_t*)GPIOA_BASEADDR)	//
@@ -123,6 +135,8 @@ typedef struct					//Table 21. RCC register map and reset values
 #define GPIOH		((GPIO_RegDef_t*)GPIOH_BASEADDR)	//
 
 #define RCC			((RCC_RefDef_t*)RCC_BASEADDR)
+
+#define EXTI		((EXTI_RefDef_t*)EXTI_BASEADDR)
 
 /*Clock Enable Macros for GPIOx peripherals*/
 #define GPIOA_PCLK_EN()		(RCC->AHB1ENR |=(1<<0))
