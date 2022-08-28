@@ -124,7 +124,6 @@ int main(void)
  8000218:	6013      	str	r3, [r2, #0]
 //	pPortAPuPdReg->pupdr12=2;	//Pull-down connected
 
-
 	/* Loop forever */
 	while(1){
 	uint8_t ButState=pPortAIntReg->idr12;

@@ -65,7 +65,7 @@ typedef struct
 	__vo uint32_t MODER;	//
 	__vo uint32_t OTYPER;	//
 	__vo uint32_t OSPEEDR;	//
-	__vo uint32_t PUDR;		//
+	__vo uint32_t PUPDR;	//
 	__vo uint32_t IDR;		//
 	__vo uint32_t ODR;		//
 	__vo uint32_t BSRR;		//

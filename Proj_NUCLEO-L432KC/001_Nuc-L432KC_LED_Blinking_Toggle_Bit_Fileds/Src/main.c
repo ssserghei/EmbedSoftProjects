@@ -18,6 +18,7 @@
 /*
 проект рабочий.
 тут буду блинковать ледом на плате NUCLEO-L432KC
+если джампер вставлен мигание реже
 
 доки на плату
 https://www.st.com/en/evaluation-tools/nucleo-l432kc.html#
