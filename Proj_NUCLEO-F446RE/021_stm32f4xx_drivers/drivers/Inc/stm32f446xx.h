@@ -50,6 +50,11 @@
 
 /*Base addresses of peripherals which are hanging on APB2 bus*/
 #define EXTI_BASEADDR			(APB2PERIPH_BASEADDR+0x3C00)		//0x4001 3C00 - 0x4001 3FFF EXTI
+#define SPI1_BASEADDR			(APB2PERIPH_BASEADDR+0x3000)
+#define SYSCFG_BASEADDR			(APB2PERIPH_BASEADDR+0x3800)
+#define USART1_BASEADDR			(APB2PERIPH_BASEADDR+0x1000)
+#define USART6_BASEADDR			(APB2PERIPH_BASEADDR+0x1400)
+
 //
 //
 //
@@ -138,6 +143,8 @@ typedef struct
 
 #define EXTI		((EXTI_RefDef_t*)EXTI_BASEADDR)
 
+#define SYSCFG		((SYSCFG_RefDef_t*)SYSCFG_BASEADDR)
+
 /*Clock Enable Macros for GPIOx peripherals*/
 #define GPIOA_PCLK_EN()		(RCC->AHB1ENR |=(1<<0))
 #define GPIOB_PCLK_EN()		(RCC->AHB1ENR |=(1<<1))
@@ -184,8 +191,14 @@ typedef struct
 /*Clock Disable Macros for SYSCFG peripherals*/
 
 
-/**/
-//some generic macros
+/*Macros to reset GPIO peripherals*/
+//#define GPIOA_REG_RESET()			do
+
+
+/*return port code for given GPIOx_base address*/
+
+
+/*some generic macros*/
 #define ENABLE			1
 #define DISABLE			0
 #define	SET				ENABLE
