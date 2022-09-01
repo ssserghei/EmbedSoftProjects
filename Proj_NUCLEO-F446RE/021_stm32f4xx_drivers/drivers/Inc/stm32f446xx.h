@@ -127,9 +127,21 @@ typedef struct
 	__vo uint32_t PR; 				/*!<Give a short description,  Address offset: 0x14*/
 }EXTI_RegDef_t;
 
+/*peripheral register definition structure for SYSCFG*/
+typedef struct
+{
+	__vo uint32_t MEMRMP;		/*!<Give a short description, 		Adress ofset: 0x00*/
+	__vo uint32_t PMC;			/*!<TODO, 							Adress ofset: 0x04*/
+	__vo uint32_t EXTICR[4];	/*!<TODO, 							Adress ofset: 0x08-0x14*/
+		 uint32_t RESERVED1[2];	/*!<TODO, 							Adress ofset: 0x18-0x1C*/
+	__vo uint32_t CMCPCR;		/*!<TODO, 							Adress ofset: 0x20*/
+	 	 uint32_t RESERVED2[2];	/*!<TODO, 							Adress ofset: 0x24-0x28*/
+	__vo uint32_t CFGR;			/*!<TODO, 							Adress ofset: 0x2C*/
+}SYSCFG_RegDef_t;
 
-/*peripheral definition (Peripheral base addresses typecasted to xxx_RegDef_t)
- * */
+
+
+/*peripheral definition (Peripheral base addresses typecasted to xxx_RegDef_t)*/
 #define GPIOA		((GPIO_RegDef_t*)GPIOA_BASEADDR)	//
 #define GPIOB		((GPIO_RegDef_t*)GPIOB_BASEADDR)	//
 #define GPIOC		((GPIO_RegDef_t*)GPIOC_BASEADDR)	//
@@ -183,12 +195,21 @@ typedef struct
 
 /*Clock Disable Macros for I2Cx peripherals*/
 
-/*Clock Disable Macros for SPIx peripherals*/
+
 
 /*Clock Disable Macros for USARTx peripherals*/
+#define USART1_PCCK_EN() (RCC->APB2ENR |=(1<<4))
+#define USART2_PCCK_EN() (RCC->APB1ENR |=(1<<17))
+#define USART3_PCCK_EN() (RCC->APB1ENR |=(1<<18))
+#define UART1_PCCK_EN()  (RCC->APB1ENR |=(1<<19))
+#define UART2_PCCK_EN()  (RCC->APB1ENR |=(1<<20))
+#define UART3_PCCK_EN()  (RCC->APB1ENR |=(1<<5))
 
 
 /*Clock Disable Macros for SYSCFG peripherals*/
+#define SYSCFG_PCLK_EN() (RCC->APB2ENR) |=(1<<14))
+
+/*Clock Disable Macros for SPIx peripherals*/
 
 
 /*Macros to reset GPIO peripherals*/
