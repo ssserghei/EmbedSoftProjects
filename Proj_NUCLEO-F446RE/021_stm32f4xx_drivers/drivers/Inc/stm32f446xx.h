@@ -10,6 +10,23 @@
 #define INC_STM32F446XX_H_
 #define __vo volatile
 
+
+
+/**********START: Processor Specific Details**********/
+
+/*ARM Cortex Mx Processor NVIC ISERx register Addresses*/
+#define NVIC_ISER0		((__vo uint32_t*)0xE000E100))
+#define NVIC_ISER1		((__vo uint32_t*)0xE000E104))
+#define NVIC_ISER2		((__vo uint32_t*)0xE000E108))
+#define NVIC_ISER3		((__vo uint32_t*)0xE000E10C))
+
+/*ARM Cortex Mx Processor NVIC ICERx register Addresses*/
+#define NVIC_ICER0		((__vo uint32_t*)0xE000E180))
+#define NVIC_ICER1		((__vo uint32_t*)0xE000E184))
+#define NVIC_ICER2		((__vo uint32_t*)0xE000E188))
+#define NVIC_ICER3		((__vo uint32_t*)0xE000E18C))
+
+
 /*base addresses of Flash and SRAM ,memories*/
 #define FLASH_BASEADDR				0x08000000U				//3.3 Embedded Flash memory
 #define SRAM1_BASEADDR				0x20000000U				//2.2.3 Embedded SRAM //Main internal SRAM1 (112 KB)
@@ -213,10 +230,26 @@ typedef struct
 
 
 /*Macros to reset GPIO peripherals*/
-//#define GPIOA_REG_RESET()			do
-
+#define GPIOA_REG_RESET()	do{(RCC-AHB1RSTR |= (1<<0)); (RCC->AHB1RSRT &=~(1<<0));}while(0)
+#define GPIOB_REG_RESET()	do{(RCC-AHB1RSTR |= (1<<1)); (RCC->AHB1RSRT &=~(1<<1));}while(0)
+#define GPIOC_REG_RESET()	do{(RCC-AHB1RSTR |= (1<<2)); (RCC->AHB1RSRT &=~(1<<2));}while(0)
+#define GPIOD_REG_RESET()	do{(RCC-AHB1RSTR |= (1<<3)); (RCC->AHB1RSRT &=~(1<<3));}while(0)
+#define GPIOE_REG_RESET()	do{(RCC-AHB1RSTR |= (1<<4)); (RCC->AHB1RSRT &=~(1<<4));}while(0)
+#define GPIOF_REG_RESET()	do{(RCC-AHB1RSTR |= (1<<5)); (RCC->AHB1RSRT &=~(1<<5));}while(0)
+#define GPIOG_REG_RESET()	do{(RCC-AHB1RSTR |= (1<<6)); (RCC->AHB1RSRT &=~(1<<6));}while(0)
+#define GPIOH_REG_RESET()	do{(RCC-AHB1RSTR |= (1<<7)); (RCC->AHB1RSRT &=~(1<<7));}while(0)
 
 /*return port code for given GPIOx_base address*/
+#define GPIO_BASEADDR_TO_CODE(x)  ( (x==GPIOA) ? 0:\
+									(x==GPIOB) ? 1:\
+									(x==GPIOC) ? 2:\
+									(x==GPIOD) ? 3:\
+									(x==GPIOE) ? 4:\
+									(x==GPIOF) ? 5:\
+									(x==GPIOG) ? 6:\
+									(x==GPIOH) ? 7:0\)
+
+/*IRQ(Interrupt Request) Number of STM32F407x MCU*/
 
 
 /*some generic macros*/

@@ -128,6 +128,10 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)					//позже решим что д
 			EXTI->FTSR |=(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
 		}
 		//2. configure GPIO port selection in SYSCFG_EXTICR
+		//Будем расчитывать позицию EXTIx в регистрах
+		/*Всего 4 регистра SYSCFG_EXTICR2 из каждого регистра используются первые 16 бит. Каждый регистр отвечает за 4 линии EXTI
+		 * К каждой линии EXTI можно подключить путем записи 4 битного числа только один пин порта под номером соответствующему номеру линии EXTI
+		 *Пример: к линии EXTI5 можно подключить PA5 либо PB5 либо... PE5*/
 		uint8_t	temp1=pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber/4;
 		uint8_t	temp2=pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber%4;
 		uint8_t portcode=GPIO_BASEADDR_TO_CODE(pGPIOHandle->pGPIOx);
@@ -203,8 +207,33 @@ void GPIO_ToggleOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)						//
 /*IRQ Configuration and ISR handling*/
 void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriority, uint8_t ENorDI)				//
 {
+	if(EnorDi ==ENABLE){
+		if(IRQNumber <=31){
+			//program ISER0 resgister
+			*NVIC_ISER0 |=(1<<IRQNumber);
 
-}
+		}else if(IRQNumber >31 && IRQNumber <64>)	//32 to 63
+		{
+			//program ISER1 register
+			*NVIC_ISER0 |=(1<<(IRQNumber %32));
+
+		}
+		else if(IRQNumber >=64 && IRQNumber <96)
+		{
+			//program ISER2 register
+
+		}
+
+	}else{
+		if(IRQNumber <=31){
+			//program ICER0 register
+
+		}else if(IRQNumber >31 && IRQNumber <64>){
+			//program ICER1 register
+
+	}
+	}
+}//END GPIO_IRQConfig
 
 
 
