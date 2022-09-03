@@ -3,6 +3,8 @@
  *
  *  Created on: Jul 18, 2022
  *      Author: Serghei
+ *  D:\YandexDisk\Carti si reviste periodice\Микроконтроллеры\STM32\Dev Boards\NUCLEO-F446RE_STM32F446RET6\MCU STM32F446RE\DUI0553.pdf
+ *  D:\YandexDisk\Carti si reviste periodice\Микроконтроллеры\STM32\Dev Boards\NUCLEO-F446RE_STM32F446RET6\MCU STM32F446RE\Reference manual RM0390 STM32F446xx.pdf
  */
 #include <stdint.h>
 
@@ -10,22 +12,27 @@
 #define INC_STM32F446XX_H_
 #define __vo volatile
 
-
+//
 
 /**********START: Processor Specific Details**********/
 
 /*ARM Cortex Mx Processor NVIC ISERx register Addresses*/
-#define NVIC_ISER0		((__vo uint32_t*)0xE000E100))
-#define NVIC_ISER1		((__vo uint32_t*)0xE000E104))
-#define NVIC_ISER2		((__vo uint32_t*)0xE000E108))
-#define NVIC_ISER3		((__vo uint32_t*)0xE000E10C))
+#define NVIC_ISER0		((__vo uint32_t*)0xE000E100)
+#define NVIC_ISER1		((__vo uint32_t*)0xE000E104)
+#define NVIC_ISER2		((__vo uint32_t*)0xE000E108)
+#define NVIC_ISER3		((__vo uint32_t*)0xE000E10C)
 
 /*ARM Cortex Mx Processor NVIC ICERx register Addresses*/
-#define NVIC_ICER0		((__vo uint32_t*)0xE000E180))
-#define NVIC_ICER1		((__vo uint32_t*)0xE000E184))
-#define NVIC_ICER2		((__vo uint32_t*)0xE000E188))
-#define NVIC_ICER3		((__vo uint32_t*)0xE000E18C))
+#define NVIC_ICER0		((__vo uint32_t*)0xE000E180)
+#define NVIC_ICER1		((__vo uint32_t*)0xE000E184)
+#define NVIC_ICER2		((__vo uint32_t*)0xE000E188)
+#define NVIC_ICER3		((__vo uint32_t*)0xE000E18C)
 
+/*ARM Cortex Mx Processor Priority Register Address Calculation*/
+#define NVIC_PR_BASE_ADDR ((__vo uint32_t*)0xE000E400)
+
+/*ARM Cortex Mx Processor number of priority bits implemented in Priority Register*/
+#define NO_PR_BITS_IMPLEMENTED		4
 
 /*base addresses of Flash and SRAM ,memories*/
 #define FLASH_BASEADDR				0x08000000U				//3.3 Embedded Flash memory

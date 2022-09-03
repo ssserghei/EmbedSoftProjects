@@ -75,13 +75,6 @@ typedef struct
 #define GPIO_PIN_OU			1
 #define GPIO_PIN_PD			2
 
-
-
-
-
-
-
-
 /**************************************************************************
  * 						APIs supported by this driver
  * 		For more information about the APIs check the function definitions
@@ -94,20 +87,17 @@ void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t ENorDI);	//
 void GPIO_Init(GPIO_Handle_t *pGPIOHandle);				//позже решим что должно принимать и что возвращать
 void GPIO_DeInit(GPIO_RegDef_t *pGPIOx);				//сбрасывает порт в исходное состояние
 
-
 /*Date read and write*/
 uint8_t  GPIO_ReadFromInputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);	//возвращает булевое значение
-uint16_t  GPIO_ReadFromInputPort(GPIO_RegDef_t *pGPIOx);	//
+uint16_t  GPIO_ReadFromInputPort(GPIO_RegDef_t *pGPIOx);					//
 
-void GPIO_WriteToOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber, uint8_t Value);		//
+void GPIO_WriteToOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber, uint8_t Value);	//
 void GPIO_WriteToOutPort(GPIO_RegDef_t *pGPIOx, uint16_t Value);					//
-void GPIO_ToggleOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);		//
+void GPIO_ToggleOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);					//
 
 /*IRQ Configuration and ISR handling*/
-void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriority, uint8_t ENorDI);			//
-void GPIO_IRQHandling(uint8_t PinNumber);		//
-
-
-
+void GPIO_IRQInnteruptConfig(uint8_t IRQNumber, uint8_t ENorDI);	//
+void GPIO_IRQPriorityConfig(uint8_t IRQPriority);					//
+void GPIO_IRQHandling(uint8_t PinNumber);							//
 
 #endif /* INC_STM32F446XX_GPIO_DRIVER_H_ */

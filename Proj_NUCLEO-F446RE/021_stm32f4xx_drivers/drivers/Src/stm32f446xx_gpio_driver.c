@@ -204,38 +204,60 @@ void GPIO_ToggleOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)						//
 
 }
 
+
 /*IRQ Configuration and ISR handling*/
-void GPIO_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriority, uint8_t ENorDI)				//
-{
+void GPIO_IRQInnteruptConfig(uint8_t IRQNumber, uint8_t ENorDI){
 	if(EnorDi ==ENABLE){
 		if(IRQNumber <=31){
 			//program ISER0 resgister
 			*NVIC_ISER0 |=(1<<IRQNumber);
 
 		}else if(IRQNumber >31 && IRQNumber <64>)	//32 to 63
-		{
-			//program ISER1 register
-			*NVIC_ISER0 |=(1<<(IRQNumber %32));
-
+		{	//program ISER1 register
+			*NVIC_ISER1 |=(1<<(IRQNumber %32));
 		}
 		else if(IRQNumber >=64 && IRQNumber <96)
-		{
-			//program ISER2 register
-
+		{	//program ISER2 register
+			*NVIC_ISER2 |=(1<<(IRQNumber %64));		//64 to 95
 		}
-
 	}else{
 		if(IRQNumber <=31){
 			//program ICER0 register
-
+			*NVIC_IСER0 |=(1<<IRQNumber);
 		}else if(IRQNumber >31 && IRQNumber <64>){
 			//program ICER1 register
-
+			*NVIC_IСER1 |=(1<<IRQNumber %32);
+		}else if(IRQNumber >=6 && IRQNumber <96>){
+			//program ICER2 register
+			*NVIC_IСER2 |=(1<<IRQNumber %64);
+		}
 	}
-	}
-}//END GPIO_IRQConfig
+}//END GPIO_IRQInnteruptConfig
 
 
+
+/*********************************
+ * @fn					- GPIO_IRQPriorityConfig
+ *
+ *@brief				-
+ *
+ *@param[in]			-
+ *@param[in]			-
+ *@param[in]			-
+ *
+ *@return				-
+ *
+ *@Note					-
+ *
+ * */
+void GPIO_IRQPriorityConfig(uint8_t IRQNumber, uint8_t IRQPriority){
+	//1. first lets find out the ipr register
+	uint8_t iprx=IRQNumber/4;				//выесняем какой регистр IPRX
+	uint8_t iprx_section=IRQNumber %4;		//выесняем какиая из 4 секций
+	uint8_t shift_ammount=(8*iprx_section)+(8-NO_PR_BITS_IMPLEMENTED);
+	*(NVIC_PR_BASE_ADDR+(iprx*4) |= (IRQPriority <<shift_ammount);	//(8*iprx_section)	//умножаем на 4 потому что следуюший адрес регистра находится через 4 адреса
+
+}//END GPIO_IRQPriorityConfig
 
 
 
