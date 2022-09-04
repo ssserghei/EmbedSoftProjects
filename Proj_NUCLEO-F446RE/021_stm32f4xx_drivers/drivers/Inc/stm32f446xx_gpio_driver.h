@@ -65,7 +65,7 @@ typedef struct
 
 /*@GPIO_PIN_SPEED
  * GPIO pin possible output speeds*/
-#define GPIO_LOW			0
+#define GPIO_LOW			0 	/*GPIO_SPEED_LOW*/
 #define GPIO_MEDIUM			1
 #define GPIO_FAST			2
 #define GPIO_HIGH			3
@@ -81,7 +81,7 @@ typedef struct
  **************************************************************************/
 
 /*Peripheral Clock setup*/
-void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t ENorDI);	//
+void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi);	//
 
 /*Init and De-init*/
 void GPIO_Init(GPIO_Handle_t *pGPIOHandle);				//позже решим что должно принимать и что возвращать
@@ -96,8 +96,8 @@ void GPIO_WriteToOutPort(GPIO_RegDef_t *pGPIOx, uint16_t Value);					//
 void GPIO_ToggleOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);					//
 
 /*IRQ Configuration and ISR handling*/
-void GPIO_IRQInnteruptConfig(uint8_t IRQNumber, uint8_t ENorDI);	//
-void GPIO_IRQPriorityConfig(uint8_t IRQPriority);					//
-void GPIO_IRQHandling(uint8_t PinNumber);							//
+void GPIO_IRQInnteruptConfig(uint8_t IRQNumber, uint8_t EnorDi);		//
+void GPIO_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority);	//
+void GPIO_IRQHandling(uint8_t PinNumber);								//
 
 #endif /* INC_STM32F446XX_GPIO_DRIVER_H_ */
