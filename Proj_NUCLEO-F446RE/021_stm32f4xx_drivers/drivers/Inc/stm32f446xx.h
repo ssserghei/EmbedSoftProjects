@@ -216,7 +216,6 @@ typedef struct
 	__vo uint32_t GTPR;       /*!< TODO,     										Address offset: 0x18 */
 } USART_RegDef_t;
 
-
 /*peripheral definition (Peripheral base addresses typecasted to xxx_RegDef_t)*/
 #define GPIOA		((GPIO_RegDef_t*)GPIOA_BASEADDR)	//
 #define GPIOB		((GPIO_RegDef_t*)GPIOB_BASEADDR)	//
@@ -247,8 +246,6 @@ typedef struct
 #define UART4  				((USART_RegDef_t*)UART4_BASEADDR)
 #define UART5  				((USART_RegDef_t*)UART5_BASEADDR)
 #define USART6  			((USART_RegDef_t*)USART6_BASEADDR)
-
-
 
 /*Clock Enable Macros for GPIOx peripherals*/
 #define GPIOA_PCLK_EN()		(RCC->AHB1ENR |=(1<<0))
@@ -284,7 +281,6 @@ typedef struct
 /*Clock Enable Macros for SYSCFG peripherals*/
 #define SYSCFG_PCLK_EN() (RCC->APB2ENR |= (1 << 14))
 
-
 /***************************************************/
 /*Clock Disable Macros for GPIOx peripherals*/
 #define GPIOA_PCLK_DI()		(RCC->AHB1ENR &=~(1<<0))
@@ -305,7 +301,6 @@ typedef struct
 //#define SYSCFG_PCLK_EN() (RCC->APB2ENR) |=(1<<14))
 
 /*Clock Disable Macros for SPIx peripherals*/
-
 
 /*Macros to reset GPIO peripherals*/
 #define GPIOA_REG_RESET()	do{(RCC->AHB1RSTR |= (1<<0)); (RCC->AHB1RSTR &=~(1<<0));}while(0)
@@ -335,6 +330,7 @@ typedef struct
 #define IRQ_NO_EXTI4 		10
 #define IRQ_NO_EXTI9_5 		23
 #define IRQ_NO_EXTI15_10 	40
+
 #define IRQ_NO_SPI1			35
 #define IRQ_NO_SPI2         36
 #define IRQ_NO_SPI3         51
@@ -348,9 +344,7 @@ typedef struct
 #define IRQ_NO_UART5	    53
 #define IRQ_NO_USART6	    71
 
-/*
- * macros for all the possible priority levels
- */
+/*macros for all the possible priority levels*/
 #define NVIC_IRQ_PRI0    0
 #define NVIC_IRQ_PRI15    15
 
@@ -363,6 +357,5 @@ typedef struct
 #define GPIO_PIN_RESET	RESET
 #define FLAG_RESET      RESET
 #define FLAG_SET 		SET
-
 
 #endif /* INC_STM32F446XX_H_ */

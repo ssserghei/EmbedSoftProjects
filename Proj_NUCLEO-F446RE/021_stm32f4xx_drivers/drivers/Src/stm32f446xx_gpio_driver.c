@@ -378,8 +378,8 @@ void GPIO_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority){
 	uint8_t iprx=IRQNumber/4;				//выесняем какой регистр IPRX
 	uint8_t iprx_section=IRQNumber %4;		//выесняем какиая из 4 секций
 	uint8_t shift_ammount=(8*iprx_section)+(8-NO_PR_BITS_IMPLEMENTED);
-	*(NVIC_PR_BASE_ADDR+(iprx*4)) |= (IRQPriority <<shift_ammount);	//(8*iprx_section)	//умножаем на 4 потому что следуюший адрес регистра находится через 4 адреса
-
+	*(NVIC_PR_BASE_ADDR) |= (IRQPriority <<shift_ammount);	/*(8*iprx_section)	 не умножаем на 4 так как арифметика указателей
+	не работает так как мы задумали на 4 потому что следуюший адрес регистра находится через 4 адреса */
 }//END GPIO_IRQPriorityConfig
 
 
