@@ -330,7 +330,8 @@ void GPIO_ToggleOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber){						//
  * @Note              -
 
  */
-void GPIO_IRQInnterruptConfig(uint8_t IRQNumber, uint8_t EnorDI){
+
+void GPIO_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDI){
 	if(EnorDI ==ENABLE){
 		if(IRQNumber <=31){
 			//program ISER0 resgister
