@@ -19,6 +19,9 @@
 /*PC13 Button, Pressed=LOW
  *PA5 	LED    ONN=High*/
 #include<stdint.h>
+#include<string.h>
+#include "stm32f446xx.h"
+
 
 #define HIGH 1
 #define LOW 0
@@ -57,6 +60,7 @@ int main(void)
 	GPIOBtn.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IT_FT;
 	GPIOBtn.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
 	GPIOBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PU;
+
 
 	GPIO_PeriClockControl(GPIOC,ENABLE);
 

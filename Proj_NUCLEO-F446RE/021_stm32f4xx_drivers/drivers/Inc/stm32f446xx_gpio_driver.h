@@ -10,23 +10,22 @@
 
 #include "stm32f446xx.h"
 
-
 /*This is a Configuration structure for a GPIO pin*/
 typedef struct
 {
 	uint8_t GPIO_PinNumber;
-	uint8_t GPIO_PinMode;			/*possible values from @GPIO_PIN_MODES*/
-	uint8_t GPIO_PinSpeed;			/*possible values from @GPIO_PIN_SPEED*/
-	uint8_t GPIO_PupdCopntrol;
-	uint8_t GPIO_PinOPTupe;
+	uint8_t GPIO_PinMode;			/*!< possible values from @GPIO_PIN_MODES >*/
+	uint8_t GPIO_PinSpeed;			/*!< possible values from @GPIO_PIN_SPEED >*/
+	uint8_t GPIO_PinPuPdControl;
+	uint8_t GPIO_PinOPType;
 	uint8_t GPIO_PinAltFunMode;
 }GPIO_PinConfig_t;
 
 /*This in a Handle structure for a GPIO pin*/
 typedef struct
 {
-	GPIO_RegDef_t *pGPIOx;				/*This hold the base address of the GPIO port to which the pin belongs*/
-	GPIO_PinConfig_t GPIO_PinConfig;	/*This holds GPIO pin configuration settings*/
+	GPIO_RegDef_t *pGPIOx;       		/*!< This holds the base address of the GPIO port to which the pin belongs >*/
+	GPIO_PinConfig_t GPIO_PinConfig;   /*!< This holds GPIO pin configuration settings >*/
 
 }GPIO_Handle_t;
 
@@ -65,14 +64,14 @@ typedef struct
 
 /*@GPIO_PIN_SPEED
  * GPIO pin possible output speeds*/
-#define GPIO_LOW			0 	/*GPIO_SPEED_LOW*/
-#define GPIO_MEDIUM			1
-#define GPIO_FAST			2
-#define GPIO_HIGH			3
+#define GPIO_SPEED_LOW			0
+#define GPIO_SPEED_MEDIUM		1
+#define GPIO_SPEED_FAST			2
+#define GPOI_SPEED_HIGH			3
 
 /*GPIO pin pull up and pull down configuration macros */
-#define GPIO_NO_PUDP		0
-#define GPIO_PIN_OU			1
+#define GPIO_NO_PUPD   		0
+#define GPIO_PIN_PU			1
 #define GPIO_PIN_PD			2
 
 /**************************************************************************
@@ -81,11 +80,11 @@ typedef struct
  **************************************************************************/
 
 /*Peripheral Clock setup*/
-void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi);	//
+void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi);
 
 /*Init and De-init*/
-void GPIO_Init(GPIO_Handle_t *pGPIOHandle);				//позже решим что должно принимать и что возвращать
-void GPIO_DeInit(GPIO_RegDef_t *pGPIOx);				//сбрасывает порт в исходное состояние
+void GPIO_Init(GPIO_Handle_t *pGPIOHandle);
+void GPIO_DeInit(GPIO_RegDef_t *pGPIOx);
 
 /*Date read and write*/
 uint8_t  GPIO_ReadFromInputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);	//возвращает булевое значение

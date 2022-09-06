@@ -8,10 +8,13 @@
 erence manual RM0390 STM32F446xx.pdf
  */
 #include <stdint.h>
+#include <stddef.h>
+
 
 #ifndef INC_STM32F446XX_H_
 #define INC_STM32F446XX_H_
 #define __vo volatile
+#define __weak __attribute__((weak))
 
 //
 

@@ -22,6 +22,7 @@
  *@Note					- none
  *
  * */
+
 void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDI)	//
 {
 	if (EnorDI==ENABLE)
@@ -97,11 +98,11 @@ void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDI)	//
  *@Note					-
  *
  * */
-void GPIO_Init(GPIO_Handle_t *pGPIOHandle){					//позже решим что должно принимать и что возвращать
+void GPIO_Init(GPIO_Handle_t *pGPIOHandle){
 	uint32_t temp=0; 		//temp. register
 
 	//enable the peripheral clock
-	GPIO_PeriClockControl(pGPIOHandle->pGPIOx, ENABLE);
+	 GPIO_PeriClockControl(pGPIOHandle->pGPIOx, ENABLE);
 
 	//1. configure the mode of gpio pin
 	if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode<=GPIO_MODE_ANALOG){
@@ -151,13 +152,13 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle){					//позже решим что �
 	temp=0;
 
 	//3.configure the pudp setting
-	temp=(pGPIOHandle->GPIO_PinConfig.GPIO_PupdCopntrol<<(2*pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
+	temp=(pGPIOHandle->GPIO_PinConfig.GPIO_PinPuPdControl<<(2*pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
 	pGPIOHandle->pGPIOx->PUPDR &=~(0x3<<pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);		//clearing
 	pGPIOHandle->pGPIOx->PUPDR |=temp;
 	temp=0;
 
 	//4. configure the optype
-	temp=(pGPIOHandle->GPIO_PinConfig.GPIO_PinOPTupe<<pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+	temp=(pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType<<pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
 	pGPIOHandle->pGPIOx->OTYPER &=~(0x1<<pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);		//clearing
 	pGPIOHandle->pGPIOx->OTYPER |=temp;
 
@@ -308,7 +309,8 @@ void GPIO_WriteToOutPort(GPIO_RegDef_t *pGPIOx, uint16_t Value){							//
  * @Note              -
 
  */
-void GPIO_ToggleOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber){						//
+void GPIO_ToggleOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
+{
 	pGPIOx->ODR  ^= ( 1 << PinNumber);
 }
 
