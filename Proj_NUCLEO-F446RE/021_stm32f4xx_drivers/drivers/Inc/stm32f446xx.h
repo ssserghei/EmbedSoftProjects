@@ -56,11 +56,11 @@ each register holds four priority fields.*/
 
 /*AHBx and APBx Bus Peripheral base addresses*/
 //Table 1. STM32F446xx register boundary addresses
-#define PERIPH_BASEADDR			0x40000000U		//
-#define APB1PERIPH_BASEADDR		PERIPH_BASEADDR	//
-#define APB2PERIPH_BASEADDR		0x40010000U		//
-#define AHB1PERIPH_BASEADDR		0x40020000U		//
-#define AHB2PERIPH_BASEADDR		0x50000000U		//
+#define PERIPH_BASEADDR			0x40000000U					/*Первый адрес начала APB1 //TIM2*/
+#define APB1PERIPH_BASEADDR		PERIPH_BASEADDR				//
+#define APB2PERIPH_BASEADDR		0x40010000U					/*TIM1*/
+#define AHB1PERIPH_BASEADDR		0x40020000U					//
+#define AHB2PERIPH_BASEADDR		0x50000000U					//
 
 /*Base addresses of peripherals which are hanging on AHB1 bus*/
 #define GPIOA_BASEADDR 			(AHB1PERIPH_BASEADDR+0x0000)		//0x4002 0000 - 0x4002 03FF GPIOA
@@ -76,16 +76,16 @@ each register holds four priority fields.*/
 
 /*Base addresses of peripherals which are hanging on APB1 bus*/
 #define	I2C1_BASEADDR			(AHB1PERIPH_BASEADDR+0x5400)		//0x4000 5400 - 0x4000 57FF I2C1
-#define I2C2_BASEADDR			(APB1PERIPH_BASEADDR + 0x5800)
-#define I2C3_BASEADDR			(APB1PERIPH_BASEADDR + 0x5C00)
+#define I2C2_BASEADDR			(APB1PERIPH_BASEADDR+0x5800)
+#define I2C3_BASEADDR			(APB1PERIPH_BASEADDR+0x5C00)
 
-#define SPI2_BASEADDR			(APB1PERIPH_BASEADDR + 0x3800)
-#define SPI3_BASEADDR			(APB1PERIPH_BASEADDR + 0x3C00)
+#define SPI2_BASEADDR			(APB1PERIPH_BASEADDR+0x3800)		/*SPI2 / I2S2*/
+#define SPI3_BASEADDR			(APB1PERIPH_BASEADDR+0x3C00)		/*SPI3 / I2S3*/
 
-#define USART2_BASEADDR			(APB1PERIPH_BASEADDR + 0x4400)
-#define USART3_BASEADDR			(APB1PERIPH_BASEADDR + 0x4800)
-#define UART4_BASEADDR			(APB1PERIPH_BASEADDR + 0x4C00)
-#define UART5_BASEADDR			(APB1PERIPH_BASEADDR + 0x5000)
+#define USART2_BASEADDR			(APB1PERIPH_BASEADDR+0x4400)
+#define USART3_BASEADDR			(APB1PERIPH_BASEADDR+0x4800)
+#define UART4_BASEADDR			(APB1PERIPH_BASEADDR+0x4C00)
+#define UART5_BASEADDR			(APB1PERIPH_BASEADDR+0x5000)
 
 
 /*Base addresses of peripherals which are hanging on APB2 bus*/
@@ -95,27 +95,27 @@ each register holds four priority fields.*/
 #define USART1_BASEADDR			(APB2PERIPH_BASEADDR+0x1000)
 #define USART6_BASEADDR			(APB2PERIPH_BASEADDR+0x1400)
 
-//
-//
-//
 
 
-/********** ********** **********Peripheral Register Definition Structures********** ********** **********/
+/******************************Peripheral Register Definition Structures******************************/
 
 /*Note: Register of a peripheral are specific to MCU
 *e.g: Number of Register of SPI peripheral of STM32F4x family of MCUs may be different(more or less)
 * Compared to number of registers of SPI peripheral of STM32Lx or STM32F0x family of MCUs
 * Please check your Device RM*/
-typedef struct
-{
+
+/*7.4.11 GPIO register map
+ * 7.1 GPIO introduction*/
+
+typedef struct{	//7.4.11 GPIO register map
 	__vo uint32_t MODER;	/*!< GPIO port mode register,	Address offset: 0x00      */
-	__vo uint32_t OTYPER;	/*!< TODO,     					Address offset: 0x04      */
-	__vo uint32_t OSPEEDR;	/*!<	*/
-	__vo uint32_t PUPDR;	//
-	__vo uint32_t IDR;		//
-	__vo uint32_t ODR;		//
-	__vo uint32_t BSRR;		//
-//	__vo uint32_t LCKR;		//
+	__vo uint32_t OTYPER;	/*!<	     					Address offset: 0x04      */
+	__vo uint32_t OSPEEDR;	/*!< Possible OSPEEDER		0x08*/
+	__vo uint32_t PUPDR;	/*0x0C*/
+	__vo uint32_t IDR;		/*0x10*/
+	__vo uint32_t ODR;		/*0x14*/
+	__vo uint32_t BSRR;		/*0x18*/
+//	__vo uint32_t LCKR;		/*0x1C*/
 	__vo uint32_t AFR[2];	/*!< AFR[0] : GPIO alternate function low register, AF[1] : GPIO alternate function high register    		Address offset: 0x20-0x24 */
 }GPIO_RegDef_t;				//
 
@@ -202,16 +202,16 @@ typedef struct
  */
 typedef struct
 {
-  __vo uint32_t CR1;        /*!< TODO,     										Address offset: 0x00 */
-  __vo uint32_t CR2;        /*!< TODO,     										Address offset: 0x04 */
-  __vo uint32_t OAR1;       /*!< TODO,     										Address offset: 0x08 */
-  __vo uint32_t OAR2;       /*!< TODO,     										Address offset: 0x0C */
-  __vo uint32_t DR;         /*!< TODO,     										Address offset: 0x10 */
-  __vo uint32_t SR1;        /*!< TODO,     										Address offset: 0x14 */
-  __vo uint32_t SR2;        /*!< TODO,     										Address offset: 0x18 */
-  __vo uint32_t CCR;        /*!< TODO,     										Address offset: 0x1C */
-  __vo uint32_t TRISE;      /*!< TODO,     										Address offset: 0x20 */
-  __vo uint32_t FLTR;       /*!< TODO,     										Address offset: 0x24 */
+  __vo uint32_t CR1;        /*!< TODO,     							Address offset: 0x00 */
+  __vo uint32_t CR2;        /*!< TODO,     							Address offset: 0x04 */
+  __vo uint32_t OAR1;       /*!< TODO,     							Address offset: 0x08 */
+  __vo uint32_t OAR2;       /*!< TODO,     							Address offset: 0x0C */
+  __vo uint32_t DR;         /*!< TODO,     							Address offset: 0x10 */
+  __vo uint32_t SR1;        /*!< TODO,     							Address offset: 0x14 */
+  __vo uint32_t SR2;        /*!< TODO,     							Address offset: 0x18 */
+  __vo uint32_t CCR;        /*!< TODO,     							Address offset: 0x1C */
+  __vo uint32_t TRISE;      /*!< TODO,     							Address offset: 0x20 */
+  __vo uint32_t FLTR;       /*!< TODO,     							Address offset: 0x24 */
 }I2C_RegDef_t;
 
 /*
@@ -219,13 +219,13 @@ typedef struct
  */
 typedef struct
 {
-	__vo uint32_t SR;         /*!< TODO,     										Address offset: 0x00 */
-	__vo uint32_t DR;         /*!< TODO,     										Address offset: 0x04 */
-	__vo uint32_t BRR;        /*!< TODO,     										Address offset: 0x08 */
-	__vo uint32_t CR1;        /*!< TODO,     										Address offset: 0x0C */
-	__vo uint32_t CR2;        /*!< TODO,     										Address offset: 0x10 */
-	__vo uint32_t CR3;        /*!< TODO,     										Address offset: 0x14 */
-	__vo uint32_t GTPR;       /*!< TODO,     										Address offset: 0x18 */
+	__vo uint32_t SR;         /*!< TODO,     						Address offset: 0x00 */
+	__vo uint32_t DR;         /*!< TODO,     						Address offset: 0x04 */
+	__vo uint32_t BRR;        /*!< TODO,     						Address offset: 0x08 */
+	__vo uint32_t CR1;        /*!< TODO,     						Address offset: 0x0C */
+	__vo uint32_t CR2;        /*!< TODO,     						Address offset: 0x10 */
+	__vo uint32_t CR3;        /*!< TODO,     						Address offset: 0x14 */
+	__vo uint32_t GTPR;       /*!< TODO,     						Address offset: 0x18 */
 } USART_RegDef_t;
 
 /*peripheral definition (Peripheral base addresses typecasted to xxx_RegDef_t)*/
@@ -244,20 +244,20 @@ typedef struct
 
 #define SYSCFG		((SYSCFG_RegDef_t*)SYSCFG_BASEADDR)
 
-#define SPI1  				((SPI_RegDef_t*)SPI1_BASEADDR)
-#define SPI2  				((SPI_RegDef_t*)SPI2_BASEADDR)
-#define SPI3  				((SPI_RegDef_t*)SPI3_BASEADDR)
+#define SPI1  		((SPI_RegDef_t*)SPI1_BASEADDR)
+#define SPI2  		((SPI_RegDef_t*)SPI2_BASEADDR)
+#define SPI3  		((SPI_RegDef_t*)SPI3_BASEADDR)
 
-#define I2C1  				((I2C_RegDef_t*)I2C1_BASEADDR)
-#define I2C2  				((I2C_RegDef_t*)I2C2_BASEADDR)
-#define I2C3  				((I2C_RegDef_t*)I2C3_BASEADDR)
+#define I2C1  		((I2C_RegDef_t*)I2C1_BASEADDR)
+#define I2C2  		((I2C_RegDef_t*)I2C2_BASEADDR)
+#define I2C3  		((I2C_RegDef_t*)I2C3_BASEADDR)
 
-#define USART1  			((USART_RegDef_t*)USART1_BASEADDR)
-#define USART2  			((USART_RegDef_t*)USART2_BASEADDR)
-#define USART3  			((USART_RegDef_t*)USART3_BASEADDR)
-#define UART4  				((USART_RegDef_t*)UART4_BASEADDR)
-#define UART5  				((USART_RegDef_t*)UART5_BASEADDR)
-#define USART6  			((USART_RegDef_t*)USART6_BASEADDR)
+#define USART1  	((USART_RegDef_t*)USART1_BASEADDR)
+#define USART2  	((USART_RegDef_t*)USART2_BASEADDR)
+#define USART3  	((USART_RegDef_t*)USART3_BASEADDR)
+#define UART4  		((USART_RegDef_t*)UART4_BASEADDR)
+#define UART5  		((USART_RegDef_t*)UART5_BASEADDR)
+#define USART6  	((USART_RegDef_t*)USART6_BASEADDR)
 
 /*Clock Enable Macros for GPIOx peripherals*/
 #define GPIOA_PCLK_EN()		(RCC->AHB1ENR |=(1<<0))
