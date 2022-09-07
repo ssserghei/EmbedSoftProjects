@@ -16,12 +16,14 @@
  ******************************************************************************
  */
 
-/*PC13 Button, Pressed=LOW
+
+/*D:\Udemy courcies\Master Microcontroller and Embedded Driver Development(MCU1)\1. Notes and Information\MasteringMCU-master\MasteringMCU-master\Resources\Source_code\Workspace\stm32f4xx_drivers
+ * PC13 Button, Pressed=LOW
  *PA5 	LED    ONN=High*/
 #include<stdint.h>
 #include<string.h>
 #include "stm32f446xx.h"
-
+#include "stm32f446xx_gpio_driver.h"
 
 #define HIGH 1
 #define LOW 0
@@ -66,7 +68,7 @@ int main(void)
 
 	GPIO_Init(&GPIOBtn);
 
-	GPIO_WriteToOutputPin(GPIOC,GPIO_PIN_NO_13,GPIO_PIN_RESET);
+	GPIO_WriteToOutPin(GPIOC,GPIO_PIN_NO_13,GPIO_PIN_RESET);
 	//IRQ configurations
 	GPIO_IRQPriorityConfig(IRQ_NO_EXTI9_5,NVIC_IRQ_PRI15);
 	GPIO_IRQInterruptConfig(IRQ_NO_EXTI9_5,ENABLE);
@@ -80,5 +82,5 @@ void EXTI9_5_IRQHandler(void)
 {
    /// delay(); //200ms . wait till button de-bouncing gets over
 	GPIO_IRQHandling(GPIO_PIN_NO_5); //clear the pending event from exti line
-	GPIO_ToggleOutputPin(GPIOA,GPIO_PIN_NO_5);
+	GPIO_ToggleOutPin(GPIOA,GPIO_PIN_NO_5);
 }

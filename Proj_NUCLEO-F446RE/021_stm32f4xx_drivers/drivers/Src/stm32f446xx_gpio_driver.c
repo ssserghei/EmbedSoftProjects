@@ -4,9 +4,9 @@
  *  Created on: 25 июл. 2022 г.
  *      Author: Serghei
  */
+/*74. New project creation and creating MCU specific header file */
 
 #include "stm32f446xx_gpio_driver.h"
-
 /*Peripheral Clock setup*/
 /*********************************
  * @fn					- GPIO_PeriClockControl
@@ -309,7 +309,7 @@ void GPIO_WriteToOutPort(GPIO_RegDef_t *pGPIOx, uint16_t Value){							//
  * @Note              -
 
  */
-void GPIO_ToggleOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
+void GPIO_ToggleOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
 {
 	pGPIOx->ODR  ^= ( 1 << PinNumber);
 }
@@ -319,7 +319,7 @@ void GPIO_ToggleOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
 
 
 /*********************************************************************
- * @fn      		  - GPIO_IRQConfig
+ * @fn      		  - GPIO_IRQInterruptConfig
  *
  * @brief             -
  *
@@ -358,7 +358,7 @@ void GPIO_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDI){
 			*NVIC_ICER2 |=(1<<(IRQNumber %64));
 		}
 	}
-}//END GPIO_IRQInnteruptConfig
+}//END GPIO_IRQInterruptConfig
 
 
 
@@ -381,7 +381,7 @@ void GPIO_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority){
 	uint8_t iprx=IRQNumber/4;				//выесняем какой регистр IPRX
 	uint8_t iprx_section=IRQNumber %4;		//выесняем какиая из 4 секций
 	uint8_t shift_ammount=(8*iprx_section)+(8-NO_PR_BITS_IMPLEMENTED);
-	*(NVIC_PR_BASE_ADDR) |= (IRQPriority <<shift_ammount);	/*(8*iprx_section)	 не умножаем на 4 так как арифметика указателей
+	*(NVIC_PR_BASE_ADDR +iprx) |= (IRQPriority <<shift_ammount);	/*(8*iprx_section)	 не умножаем на 4 так как арифметика указателей
 	не работает так как мы задумали на 4 потому что следуюший адрес регистра находится через 4 адреса */
 }//END GPIO_IRQPriorityConfig
 
