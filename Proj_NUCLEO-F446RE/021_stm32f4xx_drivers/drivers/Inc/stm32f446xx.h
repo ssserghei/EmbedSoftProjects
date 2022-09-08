@@ -119,11 +119,12 @@ typedef struct{	//7.4.11 GPIO register map
 	__vo uint32_t AFR[2];	/*!< AFR[0] : GPIO alternate function low register, AF[1] : GPIO alternate function high register    		Address offset: 0x20-0x24 */
 }GPIO_RegDef_t;				//
 
-/*peripheral register definition structure for RCC*/
-typedef struct					//Table 21. RCC register map and reset values
-{
+/*peripheral register definition structure for RCC
+ * 6.3.28 RCC register map
+ * Table 21. RCC register map and reset values*/
+typedef struct{
 	__vo uint32_t CR;			/*!<	Adders offset	0x00		*/
-	__vo uint32_t PLLCFGR;		/*!<	Adders offset	0x04		*/
+	__vo uint32_t PLLCFGR[2];	/*!<	Adders offset	0x04-0x04	*/
 	__vo uint32_t CIR;			/*!<	Adders offset	0x0C		*/
 	__vo uint32_t AHB1RSTR;		/*!<	Adders offset	0x10		*/
 	__vo uint32_t AHB2RSTR;		/*!<	Adders offset	0x14		*/
@@ -157,10 +158,10 @@ typedef struct					//Table 21. RCC register map and reset values
 	__vo uint32_t DCKCFGR2;		/*!<	Adders offset	0x94		*/
 }RCC_RegDef_t;
 
-
-/*peripheral definition structure for EXTI*/
-typedef struct
-{
+/*peripheral definition structure for EXTI
+ * 10.3.5 Software interrupt event register (EXTI_SWIER)
+ * 10.3.7 EXTI register map*/
+typedef struct{
 	__vo uint32_t IMR; 				/*!<Give a short description,  Address offset: 0x00*/
 	__vo uint32_t EMR; 				/*!<Give a short description,  Address offset: 0x04*/
 	__vo uint32_t RTSR; 			/*!<Give a short description,  Address offset: 0x08*/
@@ -169,10 +170,10 @@ typedef struct
 	__vo uint32_t PR; 				/*!<Give a short description,  Address offset: 0x14*/
 }EXTI_RegDef_t;
 
-
-/*peripheral register definition structure for SPI*/
-typedef struct
-{
+/*peripheral register definition structure for SPI
+ * 26.7.10 SPI register map
+ * */
+typedef struct{
 	__vo uint32_t CR1;        /*!< TODO,     										Address offset: 0x00 */
 	__vo uint32_t CR2;        /*!< TODO,     										Address offset: 0x04 */
 	__vo uint32_t SR;         /*!< TODO,     										Address offset: 0x08 */
@@ -184,9 +185,9 @@ typedef struct
 	__vo uint32_t I2SPR;      /*!< TODO,     										Address offset: 0x20 */
 } SPI_RegDef_t;
 
-/*peripheral register definition structure for SYSCFG*/
-typedef struct
-{
+/*peripheral register definition structure for SYSCFG
+ * 8.2.9 SYSCFG register maps*/
+typedef struct{
 	__vo uint32_t MEMRMP;		/*!<Give a short description, 		Adress ofset: 0x00*/
 	__vo uint32_t PMC;			/*!<TODO, 							Adress ofset: 0x04*/
 	__vo uint32_t EXTICR[4];	/*!<TODO, 							Adress ofset: 0x08-0x14*/
@@ -197,11 +198,9 @@ typedef struct
 }SYSCFG_RegDef_t;
 
 
-/*
- * peripheral register definition structure for I2C
- */
-typedef struct
-{
+/*peripheral register definition structure for I2C
+ * 24.6.11 I2C register map*/
+typedef struct{
   __vo uint32_t CR1;        /*!< TODO,     							Address offset: 0x00 */
   __vo uint32_t CR2;        /*!< TODO,     							Address offset: 0x04 */
   __vo uint32_t OAR1;       /*!< TODO,     							Address offset: 0x08 */
@@ -215,10 +214,8 @@ typedef struct
 }I2C_RegDef_t;
 
 /*
- * peripheral register definition structure for USART
- */
-typedef struct
-{
+ * peripheral register definition structure for USART*/
+typedef struct{
 	__vo uint32_t SR;         /*!< TODO,     						Address offset: 0x00 */
 	__vo uint32_t DR;         /*!< TODO,     						Address offset: 0x04 */
 	__vo uint32_t BRR;        /*!< TODO,     						Address offset: 0x08 */
