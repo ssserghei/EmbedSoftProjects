@@ -214,7 +214,8 @@ typedef struct{
 }I2C_RegDef_t;
 
 /*
- * peripheral register definition structure for USART*/
+ * peripheral register definition structure for USART
+ * 25.6.8 USART register map*/
 typedef struct{
 	__vo uint32_t SR;         /*!< TODO,     						Address offset: 0x00 */
 	__vo uint32_t DR;         /*!< TODO,     						Address offset: 0x04 */
@@ -225,7 +226,11 @@ typedef struct{
 	__vo uint32_t GTPR;       /*!< TODO,     						Address offset: 0x18 */
 } USART_RegDef_t;
 
-/*peripheral definition (Peripheral base addresses typecasted to xxx_RegDef_t)*/
+
+/**********************peripheral definition**********************/
+
+/*(Peripheral base addresses typecasted to xxx_RegDef_t)
+ * */
 #define GPIOA		((GPIO_RegDef_t*)GPIOA_BASEADDR)	//
 #define GPIOB		((GPIO_RegDef_t*)GPIOB_BASEADDR)	//
 #define GPIOC		((GPIO_RegDef_t*)GPIOC_BASEADDR)	//
