@@ -106,16 +106,15 @@ each register holds four priority fields.*/
 
 /*7.4.11 GPIO register map
  * 7.1 GPIO introduction*/
-
 typedef struct{	//7.4.11 GPIO register map
-	__vo uint32_t MODER;	/*!< GPIO port mode register,	Address offset: 0x00      */
-	__vo uint32_t OTYPER;	/*!<	     					Address offset: 0x04      */
-	__vo uint32_t OSPEEDR;	/*!< Possible OSPEEDER		0x08*/
-	__vo uint32_t PUPDR;	/*0x0C*/
-	__vo uint32_t IDR;		/*0x10*/
-	__vo uint32_t ODR;		/*0x14*/
-	__vo uint32_t BSRR;		/*0x18*/
-//	__vo uint32_t LCKR;		/*0x1C*/
+	__vo uint32_t MODER;	/*!< GPIO port mode register,	Address offset: 0x00*/
+	__vo uint32_t OTYPER;	/*!<	     					Address offset: 0x04*/
+	__vo uint32_t OSPEEDR;	/*!< Possible OSPEEDER							0x08*/
+	__vo uint32_t PUPDR;	/*												0x0C*/
+	__vo uint32_t IDR;		/*												0x10*/
+	__vo uint32_t ODR;		/*												0x14*/
+	__vo uint32_t BSRR;		/*												0x18*/
+//	__vo uint32_t LCKR;		/*												0x1C*/
 	__vo uint32_t AFR[2];	/*!< AFR[0] : GPIO alternate function low register, AF[1] : GPIO alternate function high register    		Address offset: 0x20-0x24 */
 }GPIO_RegDef_t;				//
 
