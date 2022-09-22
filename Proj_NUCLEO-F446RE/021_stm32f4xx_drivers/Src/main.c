@@ -79,4 +79,5 @@ void EXTI9_5_IRQHandler(void){
    /// delay(); //200ms . wait till button de-bouncing gets over
 	GPIO_IRQHandling(GPIO_PIN_NO_5); //clear the pending event from exti line
 	GPIO_ToggleOutPin(GPIOA,GPIO_PIN_NO_5);
+	delay();
 }//EXTI9_5_IRQHandler
