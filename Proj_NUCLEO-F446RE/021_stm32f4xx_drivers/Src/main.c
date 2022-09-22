@@ -55,14 +55,12 @@ int main(void)
 
 	GPIO_Init(&GpioLed);
 
-
 	//this is btn gpio configuration
 	GPIOBtn.pGPIOx = GPIOC;
 	GPIOBtn.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_13;
 	GPIOBtn.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IT_FT;
 	GPIOBtn.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
 	GPIOBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PU;
-
 
 	GPIO_PeriClockControl(GPIOC,ENABLE);
 
@@ -75,12 +73,10 @@ int main(void)
 
     while(1);
 
-}
+}//END MAIN
 
-
-void EXTI9_5_IRQHandler(void)
-{
+void EXTI9_5_IRQHandler(void){
    /// delay(); //200ms . wait till button de-bouncing gets over
 	GPIO_IRQHandling(GPIO_PIN_NO_5); //clear the pending event from exti line
 	GPIO_ToggleOutPin(GPIOA,GPIO_PIN_NO_5);
-}
+}//EXTI9_5_IRQHandler

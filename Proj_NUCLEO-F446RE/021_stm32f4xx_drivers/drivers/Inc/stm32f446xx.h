@@ -161,12 +161,12 @@ typedef struct{
  * 10.3.5 Software interrupt event register (EXTI_SWIER)
  * 10.3.7 EXTI register map*/
 typedef struct{
-	__vo uint32_t IMR; 				/*!<Give a short description,  Address offset: 0x00*/
-	__vo uint32_t EMR; 				/*!<Give a short description,  Address offset: 0x04*/
-	__vo uint32_t RTSR; 			/*!<Give a short description,  Address offset: 0x08*/
-	__vo uint32_t FTSR; 			/*!<Give a short description,  Address offset: 0x0C*/
-	__vo uint32_t SWIER; 			/*!<Give a short description,  Address offset: 0x10*/
-	__vo uint32_t PR; 				/*!<Give a short description,  Address offset: 0x14*/
+	__vo uint32_t IMR; 				/*!<10.3.1 Interrupt mask register (EXTI_IMR),  Address offset: 0x00*/
+	__vo uint32_t EMR; 				/*!<10.3.2 Event mask register (EXTI_EMR),  Address offset: 0x04*/
+	__vo uint32_t RTSR; 			/*!<10.3.3 Rising trigger selection register (EXTI_RTSR),  Address offset: 0x08*/
+	__vo uint32_t FTSR; 			/*!<10.3.4 Falling trigger selection register (EXTI_FTSR),  Address offset: 0x0C*/
+	__vo uint32_t SWIER; 			/*!<10.3.5 Software interrupt event register (EXTI_SWIER),  Address offset: 0x10*/
+	__vo uint32_t PR; 				/*!<10.3.6 Pending register (EXTI_PR),  Address offset: 0x14*/
 }EXTI_RegDef_t;
 
 /*peripheral register definition structure for SPI

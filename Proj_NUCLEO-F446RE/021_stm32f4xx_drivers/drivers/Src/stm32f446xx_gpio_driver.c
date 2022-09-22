@@ -7,6 +7,7 @@
 /*74. New project creation and creating MCU specific header file */
 
 #include "stm32f446xx_gpio_driver.h"
+
 /*Peripheral Clock setup*/
 /*********************************
  * @fn					- GPIO_PeriClockControl
@@ -27,57 +28,40 @@ void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDI)	//
 {
 	if (EnorDI==ENABLE)
 	{
-		if		(pGPIOx==GPIOA)
-		{
+		if		(pGPIOx==GPIOA){
 			GPIOA_PCLK_EN();
-		}else if(pGPIOx==GPIOB)
-		{
+		}else if(pGPIOx==GPIOB){
 			GPIOB_PCLK_EN();
-		}else if(pGPIOx==GPIOC)
-		{
+		}else if(pGPIOx==GPIOC){
 			GPIOC_PCLK_EN();
-		}else if(pGPIOx==GPIOD)
-		{
+		}else if(pGPIOx==GPIOD){
 			GPIOD_PCLK_EN();
-		}else if(pGPIOx==GPIOE)
-		{
+		}else if(pGPIOx==GPIOE){
 			GPIOE_PCLK_EN();
-		}else if(pGPIOx==GPIOF)
-		{
+		}else if(pGPIOx==GPIOF){
 			GPIOF_PCLK_EN();
-		}else if(pGPIOx==GPIOG)
-		{
+		}else if(pGPIOx==GPIOG){
 			GPIOG_PCLK_EN();
-		}else if(pGPIOx==GPIOH)
-		{
+		}else if(pGPIOx==GPIOH){
 			GPIOH_PCLK_EN();
 		}
 
-	}else
-	{
-		if		(pGPIOx==GPIOA)
-				{
+	}else{
+		if		(pGPIOx==GPIOA){
 					GPIOA_PCLK_DI();
-				}else if(pGPIOx==GPIOB)
-				{
+				}else if(pGPIOx==GPIOB){
 					GPIOB_PCLK_DI();
-				}else if(pGPIOx==GPIOC)
-				{
+				}else if(pGPIOx==GPIOC){
 					GPIOC_PCLK_DI();
-				}else if(pGPIOx==GPIOD)
-				{
+				}else if(pGPIOx==GPIOD){
 					GPIOD_PCLK_DI();
-				}else if(pGPIOx==GPIOE)
-				{
+				}else if(pGPIOx==GPIOE){
 					GPIOE_PCLK_DI();
-				}else if(pGPIOx==GPIOF)
-				{
+				}else if(pGPIOx==GPIOF){
 					GPIOF_PCLK_DI();
-				}else if(pGPIOx==GPIOG)
-				{
+				}else if(pGPIOx==GPIOG){
 					GPIOG_PCLK_DI();
-				}else if(pGPIOx==GPIOH)
-				{
+				}else if(pGPIOx==GPIOH){
 					GPIOH_PCLK_DI();
 				}
 	}
@@ -163,8 +147,7 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle){
 	pGPIOHandle->pGPIOx->OTYPER |=temp;
 
 	//5. configure the alt fuctionality
-	if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode==GPIO_MODE_ALTFN)
-	{
+	if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode==GPIO_MODE_ALTFN){
 		//configure the alt function registers.
 		uint8_t temp1, temp2;
 		temp1=pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber /8;
