@@ -66,7 +66,7 @@ int main(void)
 
 	GPIO_Init(&GPIOBtn);
 
-	GPIO_WriteToOutPin(GPIOC,GPIO_PIN_NO_13,GPIO_PIN_RESET);
+	GPIO_WriteToOutPin(GPIOA,GPIO_PIN_NO_5,GPIO_PIN_RESET);
 	//IRQ configurations
 	GPIO_IRQPriorityConfig(IRQ_NO_EXTI9_5,NVIC_IRQ_PRI15);
 	GPIO_IRQInterruptConfig(IRQ_NO_EXTI9_5,ENABLE);
@@ -77,7 +77,7 @@ int main(void)
 
 void EXTI9_5_IRQHandler(void){
    /// delay(); //200ms . wait till button de-bouncing gets over
-	GPIO_IRQHandling(GPIO_PIN_NO_5); //clear the pending event from exti line
+	GPIO_IRQHandling(GPIO_PIN_NO_13); //clear the pending event from exti line
 	GPIO_ToggleOutPin(GPIOA,GPIO_PIN_NO_5);
 	delay();
 }//EXTI9_5_IRQHandler
