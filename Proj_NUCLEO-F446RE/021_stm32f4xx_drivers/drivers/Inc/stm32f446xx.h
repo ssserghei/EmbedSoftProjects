@@ -335,7 +335,8 @@ typedef struct{
 									(x==GPIOG) ? 6:\
 									(x==GPIOH) ? 7:0)
 
-/*IRQ(Interrupt Request) Number of STM32F407x MCU*/
+/*IRQ(Interrupt Request) Number of STM32F407x MCU
+ * Table 38. Vector table for STM32F446xx*/
 #define IRQ_NO_EXTI0 		6
 #define IRQ_NO_EXTI1 		7
 #define IRQ_NO_EXTI2 		8

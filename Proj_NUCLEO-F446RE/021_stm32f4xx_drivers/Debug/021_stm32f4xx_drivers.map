@@ -379,9 +379,9 @@ LOAD c:/st/stm32cubeide_1.10.1/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.ext
                 0x0000000008000204                delay
  .text.main     0x0000000008000230       0x94 ./Src/main.o
                 0x0000000008000230                main
- .text.EXTI9_5_IRQHandler
+ .text.EXTI15_10_IRQHandler
                 0x00000000080002c4       0x20 ./Src/main.o
-                0x00000000080002c4                EXTI9_5_IRQHandler
+                0x00000000080002c4                EXTI15_10_IRQHandler
  .text.Reset_Handler
                 0x00000000080002e4       0x50 ./Startup/startup_stm32f446retx.o
                 0x00000000080002e4                Reset_Handler
@@ -443,7 +443,6 @@ LOAD c:/st/stm32cubeide_1.10.1/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.ext
                 0x0000000008000334                RCC_IRQHandler
                 0x0000000008000334                TIM8_BRK_TIM12_IRQHandler
                 0x0000000008000334                Default_Handler
-                0x0000000008000334                EXTI15_10_IRQHandler
                 0x0000000008000334                ADC_IRQHandler
                 0x0000000008000334                DMA1_Stream7_IRQHandler
                 0x0000000008000334                TIM7_IRQHandler
@@ -451,6 +450,7 @@ LOAD c:/st/stm32cubeide_1.10.1/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.ext
                 0x0000000008000334                TIM5_IRQHandler
                 0x0000000008000334                DMA2_Stream7_IRQHandler
                 0x0000000008000334                I2C3_EV_IRQHandler
+                0x0000000008000334                EXTI9_5_IRQHandler
                 0x0000000008000334                RTC_WKUP_IRQHandler
                 0x0000000008000334                SPI2_IRQHandler
                 0x0000000008000334                OTG_HS_EP1_IN_IRQHandler
@@ -708,12 +708,12 @@ LOAD c:/st/stm32cubeide_1.10.1/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_line    0x00000000000005d4       0x84 ./Startup/startup_stm32f446retx.o
  .debug_line    0x0000000000000658      0x95c ./drivers/Src/stm32f446xx_gpio_driver.o
 
-.debug_str      0x0000000000000000     0x8556
- .debug_str     0x0000000000000000     0x82d5 ./Src/main.o
-                                       0x84d5 (size before relaxing)
- .debug_str     0x00000000000082d5       0x31 ./Startup/startup_stm32f446retx.o
+.debug_str      0x0000000000000000     0x8558
+ .debug_str     0x0000000000000000     0x82d7 ./Src/main.o
+                                       0x84d7 (size before relaxing)
+ .debug_str     0x00000000000082d7       0x31 ./Startup/startup_stm32f446retx.o
                                          0x7c (size before relaxing)
- .debug_str     0x0000000000008306      0x250 ./drivers/Src/stm32f446xx_gpio_driver.o
+ .debug_str     0x0000000000008308      0x250 ./drivers/Src/stm32f446xx_gpio_driver.o
                                        0x5898 (size before relaxing)
 
 .comment        0x0000000000000000       0x50

@@ -19,7 +19,8 @@
 
 /*D:\Udemy courcies\Master Microcontroller and Embedded Driver Development(MCU1)\1. Notes and Information\MasteringMCU-master\MasteringMCU-master\Resources\Source_code\Workspace\stm32f4xx_drivers
  * PC13 Button, Pressed=LOW
- *PA5 	LED    ONN=High*/
+ * PA5 	LED    ONN=High
+ * Код рабочий, при нажатии на кнопку светодиод переключается*/
 #include<stdint.h>
 #include<string.h>
 #include "stm32f446xx.h"
@@ -66,18 +67,18 @@ int main(void)
 
 	GPIO_Init(&GPIOBtn);
 
-	GPIO_WriteToOutPin(GPIOA,GPIO_PIN_NO_5,GPIO_PIN_RESET);
+	GPIO_WriteToOutPin(GPIOA,GPIO_PIN_NO_5,GPIO_PIN_RESET);//GPIO_PIN_SET//GPIO_PIN_RESET
 	//IRQ configurations
-	GPIO_IRQPriorityConfig(IRQ_NO_EXTI9_5,NVIC_IRQ_PRI15);
-	GPIO_IRQInterruptConfig(IRQ_NO_EXTI9_5,ENABLE);
+	GPIO_IRQPriorityConfig(IRQ_NO_EXTI15_10,NVIC_IRQ_PRI15);
+	GPIO_IRQInterruptConfig(IRQ_NO_EXTI15_10,ENABLE);
 
     while(1);
 
 }//END MAIN
 
-void EXTI9_5_IRQHandler(void){
+void EXTI15_10_IRQHandler(void){
    /// delay(); //200ms . wait till button de-bouncing gets over
 	GPIO_IRQHandling(GPIO_PIN_NO_13); //clear the pending event from exti line
 	GPIO_ToggleOutPin(GPIOA,GPIO_PIN_NO_5);
 	delay();
-}//EXTI9_5_IRQHandler
+}//EXTI15_10_IRQHandler         			/* EXTI Line[15:10] interrupts
