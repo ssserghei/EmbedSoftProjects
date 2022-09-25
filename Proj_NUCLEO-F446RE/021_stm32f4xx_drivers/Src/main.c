@@ -33,11 +33,10 @@
 void delay(void)
 {
 	// this will introduce ~200ms delay when system clock is 16MHz
-	for(uint32_t i = 0 ; i < 500000/2 ; i ++);
+	for(uint32_t i = 0 ; i < 50000 ; i ++);
 }
 
-int main(void)
-{
+int main(void){
 
 	GPIO_Handle_t GpioLed, GPIOBtn;
 
@@ -68,6 +67,7 @@ int main(void)
 	GPIO_Init(&GPIOBtn);
 
 	GPIO_WriteToOutPin(GPIOA,GPIO_PIN_NO_5,GPIO_PIN_RESET);//GPIO_PIN_SET//GPIO_PIN_RESET
+
 	//IRQ configurations
 	GPIO_IRQPriorityConfig(IRQ_NO_EXTI15_10,NVIC_IRQ_PRI15);
 	GPIO_IRQInterruptConfig(IRQ_NO_EXTI15_10,ENABLE);
