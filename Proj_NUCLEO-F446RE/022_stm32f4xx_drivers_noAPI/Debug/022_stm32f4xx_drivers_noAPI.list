@@ -1,5 +1,5 @@
 
-021_stm32f4xx_drivers.elf:     file format elf32-littlearm
+022_stm32f4xx_drivers_noAPI.elf:     file format elf32-littlearm
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
@@ -37,13 +37,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  00001da8  00000000  00000000  000119d8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00000fab  00000000  00000000  00013780  2**0
+ 17 .debug_line   00000fb7  00000000  00000000  00013780  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00008558  00000000  00000000  0001472b  2**0
+ 18 .debug_str    0000855e  00000000  00000000  00014737  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000050  00000000  00000000  0001cc83  2**0
+ 19 .comment      00000050  00000000  00000000  0001cc95  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00000288  00000000  00000000  0001ccd4  2**2
+ 20 .debug_frame  00000288  00000000  00000000  0001cce8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:

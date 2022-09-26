@@ -179,7 +179,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x16 ./Src/syscalls.o
  .debug_macro   0x0000000000000000       0xce ./Src/syscalls.o
  .debug_line    0x0000000000000000      0x7ea ./Src/syscalls.o
- .debug_str     0x0000000000000000     0x8a2f ./Src/syscalls.o
+ .debug_str     0x0000000000000000     0x8a35 ./Src/syscalls.o
  .comment       0x0000000000000000       0x51 ./Src/syscalls.o
  .debug_frame   0x0000000000000000      0x2ac ./Src/syscalls.o
  .ARM.attributes
@@ -241,7 +241,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./Src/sysmem.o
  .debug_macro   0x0000000000000000      0x1df ./Src/sysmem.o
  .debug_line    0x0000000000000000      0x4e0 ./Src/sysmem.o
- .debug_str     0x0000000000000000     0x5d6b ./Src/sysmem.o
+ .debug_str     0x0000000000000000     0x5d71 ./Src/sysmem.o
  .comment       0x0000000000000000       0x51 ./Src/sysmem.o
  .debug_frame   0x0000000000000000       0x34 ./Src/sysmem.o
  .ARM.attributes
@@ -644,7 +644,7 @@ LOAD c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
                 0x00000000000000f7       0x2e c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp\libc_nano.a(lib_a-memset.o)
  .ARM.attributes
                 0x0000000000000125       0x1e c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtn.o
-OUTPUT(021_stm32f4xx_drivers.elf elf32-littlearm)
+OUTPUT(022_stm32f4xx_drivers_noAPI.elf elf32-littlearm)
 LOAD linker stubs
 LOAD c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp\libc.a
 LOAD c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/nofp\libm.a
@@ -703,18 +703,18 @@ LOAD c:/st/stm32cubeide_1.8.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
  .debug_macro   0x0000000000001c60       0xc4 ./Src/main.o
  .debug_macro   0x0000000000001d24       0x84 ./drivers/Src/stm32f446xx_gpio_driver.o
 
-.debug_line     0x0000000000000000      0xfab
- .debug_line    0x0000000000000000      0x5cf ./Src/main.o
- .debug_line    0x00000000000005cf       0x84 ./Startup/startup_stm32f446retx.o
- .debug_line    0x0000000000000653      0x958 ./drivers/Src/stm32f446xx_gpio_driver.o
+.debug_line     0x0000000000000000      0xfb7
+ .debug_line    0x0000000000000000      0x5d5 ./Src/main.o
+ .debug_line    0x00000000000005d5       0x84 ./Startup/startup_stm32f446retx.o
+ .debug_line    0x0000000000000659      0x95e ./drivers/Src/stm32f446xx_gpio_driver.o
 
-.debug_str      0x0000000000000000     0x8558
- .debug_str     0x0000000000000000     0x82d7 ./Src/main.o
-                                       0x84d7 (size before relaxing)
- .debug_str     0x00000000000082d7       0x31 ./Startup/startup_stm32f446retx.o
-                                         0x7c (size before relaxing)
- .debug_str     0x0000000000008308      0x250 ./drivers/Src/stm32f446xx_gpio_driver.o
-                                       0x5898 (size before relaxing)
+.debug_str      0x0000000000000000     0x855e
+ .debug_str     0x0000000000000000     0x82dd ./Src/main.o
+                                       0x84dd (size before relaxing)
+ .debug_str     0x00000000000082dd       0x31 ./Startup/startup_stm32f446retx.o
+                                         0x82 (size before relaxing)
+ .debug_str     0x000000000000830e      0x250 ./drivers/Src/stm32f446xx_gpio_driver.o
+                                       0x589e (size before relaxing)
 
 .comment        0x0000000000000000       0x50
  .comment       0x0000000000000000       0x50 ./Src/main.o
