@@ -35,24 +35,54 @@ void delay(void)
 	for(uint32_t i = 0 ; i < 50000 ; i ++);
 }
 
+
+void pin_on(GPIO_Handle_t *h) {
+	uint32_t mask = 1 << h->GPIO_PinConfig.GPIO_PinNumber;
+	h->pGPIOx->ODR = h->pGPIOx->ODR | mask;
+}
+
+void pin_off(GPIO_Handle_t *h) {
+	uint32_t mask = 1 << h->GPIO_PinConfig.GPIO_PinNumber;
+	h->pGPIOx->ODR = h->pGPIOx->ODR & ~mask;
+}
+
 int main(void){
 
-	GPIO_Handle_t GpioLed, GPIOBtn;
+	GPIO_Handle_t GpioLedRed, GpioLedGrn,  GPIOBtn;
 
-	memset(&GpioLed,0,sizeof(GpioLed));
-	memset(&GPIOBtn,0,sizeof(GpioLed));
+	memset(&GpioLedRed,0,sizeof(GPIO_Handle_t));
+	memset(&GpioLedGrn,0,sizeof(GPIO_Handle_t));
+	memset(&GPIOBtn,0,sizeof(GPIO_Handle_t));
 
 	//this is led gpio configuration
-	GpioLed.pGPIOx = GPIOA;
-	GpioLed.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_5;
-	GpioLed.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
-	GpioLed.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_LOW;
-	GpioLed.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
-	GpioLed.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+	GpioLedRed.pGPIOx = GPIOA;
+	GpioLedRed.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_5;
+	GpioLedRed.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
+	GpioLedRed.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_LOW;
+	GpioLedRed.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
+	GpioLedRed.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+
+	//this is led gpio configuration
+	GpioLedGrn.pGPIOx = GPIOA;
+	GpioLedGrn.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_6;
+	GpioLedGrn.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
+	GpioLedGrn.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_LOW;
+	GpioLedGrn.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
+	GpioLedGrn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+
+
+	pin_on(&GpioLedRed);
+
+	pin_on(&GpioLedGrn);
+
+	pin_off(&GpioLedGrn);
+
+
 
 	GPIO_PeriClockControl(GPIOA,ENABLE);
 
-	GPIO_Init(&GpioLed);
+	GPIO_Init(&GpioLedRed);
+	GPIO_Init(&GpioLedGrn);
 
 	//this is btn gpio configuration
 	GPIOBtn.pGPIOx = GPIOC;
