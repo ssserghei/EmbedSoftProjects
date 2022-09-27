@@ -23,17 +23,19 @@
 #include<stdint.h>
 #include "main.h" //este un fiesier antet definit de user deaceia il scriem cu ""
 
-void delay(void)
-{
+void delay(void){
 	// this will introduce ~200ms delay when system clock is 16MHz
 	for(uint32_t i = 0 ; i < 500000 ; i ++);
 }
 
-void ToggleOutPin(void){
-
-
+void ToggleOutPin(GPIOx_ODR_t *pPortAOutReg){
+	while(1){
+		pPortAOutReg->odr5=1;
+		delay();
+		pPortAOutReg->odr5=0;
+		delay();
+	}//end while
 }
-
 
 int main(void)
 {
@@ -42,6 +44,13 @@ int main(void)
 
 	pClkCtrlReg->gpioC_en=1;	//BUT EN CLK on PC13
 	pPortCModeReg->moder13=0;	//BUT Set pin as IN
+
+
+
+void ToggleOutPin(GPIOx_ODR_t *pPortAOutReg);
+
+}
+
 
 	/* Loop forever */
 /*
@@ -53,14 +62,15 @@ int main(void)
 	}//end while
 
 */
+
+/*
 	while(1){
 			pPortAOutReg->odr5^=1;
 		delay();
 			pPortAOutReg->odr5^=1;
 			delay();
 		}//end while
-
-
+*/
 
 
 /*
@@ -78,4 +88,4 @@ int main(void)
 */
 
 
-}//end main
+//end main
