@@ -37,17 +37,26 @@ void ToggleOutPin(GPIOx_ODR_t *pPortAOutReg){
 	}//end while
 }
 
-int main(void)
-{
-	pClkCtrlReg->gpioA_en=1;	//LED EN CLK on GPIOA
+int main(void){
+
+
+	GPIO_Handle_t GpioLED;
+
+	GpioLED.pGPIOx=GPIOA;
+	GpioLED.GPIO_PinConfig.GPIO_PinNumber=GPIO_PIN_NO_5;
+	GpioLED.GPIO_PinConfig.GPIO_PinMode=GPIO_MODE_OUT;
+
+}
+
+
+/*	pClkCtrlReg->gpioA_en=1;	//LED EN CLK on GPIOA
 	pPortAModeReg->moder5=1;	//LED Set pin as OUT
 
 	pClkCtrlReg->gpioC_en=1;	//BUT EN CLK on PC13
 	pPortCModeReg->moder13=0;	//BUT Set pin as IN
-
-
-
 void ToggleOutPin(GPIOx_ODR_t *pPortAOutReg);
+
+
 
 }
 

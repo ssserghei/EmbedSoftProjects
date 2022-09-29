@@ -51,6 +51,7 @@ int main(void){
 	GpioLed.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
 	GpioLed.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
 
+
 	GPIO_PeriClockControl(GPIOA,ENABLE);
 
 	GPIO_Init(&GpioLed);
