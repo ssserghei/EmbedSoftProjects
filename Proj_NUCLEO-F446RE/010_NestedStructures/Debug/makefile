@@ -33,34 +33,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := 023_Nuc446RE_Int_Structures
+BUILD_ARTIFACT_NAME := 010_NestedStructures
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-023_Nuc446RE_Int_Structures.elf \
+010_NestedStructures.elf \
 
 MAP_FILES += \
-023_Nuc446RE_Int_Structures.map \
+010_NestedStructures.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-023_Nuc446RE_Int_Structures.list \
+010_NestedStructures.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: 023_Nuc446RE_Int_Structures.elf secondary-outputs
+main-build: 010_NestedStructures.elf secondary-outputs
 
 # Tool invocations
-023_Nuc446RE_Int_Structures.elf 023_Nuc446RE_Int_Structures.map: $(OBJS) $(USER_OBJS) D:\GitHub\EmbedSoftProjects\Proj_NUCLEO-F446RE\023_Nuc446RE_Int_Structures\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "023_Nuc446RE_Int_Structures.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\GitHub\EmbedSoftProjects\Proj_NUCLEO-F446RE\023_Nuc446RE_Int_Structures\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="023_Nuc446RE_Int_Structures.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+010_NestedStructures.elf 010_NestedStructures.map: $(OBJS) $(USER_OBJS) D:\GitHub\EmbedSoftProjects\Proj_NUCLEO-F446RE\010_NestedStructures\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "010_NestedStructures.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\GitHub\EmbedSoftProjects\Proj_NUCLEO-F446RE\010_NestedStructures\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="010_NestedStructures.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -69,14 +69,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-023_Nuc446RE_Int_Structures.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "023_Nuc446RE_Int_Structures.list"
+010_NestedStructures.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "010_NestedStructures.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) 023_Nuc446RE_Int_Structures.elf 023_Nuc446RE_Int_Structures.list 023_Nuc446RE_Int_Structures.map default.size.stdout
+	-$(RM) 010_NestedStructures.elf 010_NestedStructures.list 010_NestedStructures.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

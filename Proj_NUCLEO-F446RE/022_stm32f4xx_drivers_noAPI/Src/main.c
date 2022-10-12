@@ -19,7 +19,12 @@
 /*D:\Udemy courcies\Master Microcontroller and Embedded Driver Development(MCU1)\1. Notes and Information\MasteringMCU-master\MasteringMCU-master\Resources\Source_code\Workspace\stm32f4xx_drivers
  * PC13 Button, Pressed=LOW
  * PA5 	LED    ONN=High
- * Код рабочий, при нажатии на кнопку светодиод переключается*/
+ *
+ *
+ * Хочу сделать тоже самое как в 021_stm32f4xx_drivers_noAPI но не использовать функции и по сути не испошльзовать API
+ *
+ *
+ * */
 #include<stdint.h>
 #include<string.h>
 #include "stm32f446xx.h"
