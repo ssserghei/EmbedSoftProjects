@@ -38,7 +38,7 @@ int main(void)
 #define HIGH 1
 #define LOW	0
 
-#define GPIOA		((GPIOx_ODR_t*) (0x40020000+0x14))	//
+//#define GPIOA		((GPIOx_ODR_t*) (0x40020000+0x14))	//
 
 typedef struct{
 	 uint8_t state0 :1;
@@ -57,7 +57,7 @@ typedef struct{
 Output GpioLed;
 
 GpioLed.dev=GPIOA;
-GpioLed.setiings.state4=LOW;
+GpioLed.setiings.state4=HIGH;
 GpioLed.setiings.state5=HIGH;
 
 

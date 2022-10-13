@@ -80,6 +80,7 @@ GPIOx_MODER_t volatile *pPortGModeReg=(GPIOx_MODER_t*) (0x40021C00+0x00);
 	//pPortAModeReg->moder5=1;	//output
 	//pPortAModeReg->moder5=0;	//input
 
+#define GPIOA		((GPIOx_ODR_t*) (0x40020000+0x14))	//
 
 /*******************************************************************************
 //PORT_OUT	//GPIO_OUT
@@ -105,7 +106,8 @@ typedef struct{
 	uint16_t odr15		:1;
 }GPIOx_ODR_t;
 	//
-	GPIOx_ODR_t volatile *pPortAOutReg=(GPIOx_ODR_t*) (0x40020000+0x14);
+	GPIOx_ODR_t volatile *pPortAOutReg=GPIOA;
+			//(GPIOx_ODR_t*) (0x40020000+0x14);
 	GPIOx_ODR_t volatile *pPortBOutReg=(GPIOx_ODR_t*) (0x40020400+0x14);
 	GPIOx_ODR_t volatile *pPortCOutReg=(GPIOx_ODR_t*) (0x40020800+0x14);
 	GPIOx_ODR_t volatile *pPortDOutReg=(GPIOx_ODR_t*) (0x40020C00+0x14);

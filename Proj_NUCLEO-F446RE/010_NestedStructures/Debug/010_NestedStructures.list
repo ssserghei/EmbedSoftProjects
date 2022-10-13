@@ -35,15 +35,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  15 .debug_ranges 00000030  00000000  00000000  000209a8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00000f3e  00000000  00000000  000209d8  2**0
+ 16 .debug_macro  00000f47  00000000  00000000  000209d8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00000429  00000000  00000000  00021916  2**0
+ 17 .debug_line   00000429  00000000  00000000  0002191f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00003e98  00000000  00000000  00021d3f  2**0
+ 18 .debug_str    00003e98  00000000  00000000  00021d48  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000050  00000000  00000000  00025bd7  2**0
+ 19 .comment      00000050  00000000  00000000  00025be0  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00000064  00000000  00000000  00025c28  2**2
+ 20 .debug_frame  00000064  00000000  00000000  00025c30  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -107,9 +107,9 @@ Output GpioLed;
 GpioLed.dev=GPIOA;
  8000224:	4b13      	ldr	r3, [pc, #76]	; (8000274 <main+0x70>)
  8000226:	603b      	str	r3, [r7, #0]
-GpioLed.setiings.state4=LOW;
+GpioLed.setiings.state4=HIGH;
  8000228:	793b      	ldrb	r3, [r7, #4]
- 800022a:	f36f 1304 	bfc	r3, #4, #1
+ 800022a:	f043 0310 	orr.w	r3, r3, #16
  800022e:	713b      	strb	r3, [r7, #4]
 GpioLed.setiings.state5=HIGH;
  8000230:	793b      	ldrb	r3, [r7, #4]
