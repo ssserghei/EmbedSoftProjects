@@ -53,30 +53,56 @@ int main(void){
 //	GPIO_PeriClockControl(GPIOA,ENABLE);
 	GPIOA_PCLK_EN();
 
-	GPIO_Handle_t *pGPIOHandle;
+	//GPIO_Handle_t *pGPIOHandle;
 
 //	GPIO_Init(&GpioLed);
 	uint32_t temp=0; 		//temp. register
 	//1. configure the mode of gpio pin
 	//the non interrupt mode.
-	temp=(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode<<(2*pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
-	pGPIOHandle->pGPIOx->MODER &=~(0x3<<(2*pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));		//clearing
-	pGPIOHandle->pGPIOx->MODER |=temp;		//setting
+	temp=(GpioLed.GPIO_PinConfig.GPIO_PinMode<<(2*GpioLed.GPIO_PinConfig.GPIO_PinNumber));
+	GpioLed.pGPIOx->MODER &=~(0x3<<(2*GpioLed.GPIO_PinConfig.GPIO_PinNumber));		//clearing
+	GpioLed.pGPIOx->MODER |=temp;		//setting
 	temp=0;
 	//2.configure the speed
-	temp=(pGPIOHandle->GPIO_PinConfig.GPIO_PinSpeed<<(2*pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
-	pGPIOHandle->pGPIOx->OSPEEDR &=~(0x3<<pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);		//clearing
-	pGPIOHandle->pGPIOx->OSPEEDR |=temp;
+	temp=(GpioLed.GPIO_PinConfig.GPIO_PinSpeed<<(2*GpioLed.GPIO_PinConfig.GPIO_PinNumber));
+	GpioLed.pGPIOx->OSPEEDR &=~(0x3<<GpioLed.GPIO_PinConfig.GPIO_PinNumber);		//clearing
+	GpioLed.pGPIOx->OSPEEDR |=temp;
 	temp=0;
 	//3.configure the pudp setting
-	temp=(pGPIOHandle->GPIO_PinConfig.GPIO_PinPuPdControl<<(2*pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
-	pGPIOHandle->pGPIOx->PUPDR &=~(0x3<<pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);		//clearing
-	pGPIOHandle->pGPIOx->PUPDR |=temp;
+	temp=(GpioLed.GPIO_PinConfig.GPIO_PinPuPdControl<<(2*GpioLed.GPIO_PinConfig.GPIO_PinNumber));
+	GpioLed.pGPIOx->PUPDR &=~(0x3<<GpioLed.GPIO_PinConfig.GPIO_PinNumber);		//clearing
+	GpioLed.pGPIOx->PUPDR |=temp;
 	temp=0;
 	//4. configure the optype
-	temp=(pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType<<pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
-	pGPIOHandle->pGPIOx->OTYPER &=~(0x1<<pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);		//clearing
-	pGPIOHandle->pGPIOx->OTYPER |=temp;
+	temp=(GpioLed.GPIO_PinConfig.GPIO_PinOPType<<GpioLed.GPIO_PinConfig.GPIO_PinNumber);
+	GpioLed.pGPIOx->OTYPER &=~(0x1<<GpioLed.GPIO_PinConfig.GPIO_PinNumber);		//clearing
+	GpioLed.pGPIOx->OTYPER |=temp;
+	temp=0;
+
+//	GPIO_Init(&GPIOBtn);
+//	uint32_t temp=0; 		//temp. register
+	//1. configure the mode of gpio pin
+	//the non interrupt mode.
+	temp=(GPIOBtn.GPIO_PinConfig.GPIO_PinMode<<(2*GPIOBtn.GPIO_PinConfig.GPIO_PinNumber));
+	GPIOBtn.pGPIOx->MODER &=~(0x3<<(2*GPIOBtn.GPIO_PinConfig.GPIO_PinNumber));		//clearing
+	GPIOBtn.pGPIOx->MODER |=temp;		//setting
+	temp=0;
+	//2.configure the speed
+	temp=(GpioLed.GPIO_PinConfig.GPIO_PinSpeed<<(2*GPIOBtn.GPIO_PinConfig.GPIO_PinNumber));
+	GPIOBtn.pGPIOx->OSPEEDR &=~(0x3<<GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);		//clearing
+	GPIOBtn.pGPIOx->OSPEEDR |=temp;
+	temp=0;
+	//3.configure the pudp setting
+	temp=(GpioLed.GPIO_PinConfig.GPIO_PinPuPdControl<<(2*GPIOBtn.GPIO_PinConfig.GPIO_PinNumber));
+	GPIOBtn.pGPIOx->PUPDR &=~(0x3<<GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);		//clearing
+	GPIOBtn.pGPIOx->PUPDR |=temp;
+	temp=0;
+	//4. configure the optype
+	temp=(GPIOBtn.GPIO_PinConfig.GPIO_PinOPType<<GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);
+	GPIOBtn.pGPIOx->OTYPER &=~(0x1<<GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);		//clearing
+	GPIOBtn.pGPIOx->OTYPER |=temp;
+
+//	GPIO_WriteToOutPin(GPIOA,GPIO_PIN_NO_5,GPIO_PIN_RESET);//GPIO_PIN_SET//GPIO_PIN_RESET
 
 
 }
