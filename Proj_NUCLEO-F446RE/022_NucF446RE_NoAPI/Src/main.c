@@ -16,14 +16,71 @@
  ******************************************************************************
  */
 
-#include <stdint.h>
 
-#if !defined(__SOFT_FP__) && defined(__ARM_FP)
-  #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
-#endif
+/*D:\Udemy courcies\Master Microcontroller and Embedded Driver Development(MCU1)\1. Notes and Information\MasteringMCU-master\MasteringMCU-master\Resources\Source_code\Workspace\stm32f4xx_drivers
+ * PC13 Button, Pressed=LOW
+ * PA5 	LED    ONN=High
+ * Код рабочий, при нажатии на кнопку светодиод переключается*/
+#include<stdint.h>
+#include<string.h>
+#include "main.h"
 
-int main(void)
-{
-    /* Loop forever */
-	for(;;);
+
+#define HIGH 1
+#define LOW 0
+#define BTN_PRESSED LOW
+
+void delay(void){
+	// this will introduce ~200ms delay when system clock is 16MHz
+	for(uint32_t i = 0 ; i < 50000 ; i ++);
 }
+
+int main(void){
+
+	GPIO_Handle_t GpioLed, GPIOBtn;
+
+	memset(&GpioLed,0,sizeof(GpioLed));
+	memset(&GPIOBtn,0,sizeof(GpioLed));
+
+	//this is led gpio configuration
+	GpioLed.pGPIOx = GPIOA;
+	GpioLed.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_5;
+	GpioLed.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
+	GpioLed.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_LOW;
+	GpioLed.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
+	GpioLed.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+
+//	GPIO_PeriClockControl(GPIOA,ENABLE);
+	GPIOA_PCLK_EN();
+
+	GPIO_Handle_t *pGPIOHandle;
+
+//	GPIO_Init(&GpioLed);
+	uint32_t temp=0; 		//temp. register
+	//1. configure the mode of gpio pin
+	//the non interrupt mode.
+	temp=(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode<<(2*pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
+	pGPIOHandle->pGPIOx->MODER &=~(0x3<<(2*pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));		//clearing
+	pGPIOHandle->pGPIOx->MODER |=temp;		//setting
+	temp=0;
+	//2.configure the speed
+	temp=(pGPIOHandle->GPIO_PinConfig.GPIO_PinSpeed<<(2*pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
+	pGPIOHandle->pGPIOx->OSPEEDR &=~(0x3<<pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);		//clearing
+	pGPIOHandle->pGPIOx->OSPEEDR |=temp;
+	temp=0;
+	//3.configure the pudp setting
+	temp=(pGPIOHandle->GPIO_PinConfig.GPIO_PinPuPdControl<<(2*pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
+	pGPIOHandle->pGPIOx->PUPDR &=~(0x3<<pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);		//clearing
+	pGPIOHandle->pGPIOx->PUPDR |=temp;
+	temp=0;
+	//4. configure the optype
+	temp=(pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType<<pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+	pGPIOHandle->pGPIOx->OTYPER &=~(0x1<<pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);		//clearing
+	pGPIOHandle->pGPIOx->OTYPER |=temp;
+
+
+}
+
+
+
+
