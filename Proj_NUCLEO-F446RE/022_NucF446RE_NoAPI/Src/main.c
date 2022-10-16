@@ -104,7 +104,24 @@ int main(void){
 
 //	GPIO_WriteToOutPin(GPIOA,GPIO_PIN_NO_5,GPIO_PIN_RESET);//GPIO_PIN_SET//GPIO_PIN_RESET
 
+	//write 1 to the output data register at the bit field corresponding to the pin number
+	GPIOBtn.pGPIOx->ODR &= ~( 1 << GPIO_PIN_NO_5);
 
+	//IRQ configurations
+//	GPIO_IRQPriorityConfig(IRQ_NO_EXTI15_10,NVIC_IRQ_PRI15);
+	//1. first lets find out the ipr register
+	uint8_t iprx=IRQ_NO_EXTI15_10/4;				//выесняем какой регистр IPRX
+	uint8_t iprx_section=IRQ_NO_EXTI15_10 %4;		//выесняем какиая из 4 секций
+	uint8_t shift_ammount=(8*iprx_section)+(8-NO_PR_BITS_IMPLEMENTED);
+	*(NVIC_PR_BASE_ADDR +iprx) |= (NVIC_IRQ_PRI15 <<shift_ammount);	/*(8*iprx_section)	 не умножаем на 4 так как арифметика указателей
+	не работает так как мы задумали на 4 потому что следуюший адрес регистра находится через 4 адреса */
+
+
+//	GPIO_IRQInterruptConfig(IRQ_NO_EXTI15_10,ENABLE);
+	//program ISER0 resgister
+	*NVIC_ISER1 |=(1<<(IRQ_NO_EXTI15_10 %32));
+
+	while(1);
 }
 
 

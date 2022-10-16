@@ -206,6 +206,52 @@ typedef struct
 #define GPIO_PIN_PU			1
 #define GPIO_PIN_PD			2
 
+/*some generic macros*/
+#define ENABLE			1
+#define DISABLE			0
+#define	SET				ENABLE
+#define	RESET			DISABLE
+#define GPIO_PIN_SET	SET
+#define GPIO_PIN_RESET	RESET
+#define FLAG_RESET      RESET
+#define FLAG_SET 		SET
+
+/*IRQ(Interrupt Request) Number of STM32F407x MCU
+ * Table 38. Vector table for STM32F446xx*/
+#define IRQ_NO_EXTI0 		6
+#define IRQ_NO_EXTI1 		7
+#define IRQ_NO_EXTI2 		8
+#define IRQ_NO_EXTI3 		9
+#define IRQ_NO_EXTI4 		10
+#define IRQ_NO_EXTI9_5 		23
+#define IRQ_NO_EXTI15_10 	40
+
+
+/*ARM Cortex Mx Processor Priority Register Address Calculation
+ * The NVIC_IPR0-NVIC_IPR59 registers provide an 8-bit priority field for each interrupt and
+each register holds four priority fields.*/
+#define NVIC_PR_BASE_ADDR ((__vo uint32_t*)0xE000E400)	/*Interrupt Priority Registers on page 4-7*/
+
+/*ARM Cortex Mx Processor number of priority bits implemented in Priority Register
+ * */
+#define NO_PR_BITS_IMPLEMENTED		4					/*Interrupt Priority Registers on page 4-7*/
+
+
+/*macros for all the possible priority levels*/
+#define NVIC_IRQ_PRI0    0
+#define NVIC_IRQ_PRI15    15
+
+
+/*ARM Cortex Mx Processor NVIC ISERx register Addresses
+ * DUI0553
+ * Table 4-2 NVIC register summary
+ * The NVIC_ISER0-NVIC_ISER7 registers enable interrupts, and show which interrupts are
+enabled.*/
+#define NVIC_ISER0		((__vo uint32_t*)0xE000E100)	/*!< Interrupt Set-enable Registers on page 4-4*/
+#define NVIC_ISER1		((__vo uint32_t*)0xE000E104)
+#define NVIC_ISER2		((__vo uint32_t*)0xE000E108)	/*!<*/
+#define NVIC_ISER3		((__vo uint32_t*)0xE000E10C)	/*!<*/
+
 #endif /* MAIN_H_ */
 
 

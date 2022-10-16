@@ -161,12 +161,12 @@ typedef struct{
  * 10.3.5 Software interrupt event register (EXTI_SWIER)
  * 10.3.7 EXTI register map*/
 typedef struct{
-	__vo uint32_t IMR; 				/*!<10.3.1 Interrupt mask register (EXTI_IMR),  Address offset: 0x00*/
-	__vo uint32_t EMR; 				/*!<10.3.2 Event mask register (EXTI_EMR),  Address offset: 0x04*/
-	__vo uint32_t RTSR; 			/*!<10.3.3 Rising trigger selection register (EXTI_RTSR),  Address offset: 0x08*/
-	__vo uint32_t FTSR; 			/*!<10.3.4 Falling trigger selection register (EXTI_FTSR),  Address offset: 0x0C*/
-	__vo uint32_t SWIER; 			/*!<10.3.5 Software interrupt event register (EXTI_SWIER),  Address offset: 0x10*/
-	__vo uint32_t PR; 				/*!<10.3.6 Pending register (EXTI_PR),  Address offset: 0x14*/
+	__vo uint32_t IMR; 				/*!<10.3.1 Interrupt mask register (EXTI_IMR)				//Address offset: 0x00*/
+	__vo uint32_t EMR; 				/*!<10.3.2 Event mask register (EXTI_EMR),   				//Address offset: 0x04*/
+	__vo uint32_t RTSR; 			/*!<10.3.3 Rising trigger selection register (EXTI_RTSR),  	//Address offset: 0x08*/
+	__vo uint32_t FTSR; 			/*!<10.3.4 Falling trigger selection register (EXTI_FTSR), 	//Address offset: 0x0C*/
+	__vo uint32_t SWIER; 			/*!<10.3.5 Software interrupt event register (EXTI_SWIER), 	//Address offset: 0x10*/
+	__vo uint32_t PR; 				/*!<10.3.6 Pending register (EXTI_PR),  					//Address offset: 0x14*/
 }EXTI_RegDef_t;
 
 /*peripheral register definition structure for SPI
@@ -185,15 +185,16 @@ typedef struct{
 } SPI_RegDef_t;
 
 /*peripheral register definition structure for SYSCFG
- * 8.2.9 SYSCFG register maps*/
+ * 8.2.9 SYSCFG register maps
+ * Table 27. SYSCFG register map and reset values*/
 typedef struct{
-	__vo uint32_t MEMRMP;		/*!<Give a short description, 		Adress ofset: 0x00*/
-	__vo uint32_t PMC;			/*!<TODO, 							Adress ofset: 0x04*/
-	__vo uint32_t EXTICR[4];	/*!<TODO, 							Adress ofset: 0x08-0x14*/
-		 uint32_t RESERVED1[2];	/*!<TODO, 							Adress ofset: 0x18-0x1C*/
-	__vo uint32_t CMCPCR;		/*!<TODO, 							Adress ofset: 0x20*/
-	 	 uint32_t RESERVED2[2];	/*!<TODO, 							Adress ofset: 0x24-0x28*/
-	__vo uint32_t CFGR;			/*!<TODO, 							Adress ofset: 0x2C*/
+	__vo uint32_t MEMRMP;		/*!<Give a short description, 						Adress ofset: 0x00*/
+	__vo uint32_t PMC;			/*!<TODO, 											Adress ofset: 0x04*/
+	__vo uint32_t EXTICR[4];	/*!<SYSCFG external interrupt configuration registerAdress ofset: 0x08-0x14*/
+		 uint32_t RESERVED1[2];	/*!<TODO, 											Adress ofset: 0x18-0x1C*/
+	__vo uint32_t CMCPCR;		/*!<TODO, 											Adress ofset: 0x20*/
+	 	 uint32_t RESERVED2[2];	/*!<TODO, 											Adress ofset: 0x24-0x28*/
+	__vo uint32_t CFGR;			/*!<TODO, 											Adress ofset: 0x2C*/
 }SYSCFG_RegDef_t;
 
 
@@ -239,7 +240,7 @@ typedef struct{
 #define GPIOG		((GPIO_RegDef_t*)GPIOG_BASEADDR)	//
 #define GPIOH		((GPIO_RegDef_t*)GPIOH_BASEADDR)	//
 
-#define RCC			((RCC_RegDef_t*)RCC_BASEADDR)
+#define RCC			((RCC_RegDef_t*)RCC_BASEADDR)		//Table 21. RCC register map and reset values
 
 #define EXTI		((EXTI_RegDef_t*)EXTI_BASEADDR)
 
