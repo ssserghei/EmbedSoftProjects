@@ -53,6 +53,8 @@ int main(void){
 //	GPIO_PeriClockControl(GPIOA,ENABLE);
 	GPIOA_PCLK_EN();
 
+
+
 	//GPIO_Handle_t *pGPIOHandle;
 
 //	GPIO_Init(&GpioLed);
@@ -79,21 +81,31 @@ int main(void){
 	GpioLed.pGPIOx->OTYPER |=temp;
 	temp=0;
 
+
+	//this is btn gpio configuration
+	GPIOBtn.pGPIOx = GPIOC;
+	GPIOBtn.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_13;
+	GPIOBtn.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IT_FT;
+	GPIOBtn.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
+	GPIOBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PU;
+
+	//	GPIO_PeriClockControl(GPIOC,ENABLE);
+	GPIOC_PCLK_EN();
+
 //	GPIO_Init(&GPIOBtn);
 //	uint32_t temp=0; 		//temp. register
-	//1. configure the mode of gpio pin
-	//the non interrupt mode.
+	//1. configure the mode of gpio pin the non interrupt mode.
 	temp=(GPIOBtn.GPIO_PinConfig.GPIO_PinMode<<(2*GPIOBtn.GPIO_PinConfig.GPIO_PinNumber));
 	GPIOBtn.pGPIOx->MODER &=~(0x3<<(2*GPIOBtn.GPIO_PinConfig.GPIO_PinNumber));		//clearing
 	GPIOBtn.pGPIOx->MODER |=temp;		//setting
 	temp=0;
 	//2.configure the speed
-	temp=(GpioLed.GPIO_PinConfig.GPIO_PinSpeed<<(2*GPIOBtn.GPIO_PinConfig.GPIO_PinNumber));
+	temp=(GPIOBtn.GPIO_PinConfig.GPIO_PinSpeed<<(2*GPIOBtn.GPIO_PinConfig.GPIO_PinNumber));
 	GPIOBtn.pGPIOx->OSPEEDR &=~(0x3<<GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);		//clearing
 	GPIOBtn.pGPIOx->OSPEEDR |=temp;
 	temp=0;
 	//3.configure the pudp setting
-	temp=(GpioLed.GPIO_PinConfig.GPIO_PinPuPdControl<<(2*GPIOBtn.GPIO_PinConfig.GPIO_PinNumber));
+	temp=(GPIOBtn.GPIO_PinConfig.GPIO_PinPuPdControl<<(2*GPIOBtn.GPIO_PinConfig.GPIO_PinNumber));
 	GPIOBtn.pGPIOx->PUPDR &=~(0x3<<GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);		//clearing
 	GPIOBtn.pGPIOx->PUPDR |=temp;
 	temp=0;
@@ -102,10 +114,12 @@ int main(void){
 	GPIOBtn.pGPIOx->OTYPER &=~(0x1<<GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);		//clearing
 	GPIOBtn.pGPIOx->OTYPER |=temp;
 
+
+
 //	GPIO_WriteToOutPin(GPIOA,GPIO_PIN_NO_5,GPIO_PIN_RESET);//GPIO_PIN_SET//GPIO_PIN_RESET
 
 	//write 1 to the output data register at the bit field corresponding to the pin number
-	GPIOBtn.pGPIOx->ODR &= ~( 1 << GPIO_PIN_NO_5);
+	GPIOBtn.pGPIOx->ODR &= ~( 1 << GPIO_PIN_NO_13);
 
 	//IRQ configurations
 //	GPIO_IRQPriorityConfig(IRQ_NO_EXTI15_10,NVIC_IRQ_PRI15);
