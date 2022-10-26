@@ -16,13 +16,47 @@
 
 /****************************** START: Processor Specific Details******************************/
 
+/*ARM Cortex Mx Processor NVIC ISERx register Addresses
+ * DUI0553
+ * Table 4-2 NVIC register summary
+ * The NVIC_ISER0-NVIC_ISER7 registers enable interrupts, and show which interrupts are
+enabled.*/
+#define NVIC_ISER0		((__vo uint32_t*)0xE000E100)	/*!< Interrupt Set-enable Registers on page 4-4*/
+#define NVIC_ISER1		((__vo uint32_t*)0xE000E104)
+#define NVIC_ISER2		((__vo uint32_t*)0xE000E108)	/*!<*/
+#define NVIC_ISER3		((__vo uint32_t*)0xE000E10C)	/*!<*/
+
+/*ARM Cortex Mx Processor NVIC ICERx register Addresses
+ *The NVIC_ICER0-NVIC_ICER7 registers disable interrupts, and show which interrupts are
+enabled.*/
+#define NVIC_ICER0		((__vo uint32_t*)0xE000E180)	/*!< Interrupt Clear-enable Registers on page 4-5*/
+#define NVIC_ICER1		((__vo uint32_t*)0xE000E184)
+#define NVIC_ICER2		((__vo uint32_t*)0xE000E188)
+#define NVIC_ICER3		((__vo uint32_t*)0xE000E18C)
+
+/*ARM Cortex Mx Processor Priority Register Address Calculation
+ * The NVIC_IPR0-NVIC_IPR59 registers provide an 8-bit priority field for each interrupt and
+each register holds four priority fields.*/
+#define NVIC_PR_BASE_ADDR ((__vo uint32_t*)0xE000E400)	/*Interrupt Priority Registers on page 4-7*/
+
+/*ARM Cortex Mx Processor number of priority bits implemented in Priority Register
+ * */
+#define NO_PR_BITS_IMPLEMENTED		4					/*Interrupt Priority Registers on page 4-7*/
+
+/*base addresses of Flash and SRAM ,memories*/
+#define FLASH_BASEADDR				0x08000000U				/*3.3 Embedded Flash memory*/
+#define SRAM1_BASEADDR				0x20000000U				/*2.2.3 Embedded SRAM //Main internal SRAM1 (112 KB)*/
+#define SRAM2_BASEADDR				0x2001C000U				/*0x20000000U+1C000U //+112*1024=114688=1C000(h) Auxiliary internal SRAM2 (16 KB)*/
+#define ROM_BASEADDR				0x1FFF0000U				/*Table 4. Flash module organization // System memory	//30 Kbytes*/
+#define SRAM						SRAM1_BASEADDR
+
 /*AHBx and APBx Bus Peripheral base addresses*/
 //Table 1. STM32F446xx register boundary addresses
-//#define PERIPH_BASEADDR			0x40000000U					/*Первый адрес начала APB1 //TIM2*/
-//#define APB1PERIPH_BASEADDR		PERIPH_BASEADDR				//
-//#define APB2PERIPH_BASEADDR		0x40010000U					/*TIM1*/
+#define PERIPH_BASEADDR			0x40000000U					/*Первый адрес начала APB1 //TIM2*/
+#define APB1PERIPH_BASEADDR		PERIPH_BASEADDR				//
+#define APB2PERIPH_BASEADDR		0x40010000U					/*TIM1*/
 #define AHB1PERIPH_BASEADDR		0x40020000U					//
-//#define AHB2PERIPH_BASEADDR		0x50000000U					//
+#define AHB2PERIPH_BASEADDR		0x50000000U					//
 
 /*Base addresses of peripherals which are hanging on AHB1 bus*/
 #define GPIOA_BASEADDR 			(AHB1PERIPH_BASEADDR+0x0000)		//0x4002 0000 - 0x4002 03FF GPIOA
@@ -35,6 +69,27 @@
 #define GPIOH_BASEADDR 			(AHB1PERIPH_BASEADDR+0x1C00)		//0x4002 1C00 - 0x4002 1FFF GPIOH
 
 #define RCC_BASEADDR			(AHB1PERIPH_BASEADDR+0x3800)
+
+/*Base addresses of peripherals which are hanging on APB1 bus*/
+//#define	I2C1_BASEADDR			(AHB1PERIPH_BASEADDR+0x5400)		//0x4000 5400 - 0x4000 57FF I2C1
+//#define I2C2_BASEADDR			(APB1PERIPH_BASEADDR+0x5800)
+//#define I2C3_BASEADDR			(APB1PERIPH_BASEADDR+0x5C00)
+
+//#define SPI2_BASEADDR			(APB1PERIPH_BASEADDR+0x3800)		/*SPI2 / I2S2*/
+//#define SPI3_BASEADDR			(APB1PERIPH_BASEADDR+0x3C00)		/*SPI3 / I2S3*/
+
+//#define USART2_BASEADDR			(APB1PERIPH_BASEADDR+0x4400)
+//#define USART3_BASEADDR			(APB1PERIPH_BASEADDR+0x4800)
+//#define UART4_BASEADDR			(APB1PERIPH_BASEADDR+0x4C00)
+//#define UART5_BASEADDR			(APB1PERIPH_BASEADDR+0x5000)
+
+
+/*Base addresses of peripherals which are hanging on APB2 bus*/
+#define EXTI_BASEADDR			(APB2PERIPH_BASEADDR+0x3C00)		//0x4001 3C00 - 0x4001 3FFF EXTI
+//#define SPI1_BASEADDR			(APB2PERIPH_BASEADDR+0x3000)
+#define SYSCFG_BASEADDR			(APB2PERIPH_BASEADDR+0x3800)
+//#define USART1_BASEADDR			(APB2PERIPH_BASEADDR+0x1000)
+//#define USART6_BASEADDR			(APB2PERIPH_BASEADDR+0x1400)
 
 /******************************Peripheral Register Definition Structures******************************/
 
@@ -96,6 +151,34 @@ typedef struct{
 	__vo uint32_t DCKCFGR2;		/*!<	Adders offset	0x94		*/
 }RCC_RegDef_t;
 
+/*peripheral definition structure for EXTI
+ * 10.3.5 Software interrupt event register (EXTI_SWIER)
+ * 10.3.7 EXTI register map*/
+typedef struct{
+	__vo uint32_t IMR; 				/*!<10.3.1 Interrupt mask register (EXTI_IMR)				//Address offset: 0x00*/
+	__vo uint32_t EMR; 				/*!<10.3.2 Event mask register (EXTI_EMR),   				//Address offset: 0x04*/
+	__vo uint32_t RTSR; 			/*!<10.3.3 Rising trigger selection register (EXTI_RTSR),  	//Address offset: 0x08*/
+	__vo uint32_t FTSR; 			/*!<10.3.4 Falling trigger selection register (EXTI_FTSR), 	//Address offset: 0x0C*/
+	__vo uint32_t SWIER; 			/*!<10.3.5 Software interrupt event register (EXTI_SWIER), 	//Address offset: 0x10*/
+	__vo uint32_t PR; 				/*!<10.3.6 Pending register (EXTI_PR),  					//Address offset: 0x14*/
+}EXTI_RegDef_t;
+
+
+
+/*peripheral register definition structure for SYSCFG
+ * 8.2.9 SYSCFG register maps
+ * Table 27. SYSCFG register map and reset values*/
+typedef struct{
+	__vo uint32_t MEMRMP;		/*!<Give a short description, 						Adress ofset: 0x00*/
+	__vo uint32_t PMC;			/*!<TODO, 											Adress ofset: 0x04*/
+	__vo uint32_t EXTICR[4];	/*!<SYSCFG external interrupt configuration registerAdress ofset: 0x08-0x14*/
+		 uint32_t RESERVED1[2];	/*!<TODO, 											Adress ofset: 0x18-0x1C*/
+	__vo uint32_t CMCPCR;		/*!<TODO, 											Adress ofset: 0x20*/
+	 	 uint32_t RESERVED2[2];	/*!<TODO, 											Adress ofset: 0x24-0x28*/
+	__vo uint32_t CFGR;			/*!<TODO, 											Adress ofset: 0x2C*/
+}SYSCFG_RegDef_t;
+
+
 /**********************peripheral definition**********************/
 
 /*(Peripheral base addresses typecasted to xxx_RegDef_t)*/
@@ -109,6 +192,10 @@ typedef struct{
 #define GPIOH		((GPIO_RegDef_t*)GPIOH_BASEADDR)	//
 
 #define RCC			((RCC_RegDef_t*)RCC_BASEADDR)
+
+#define EXTI		((EXTI_RegDef_t*)EXTI_BASEADDR)
+
+#define SYSCFG		((SYSCFG_RegDef_t*)SYSCFG_BASEADDR)
 
 /*Clock Enable Macros for GPIOx peripherals*/
 #define GPIOA_PCLK_EN()		(RCC->AHB1ENR |=(1<<0))
@@ -141,6 +228,8 @@ typedef struct{
 									(x==GPIOG) ? 6:\
 									(x==GPIOH) ? 7:0)
 
+/*Clock Enable Macros for SYSCFG peripherals*/
+#define SYSCFG_PCLK_EN() (RCC->APB2ENR |= (1 << 14))
 
 /*This is a Configuration structure for a GPIO pin*/
 typedef struct

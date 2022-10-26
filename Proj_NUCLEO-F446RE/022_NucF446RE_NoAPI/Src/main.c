@@ -94,11 +94,29 @@ int main(void){
 
 //	GPIO_Init(&GPIOBtn);
 //	uint32_t temp=0; 		//temp. register
-	//1. configure the mode of gpio pin the non interrupt mode.
-	temp=(GPIOBtn.GPIO_PinConfig.GPIO_PinMode<<(2*GPIOBtn.GPIO_PinConfig.GPIO_PinNumber));
-	GPIOBtn.pGPIOx->MODER &=~(0x3<<(2*GPIOBtn.GPIO_PinConfig.GPIO_PinNumber));		//clearing
-	GPIOBtn.pGPIOx->MODER |=temp;		//setting
 	temp=0;
+
+	//Interrupt mode
+	//1.configure the FTSR
+	EXTI->FTSR |=(1<< GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);
+	//Clear the corresponding RTSR bit
+	EXTI->RTSR &=~(1<< GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);
+
+	//2. configure GPIO port selection in SYSCFG_EXTICR
+	//Будем расчитывать позицию EXTIx в регистрах
+	/*Всего 4 регистра SYSCFG_EXTICR2 из каждого регистра используются первые 16 бит. Каждый регистр отвечает за 4 линии EXTI
+	* К каждой линии EXTI можно подключить путем записи 4 битного числа только один пин порта под номером соответствующему номеру линии EXTI
+	*Пример: к линии EXTI5 можно подключить PA5 либо PB5 либо... PE5*/
+	uint8_t	temp1=GPIOBtn.GPIO_PinConfig.GPIO_PinNumber/4;
+	uint8_t	temp2=GPIOBtn.GPIO_PinConfig.GPIO_PinNumber%4;
+	uint8_t portcode=GPIO_BASEADDR_TO_CODE(GPIOBtn.pGPIOx);
+	SYSCFG_PCLK_EN();
+	SYSCFG->EXTICR[temp1]=portcode <<(temp2*4);
+
+	//3. enable the exti interrupt delivery using IMR
+	EXTI->IMR |=(1<< GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);
+
+
 	//2.configure the speed
 	temp=(GPIOBtn.GPIO_PinConfig.GPIO_PinSpeed<<(2*GPIOBtn.GPIO_PinConfig.GPIO_PinNumber));
 	GPIOBtn.pGPIOx->OSPEEDR &=~(0x3<<GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);		//clearing
