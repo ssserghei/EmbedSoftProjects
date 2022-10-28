@@ -116,7 +116,6 @@ int main(void){
 	//3. enable the exti interrupt delivery using IMR
 	EXTI->IMR |=(1<< GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);
 
-
 	//2.configure the speed
 	temp=(GPIOBtn.GPIO_PinConfig.GPIO_PinSpeed<<(2*GPIOBtn.GPIO_PinConfig.GPIO_PinNumber));
 	GPIOBtn.pGPIOx->OSPEEDR &=~(0x3<<GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);		//clearing
@@ -139,6 +138,7 @@ int main(void){
 	//write 1 to the output data register at the bit field corresponding to the pin number
 	GPIOBtn.pGPIOx->ODR &= ~( 1 << GPIO_PIN_NO_13);
 
+
 	//IRQ configurations
 //	GPIO_IRQPriorityConfig(IRQ_NO_EXTI15_10,NVIC_IRQ_PRI15);
 	//1. first lets find out the ipr register
@@ -152,6 +152,8 @@ int main(void){
 //	GPIO_IRQInterruptConfig(IRQ_NO_EXTI15_10,ENABLE);
 	//program ISER0 resgister
 	*NVIC_ISER1 |=(1<<(IRQ_NO_EXTI15_10 %32));
+
+
 
 	while(1);
 }

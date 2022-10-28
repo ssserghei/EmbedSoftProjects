@@ -518,6 +518,7 @@ int main(void){
  80004e0:	f422 5200 	bic.w	r2, r2, #8192	; 0x2000
  80004e4:	615a      	str	r2, [r3, #20]
 
+
 	//IRQ configurations
 //	GPIO_IRQPriorityConfig(IRQ_NO_EXTI15_10,NVIC_IRQ_PRI15);
 	//1. first lets find out the ipr register
@@ -560,6 +561,8 @@ int main(void){
  800052a:	4a05      	ldr	r2, [pc, #20]	; (8000540 <main+0x33c>)
  800052c:	f443 7380 	orr.w	r3, r3, #256	; 0x100
  8000530:	6013      	str	r3, [r2, #0]
+
+
 
 	while(1);
  8000532:	e7fe      	b.n	8000532 <main+0x32e>
