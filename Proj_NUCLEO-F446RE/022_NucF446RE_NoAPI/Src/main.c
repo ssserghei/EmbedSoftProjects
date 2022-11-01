@@ -53,8 +53,6 @@ int main(void){
 //	GPIO_PeriClockControl(GPIOA,ENABLE);
 	GPIOA_PCLK_EN();
 
-
-
 	//GPIO_Handle_t *pGPIOHandle;
 
 //	GPIO_Init(&GpioLed);
@@ -156,8 +154,24 @@ int main(void){
 
 
 	while(1);
-}
+}//END MAIN
 
+void EXTI15_10_IRQHandler(void){
+   /// delay(); //200ms . wait till button de-bouncing gets over
+	GPIO_IRQHandling(GPIO_PIN_NO_13); //clear the pending event from exti line
+	GPIO_ToggleOutPin(GPIOA,GPIO_PIN_NO_5);
+	delay();
+}//EXTI15_10_IRQHandler         			/* EXTI Line[15:10] interrupts
 
+void GPIO_IRQHandling(uint8_t PinNumber){
+	//clear the exti pr register corresponding to the pin number
+	if (EXTI->PR &(1<<PinNumber)){
+		//clear the pending register bit
+		EXTI->PR |=(1<<PinNumber);
+	}
 
+	void GPIO_ToggleOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
+	{
+		pGPIOx->ODR  ^= ( 1 << PinNumber);
+	}
 
