@@ -95,12 +95,12 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle){
 		pGPIOHandle->pGPIOx->MODER &=~(0x3<<(2*pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));		//clearing
 		pGPIOHandle->pGPIOx->MODER |=temp;		//setting
 		temp=0;
-	}else{	//Interrupt mode
+	}else{	//Interrupt mode. Выбираем по фроннту или по спаду будет зафиксировано прерывание
 		if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode<=GPIO_MODE_IT_FT){
 			//1.configure the FTSR
-			EXTI->FTSR |=(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+			EXTI->FTSR |=(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);		//10.3.4 Falling trigger selection register (EXTI_FTSR)
 			//Clear the corresponding RTSR bit
-			EXTI->RTSR &=~(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+			EXTI->RTSR &=~(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);		//10.3.3 Rising trigger selection register (EXTI_RTSR)
 		}else if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode<=GPIO_MODE_IT_RT){
 			//1.configure the RTSR
 			EXTI->RTSR |=(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
@@ -124,7 +124,7 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle){
 		SYSCFG->EXTICR[temp1]=portcode <<(temp2*4);
 
 		//3. enable the exti interrupt delivery using IMR
-		EXTI->IMR |=(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+		EXTI->IMR |=(1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);		//10.3.1 Interrupt mask register (EXTI_IMR)
 	}
 
 	temp=0;

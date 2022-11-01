@@ -419,7 +419,6 @@ int main(void){
  8000440:	430b      	orrs	r3, r1
  8000442:	6013      	str	r3, [r2, #0]
 
-
 	//2.configure the speed
 	temp=(GPIOBtn.GPIO_PinConfig.GPIO_PinSpeed<<(2*GPIOBtn.GPIO_PinConfig.GPIO_PinNumber));
  8000444:	7abb      	ldrb	r3, [r7, #10]
