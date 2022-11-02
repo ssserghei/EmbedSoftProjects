@@ -20,7 +20,10 @@
 /*D:\Udemy courcies\Master Microcontroller and Embedded Driver Development(MCU1)\1. Notes and Information\MasteringMCU-master\MasteringMCU-master\Resources\Source_code\Workspace\stm32f4xx_drivers
  * PC13 Button, Pressed=LOW
  * PA5 	LED    ONN=High
- * Код рабочий, при нажатии на кнопку светодиод переключается*/
+ * Код рабочий, при нажатии на кнопку светодиод переключается
+ * Является наследником проекта 021_stm32f4xx_drivers только без API.
+ * Создан для более детального изучения принципов работы API*/
+
 #include<stdint.h>
 #include<string.h>
 #include "main.h"
@@ -151,8 +154,6 @@ int main(void){
 	//program ISER0 resgister
 	*NVIC_ISER1 |=(1<<(IRQ_NO_EXTI15_10 %32));
 
-
-
 	while(1);
 }//END MAIN
 
@@ -169,9 +170,10 @@ void GPIO_IRQHandling(uint8_t PinNumber){
 		//clear the pending register bit
 		EXTI->PR |=(1<<PinNumber);
 	}
+}
 
-	void GPIO_ToggleOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
-	{
-		pGPIOx->ODR  ^= ( 1 << PinNumber);
-	}
+void GPIO_ToggleOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
+{
+	pGPIOx->ODR  ^= ( 1 << PinNumber);
+}
 
