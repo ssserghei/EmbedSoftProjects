@@ -99,6 +99,7 @@ int main(void){
 
 	//Interrupt mode
 	//1.configure the FTSR
+	//10.3.4 Falling trigger selection register (EXTI_FTSR)
 	EXTI->FTSR |=(1<< GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);
 	//Clear the corresponding RTSR bit
 	EXTI->RTSR &=~(1<< GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);
