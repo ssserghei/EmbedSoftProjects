@@ -15,15 +15,40 @@
  *
  ******************************************************************************
  */
+/*создан на основе предыдущего проекта 022_*
+ * тут не буду использовать экземпляры стуктур.
+ * через указатели буду изменять регистры.
+ * PC13 Button, Pressed=LOW
+ * PA5 	LED    ONN=High
+ * */
 
-#include <stdint.h>
+#include<stdint.h>
+#include<string.h>
+#include "main.h"
+
+
+#define HIGH 1
+#define LOW 0
+#define BTN_PRESSED LOW
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
 
+void delay(void){
+	// this will introduce ~200ms delay when system clock is 16MHz
+	for(uint32_t i = 0 ; i < 50000 ; i ++);
+}
+
+/*****MAIN*******/
 int main(void)
 {
+
+	/*1.Enable Clock for GPIOA-LED and GPIOC-Button*/
+
+RCC->AHB1ENR |=(1<<0); //GPIOA_PCLK_EN
+RCC->AHB1ENR |=(1<<2); //GPIOC_PCLK_EN
+
 
 
 
