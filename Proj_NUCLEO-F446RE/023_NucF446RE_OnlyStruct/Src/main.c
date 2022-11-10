@@ -26,7 +26,6 @@
 #include<string.h>
 #include "main.h"
 
-
 #define HIGH 1
 #define LOW 0
 #define BTN_PRESSED LOW
@@ -44,17 +43,102 @@ void delay(void){
 int main(void)
 {
 
-	/*1.Enable Clock for GPIOA-LED and GPIOC-Button*/
-
+/*1.Enable Clock for GPIOA-LED and GPIOC-Button*/
 RCC->AHB1ENR |=(1<<0); //GPIOA_PCLK_EN
 RCC->AHB1ENR |=(1<<2); //GPIOC_PCLK_EN
 
+/*2. Configure the mode of GPIO pins*/
+
+//Configure mode of GOPIO for LED
+
+//Pin mode OUT
+uint32_t temp=0; 		//temp. register
+temp=GPIO_MODE_OUT<<(2*GPIO_PIN_NO_5);
+GPIOA_RegDef->MODER &=~(0x3<<(2*GPIO_PIN_NO_5));		//clear 2 bit
+GPIOA_RegDef->MODER |=temp;	//
+temp=0;
+
+//Pin mode Push-Pul
+temp=GPIO_OP_TYPE_PP<<GPIO_PIN_NO_5;		//0 сдвинул 5 раз :))
+GPIOA_RegDef->OTYPER &=~(0x1<<GPIO_PIN_NO_5);		//clear 2 bit
+GPIOA_RegDef->OTYPER |=temp;
+temp=0;
+
+//Configure mode of GOPIOС for Button
+
+//interrupt mode
+//3.configure the pudp setting
+temp=GPIO_PIN_PU<<(2*GPIO_PIN_NO_13);
+GPIOC_RegDef->PUPDR &=~(0x3<<GPIO_PIN_NO_13);
+GPIOC_RegDef->PUPDR |=temp;
+temp=0;
+
+//1.configure the FTSR
+//10.3.4 Falling trigger selection register (EXTI_FTSR)
+EXTI->FTSR |=(1<<GPIO_PIN_NO_13);
+//Clear the corresponding RTSR bit
+EXTI->RTSR &=~(1<<GPIO_PIN_NO_13);
+
+//2. configure GPIO port selection in SYSCFG_EXTICR
+//Включение внешнего прерывания от 13 пина.
+//Будем расчитывать позицию EXTIx в регистрах
+/*Всего 4 регистра SYSCFG_EXTICR2 из каждого регистра используются первые 16 бит. Каждый регистр отвечает за 4 линии EXTI
+* К каждой линии EXTI можно подключить путем записи 4 битного числа только один пин порта под номером соответствующему номеру линии EXTI
+*Пример: к линии EXTI5 можно подключить PA5 либо PB5 либо... PE5*/
+uint8_t	temp1=GPIO_PIN_NO_13/4;
+uint8_t	temp2=GPIO_PIN_NO_13%4;
+uint8_t portcode=2;		//GPIOA=0; GPIOC=2;
+RCC->APB2ENR |= (1 << 14);
+SYSCFG->EXTICR[temp1]=portcode <<(temp2*4);		// Нам нужно попасть на 4 регистр (SYSCFG_EXTICR4)
+
+//3. enable the exti interrupt delivery using IMR
+EXTI->IMR |=(1<<GPIO_PIN_NO_13);
+
+//4. Включаем клок на систем контроллер
+//RCC->APB2ENR |= (1 << 14);		//SYSCFG_PCLK_EN(); нужно выяснить почему он клок включает до : SYSCFG->EXTICR[temp1]=portcode <<(temp2*4);
+
+//Сбрасываем бит (гасим светодиод если он был включен)
+//фактически определяем его состояние в момент включения.
+GPIOA_RegDef->ODR &= ~( 1 << GPIO_PIN_NO_13);
+
+//5. IRQ configurations
+//	GPIO_IRQPriorityConfig(IRQ_NO_EXTI15_10,NVIC_IRQ_PRI15);
+//1. first lets find out the ipr register
+uint8_t iprx=IRQ_NO_EXTI15_10/4;				//выесняем какой регистр IPRX
+uint8_t iprx_section=IRQ_NO_EXTI15_10 %4;		//выесняем какиая из 4 секций
+uint8_t shift_ammount=(8*iprx_section)+(8-NO_PR_BITS_IMPLEMENTED);
+*(NVIC_PR_BASE_ADDR +iprx) |= (NVIC_IRQ_PRI15 <<shift_ammount);	/*(8*iprx_section)	 не умножаем на 4 так как арифметика указателей
+не работает так как мы задумали на 4 потому что следуюший адрес регистра находится через 4 адреса */
 
 
+//	GPIO_IRQInterruptConfig(IRQ_NO_EXTI15_10,ENABLE);
+//program ISER0 resgister
+*NVIC_ISER1 |=(1<<(IRQ_NO_EXTI15_10 %32));
 
 
-
-
-	/* Loop forever */
+/* Loop forever */
 	for(;;);
+}//END MAIN
+
+void EXTI15_10_IRQHandler(void){
+   /// delay(); //200ms . wait till button de-bouncing gets over
+	GPIO_IRQHandling(GPIO_PIN_NO_13); //clear the pending event from exti line
+	GPIO_ToggleOutPin(GPIOA,GPIO_PIN_NO_5);
+	delay();
+}//EXTI15_10_IRQHandler         			/* EXTI Line[15:10] interrupts
+
+void GPIO_IRQHandling(uint8_t PinNumber){
+	//clear the exti pr register corresponding to the pin number
+	if (EXTI->PR &(1<<PinNumber)){
+		//clear the pending register bit
+		EXTI->PR |=(1<<PinNumber);
+	}
 }
+
+void GPIO_ToggleOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
+{
+	pGPIOx->ODR  ^= ( 1 << PinNumber);
+}
+
+
+

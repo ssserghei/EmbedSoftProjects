@@ -112,6 +112,8 @@ typedef struct{	//7.4.11 GPIO register map
 	__vo uint32_t AFR[2];	/*!< AFR[0] : GPIO alternate function low register, AF[1] : GPIO alternate function high register    		Address offset: 0x20-0x24 */
 }GPIO_RegDef_t;				//
 
+
+
 /*peripheral register definition structure for RCC
  * 6.3.28 RCC register map
  * Table 21. RCC register map and reset values*/

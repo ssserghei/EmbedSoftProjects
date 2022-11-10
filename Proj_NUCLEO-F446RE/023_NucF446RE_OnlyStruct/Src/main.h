@@ -89,8 +89,8 @@ each register holds four priority fields.*/
 #define EXTI_BASEADDR			(APB2PERIPH_BASEADDR+0x3C00)		//0x4001 3C00 - 0x4001 3FFF EXTI
 //#define SPI1_BASEADDR			(APB2PERIPH_BASEADDR+0x3000)
 #define SYSCFG_BASEADDR			(APB2PERIPH_BASEADDR+0x3800)
-//#define USART1_BASEADDR			(APB2PERIPH_BASEADDR+0x1000)
-//#define USART6_BASEADDR			(APB2PERIPH_BASEADDR+0x1400)
+//#define USART1_BASEADDR		(APB2PERIPH_BASEADDR+0x1000)
+//#define USART6_BASEADDR		(APB2PERIPH_BASEADDR+0x1400)
 
 /******************************Peripheral Register Definition Structures******************************/
 
@@ -102,8 +102,8 @@ each register holds four priority fields.*/
 /*7.4.11 GPIO register map
  * 7.1 GPIO introduction*/
 typedef struct{	//7.4.11 GPIO register map
-	__vo uint32_t MODER;	/*!< GPIO port mode register,	Address offset: 0x00*/
-	__vo uint32_t OTYPER;	/*!<	     					Address offset: 0x04*/
+	__vo uint32_t MODER;	/*!< GPIO port mode register,	Address offset: 0x00*/ //00: Input (reset state) 01: General purpose output mode 10: Alternate function mode 11: Analog mode
+	__vo uint32_t OTYPER;	/*!< 0: Output push-pull (reset state) 	1: Output open-drain	Address offset: 0x04*/ //7.4.2 GPIO port output type register (GPIOx_OTYPER) (x = A..H)
 	__vo uint32_t OSPEEDR;	/*!< Possible OSPEEDER							0x08*/
 	__vo uint32_t PUPDR;	/*												0x0C*/
 	__vo uint32_t IDR;		/*												0x10*/
@@ -112,6 +112,77 @@ typedef struct{	//7.4.11 GPIO register map
 //	__vo uint32_t LCKR;		/*												0x1C*/
 	__vo uint32_t AFR[2];	/*!< AFR[0] : GPIO alternate function low register, AF[1] : GPIO alternate function high register    		Address offset: 0x20-0x24 */
 }GPIO_RegDef_t;				//
+
+GPIO_RegDef_t volatile *GPIOA_RegDef=((GPIO_RegDef_t*)GPIOA_BASEADDR);
+GPIO_RegDef_t volatile *GPIOC_RegDef=((GPIO_RegDef_t*)GPIOC_BASEADDR);
+
+
+/*Вместо этого
+ * GPIO_RegDef_t volatile *GPIOA_RegDef=((GPIO_RegDef_t*)GPIOA_BASEADDR);
+ *можно использовать макрос предварительно инициировав его до использования
+ *#define GPIOA		((GPIO_RegDef_t*)GPIOA_BASEADDR)	//
+ *вот так
+ *GPIO_RegDef_t volatile *GPIOA_RegDef=GPIOA;
+ * */
+
+/********Macros for configure  GPIO_RegDef_t structure*************/
+
+/*@GPIO_PIN_NUMBERS
+ * GPIO pin numbers*/
+#define GPIO_PIN_NO_0		0
+#define GPIO_PIN_NO_1		1
+#define GPIO_PIN_NO_2		2
+#define GPIO_PIN_NO_3		3
+#define GPIO_PIN_NO_4		4
+#define GPIO_PIN_NO_5		5
+#define GPIO_PIN_NO_6		6
+#define GPIO_PIN_NO_7		7
+#define GPIO_PIN_NO_8		8
+#define GPIO_PIN_NO_9		9
+#define GPIO_PIN_NO_10		10
+#define GPIO_PIN_NO_11		11
+#define GPIO_PIN_NO_12		12
+#define GPIO_PIN_NO_13		13
+#define GPIO_PIN_NO_14		14
+#define GPIO_PIN_NO_15		15
+
+/* @GPIO_PIN_MODES
+ //7.4.1 GPIO port mode register (GPIOx_MODER) (x = A..H)
+ * GPIO pin possible modes
+ * Bits 2y:2y+1 MODERy[1:0]: Port x configuration bits (y = 0..15)
+These bits are written by software to configure the I/O direction mode.
+00: Input (reset state)
+01: General purpose output mode
+10: Alternate function mode
+11: Analog mode*/
+#define GPIO_MODE_IN 		0
+#define GPIO_MODE_OUT 		1
+#define GPIO_MODE_ALTFN 	2
+#define GPIO_MODE_ANALOG 	3
+//10.3.4 Falling trigger selection register (EXTI_FTSR)
+#define GPIO_MODE_IT_FT		4	//Fooling interrupt mode
+#define GPIO_MODE_IT_RT		5	//Rising interrupt mode
+#define GPIO_MODE_IT_RFT	6	//both interrupt mode
+
+/*GPIO pin possible output types*/
+//7.4.2 GPIO port output type register (GPIOx_OTYPER) (x = A..H)
+#define GPIO_OP_TYPE_PP		0	//push-pull
+#define GPIO_OP_TYPE_OD		1	//open-drain
+
+/*@GPIO_PIN_SPEED
+ * GPIO pin possible output speeds*/
+#define GPIO_SPEED_LOW			0
+#define GPIO_SPEED_MEDIUM		1
+#define GPIO_SPEED_FAST			2
+#define GPOI_SPEED_HIGH			3
+
+/*GPIO pin pull up and pull down configuration macros */
+#define GPIO_NO_PUPD   		0
+#define GPIO_PIN_PU			1
+#define GPIO_PIN_PD			2
+
+
+/*==========Reset and clock control (RCC)===============*/
 
 /*peripheral register definition structure for RCC
  * 6.3.28 RCC register map
@@ -154,6 +225,10 @@ typedef struct{
 
 RCC_RegDef_t volatile *RCC=((RCC_RegDef_t*)RCC_BASEADDR);
 
+
+
+/*===============Interrupt======================*/
+
 /*peripheral definition structure for EXTI
  * 10.3.5 Software interrupt event register (EXTI_SWIER)
  * 10.3.7 EXTI register map*/
@@ -166,6 +241,8 @@ typedef struct{
 	__vo uint32_t PR; 				/*!<10.3.6 Pending register (EXTI_PR),  					//Address offset: 0x14*/
 }EXTI_RegDef_t;
 
+EXTI_RegDef_t volatile *EXTI=((EXTI_RegDef_t*)EXTI_BASEADDR);
+
 
 
 /*peripheral register definition structure for SYSCFG
@@ -174,7 +251,7 @@ typedef struct{
 typedef struct{
 	__vo uint32_t MEMRMP;		/*!<Give a short description, 						Adress ofset: 0x00*/
 	__vo uint32_t PMC;			/*!<TODO, 											Adress ofset: 0x04*/
-	__vo uint32_t EXTICR[4];	/*!<SYSCFG external interrupt configuration registerAdress ofset: 0x08-0x14*/
+	__vo uint32_t EXTICR[4];	/*!<SYSCFG external interrupt configuration register	Adress ofset: 0x08-0x14*/
 		 uint32_t RESERVED1[2];	/*!<TODO, 											Adress ofset: 0x18-0x1C*/
 	__vo uint32_t CMCPCR;		/*!<TODO, 											Adress ofset: 0x20*/
 	 	 uint32_t RESERVED2[2];	/*!<TODO, 											Adress ofset: 0x24-0x28*/
@@ -185,18 +262,18 @@ typedef struct{
 /**********************peripheral definition**********************/
 
 /*(Peripheral base addresses typecasted to xxx_RegDef_t)*/
-#define GPIOA		((GPIO_RegDef_t*)GPIOA_BASEADDR)	//
-#define GPIOB		((GPIO_RegDef_t*)GPIOB_BASEADDR)	//
-#define GPIOC		((GPIO_RegDef_t*)GPIOC_BASEADDR)	//
-#define GPIOD		((GPIO_RegDef_t*)GPIOD_BASEADDR)	//
-#define GPIOE		((GPIO_RegDef_t*)GPIOE_BASEADDR)	//
-#define GPIOF		((GPIO_RegDef_t*)GPIOF_BASEADDR)	//
-#define GPIOG		((GPIO_RegDef_t*)GPIOG_BASEADDR)	//
-#define GPIOH		((GPIO_RegDef_t*)GPIOH_BASEADDR)	//
+//#define GPIOA		((GPIO_RegDef_t*)GPIOA_BASEADDR)	//
+//#define GPIOB		((GPIO_RegDef_t*)GPIOB_BASEADDR)	//
+//#define GPIOC		((GPIO_RegDef_t*)GPIOC_BASEADDR)	//
+//#define GPIOD		((GPIO_RegDef_t*)GPIOD_BASEADDR)	//
+//#define GPIOE		((GPIO_RegDef_t*)GPIOE_BASEADDR)	//
+//#define GPIOF		((GPIO_RegDef_t*)GPIOF_BASEADDR)	//
+//#define GPIOG		((GPIO_RegDef_t*)GPIOG_BASEADDR)	//
+//#define GPIOH		((GPIO_RegDef_t*)GPIOH_BASEADDR)	//
 
 //#define RCC			((RCC_RegDef_t*)RCC_BASEADDR)
 
-#define EXTI		((EXTI_RegDef_t*)EXTI_BASEADDR)
+//#define EXTI		((EXTI_RegDef_t*)EXTI_BASEADDR)
 
 #define SYSCFG		((SYSCFG_RegDef_t*)SYSCFG_BASEADDR)
 
@@ -245,58 +322,6 @@ typedef struct
 	uint8_t GPIO_PinAltFunMode;
 }GPIO_PinConfig_t;
 
-/*This in a Handle structure for a GPIO pin*/
-typedef struct
-{
-	GPIO_RegDef_t *pGPIOx;       		/*!< This holds the base address of the GPIO port to which the pin belongs >*/
-	GPIO_PinConfig_t GPIO_PinConfig;   /*!< This holds GPIO pin configuration settings >*/
-}GPIO_Handle_t;
-
-
-/*@GPIO_PIN_NUMBERS
- * GPIO pin numbers*/
-#define GPIO_PIN_NO_0		0
-#define GPIO_PIN_NO_1		1
-#define GPIO_PIN_NO_2		2
-#define GPIO_PIN_NO_3		3
-#define GPIO_PIN_NO_4		4
-#define GPIO_PIN_NO_5		5
-#define GPIO_PIN_NO_6		6
-#define GPIO_PIN_NO_7		7
-#define GPIO_PIN_NO_8		8
-#define GPIO_PIN_NO_9		9
-#define GPIO_PIN_NO_10		10
-#define GPIO_PIN_NO_11		11
-#define GPIO_PIN_NO_12		12
-#define GPIO_PIN_NO_13		13
-#define GPIO_PIN_NO_14		14
-#define GPIO_PIN_NO_15		15
-
-/* @GPIO_PIN_MODES
- * GPIO pin possible modes*/
-#define GPIO_MODE_IN 		0
-#define GPIO_MODE_OUT 		1
-#define GPIO_MODE_ALTFN 	2
-#define GPIO_MODE_ANALOG 	3
-#define GPIO_MODE_IT_FT		4	//Fooling interrupt mode
-#define GPIO_MODE_IT_RT		5	//Rising interrupt mode
-#define GPIO_MODE_IT_RFT	6	//both interrupt mode
-
-/*GPIO pin possible output types*/
-#define GPIO_OP_TYPE_PP		0	//push-pull
-#define GPIO_OP_TYPE_OD		1	//open-drain
-
-/*@GPIO_PIN_SPEED
- * GPIO pin possible output speeds*/
-#define GPIO_SPEED_LOW			0
-#define GPIO_SPEED_MEDIUM		1
-#define GPIO_SPEED_FAST			2
-#define GPOI_SPEED_HIGH			3
-
-/*GPIO pin pull up and pull down configuration macros */
-#define GPIO_NO_PUPD   		0
-#define GPIO_PIN_PU			1
-#define GPIO_PIN_PD			2
 
 /*some generic macros*/
 #define ENABLE			1

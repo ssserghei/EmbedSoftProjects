@@ -1,0 +1,5 @@
+../Src/main.c:36:6:delay	16	static
+../Src/main.c:41:5:main	48	static
+../Src/main.c:160:6:EXTI15_10_IRQHandler	8	static
+../Src/main.c:167:6:GPIO_IRQHandling	16	static
+../Src/main.c:175:6:GPIO_ToggleOutPin	16	static

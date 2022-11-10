@@ -129,11 +129,10 @@ int main(void){
 	GPIOBtn.pGPIOx->PUPDR |=temp;
 	temp=0;
 	//4. configure the optype
+	//возможно этого не нужно
 	temp=(GPIOBtn.GPIO_PinConfig.GPIO_PinOPType<<GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);
 	GPIOBtn.pGPIOx->OTYPER &=~(0x1<<GPIOBtn.GPIO_PinConfig.GPIO_PinNumber);		//clearing
 	GPIOBtn.pGPIOx->OTYPER |=temp;
-
-
 
 //	GPIO_WriteToOutPin(GPIOA,GPIO_PIN_NO_5,GPIO_PIN_RESET);//GPIO_PIN_SET//GPIO_PIN_RESET
 
