@@ -99,7 +99,7 @@ EXTI->IMR |=(1<<GPIO_PIN_NO_13);
 
 //Сбрасываем бит (гасим светодиод если он был включен)
 //фактически определяем его состояние в момент включения.
-GPIOA_RegDef->ODR &= ~( 1 << GPIO_PIN_NO_13);
+GPIOA_RegDef->ODR &= ~( 1 << GPIO_PIN_NO_5);
 
 //5. IRQ configurations
 //	GPIO_IRQPriorityConfig(IRQ_NO_EXTI15_10,NVIC_IRQ_PRI15);
@@ -123,7 +123,7 @@ uint8_t shift_ammount=(8*iprx_section)+(8-NO_PR_BITS_IMPLEMENTED);
 void EXTI15_10_IRQHandler(void){
    /// delay(); //200ms . wait till button de-bouncing gets over
 	GPIO_IRQHandling(GPIO_PIN_NO_13); //clear the pending event from exti line
-	GPIO_ToggleOutPin(GPIOA,GPIO_PIN_NO_5);
+	GPIO_ToggleOutPin(GPIOA_RegDef,GPIO_PIN_NO_5);
 	delay();
 }//EXTI15_10_IRQHandler         			/* EXTI Line[15:10] interrupts
 
@@ -135,9 +135,9 @@ void GPIO_IRQHandling(uint8_t PinNumber){
 	}
 }
 
-void GPIO_ToggleOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
+void GPIO_ToggleOutPin(GPIO_RegDef_t *GPIOA_RegDef, uint8_t PinNumber)
 {
-	pGPIOx->ODR  ^= ( 1 << PinNumber);
+	GPIOA_RegDef->ODR  ^= ( 1 << PinNumber);
 }
 
 

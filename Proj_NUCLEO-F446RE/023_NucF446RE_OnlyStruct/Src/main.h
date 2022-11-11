@@ -359,16 +359,6 @@ each register holds four priority fields.*/
 #define NVIC_IRQ_PRI15    15
 
 
-/*ARM Cortex Mx Processor NVIC ISERx register Addresses
- * DUI0553
- * Table 4-2 NVIC register summary
- * The NVIC_ISER0-NVIC_ISER7 registers enable interrupts, and show which interrupts are
-enabled.*/
-#define NVIC_ISER0		((__vo uint32_t*)0xE000E100)	/*!< Interrupt Set-enable Registers on page 4-4*/
-#define NVIC_ISER1		((__vo uint32_t*)0xE000E104)
-#define NVIC_ISER2		((__vo uint32_t*)0xE000E108)	/*!<*/
-#define NVIC_ISER3		((__vo uint32_t*)0xE000E10C)	/*!<*/
-
 /**************************************************************************
  * 						APIs supported by this driver
  * 		For more information about the APIs check the function definitions
