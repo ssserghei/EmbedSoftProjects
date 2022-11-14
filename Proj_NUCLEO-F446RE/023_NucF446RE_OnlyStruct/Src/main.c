@@ -15,7 +15,10 @@
  *
  ******************************************************************************
  */
-/*создан на основе предыдущего проекта 022_*
+/* Что делает: Крутится в бесконечном цикле.
+ * При нажатии на кнопку срабатывает прерывание и  инвертируется состояние леда.
+ *
+ * создан на основе предыдущего проекта 022_*
  * тут не буду использовать экземпляры стуктур.
  * через указатели буду изменять регистры.
  * PC13 Button, Pressed=LOW
@@ -65,7 +68,6 @@ GPIOA_RegDef->OTYPER |=temp;
 temp=0;
 
 //Configure mode of GOPIOС for Button
-
 //interrupt mode
 //3.configure the pudp setting
 temp=GPIO_PIN_PU<<(2*GPIO_PIN_NO_13);
@@ -99,7 +101,8 @@ EXTI->IMR |=(1<<GPIO_PIN_NO_13);
 
 //Сбрасываем бит (гасим светодиод если он был включен)
 //фактически определяем его состояние в момент включения.
-GPIOA_RegDef->ODR &= ~( 1 << GPIO_PIN_NO_5);
+//GPIOA_RegDef->ODR &=~( 1 << GPIO_PIN_NO_5);		//Гасим светодиод
+GPIOA_RegDef->ODR |=( 1 << GPIO_PIN_NO_5);		//Включаем светодиод
 
 //5. IRQ configurations
 //	GPIO_IRQPriorityConfig(IRQ_NO_EXTI15_10,NVIC_IRQ_PRI15);
@@ -110,20 +113,20 @@ uint8_t shift_ammount=(8*iprx_section)+(8-NO_PR_BITS_IMPLEMENTED);
 *(NVIC_PR_BASE_ADDR +iprx) |= (NVIC_IRQ_PRI15 <<shift_ammount);	/*(8*iprx_section)	 не умножаем на 4 так как арифметика указателей
 не работает так как мы задумали на 4 потому что следуюший адрес регистра находится через 4 адреса */
 
-
 //	GPIO_IRQInterruptConfig(IRQ_NO_EXTI15_10,ENABLE);
 //program ISER0 resgister
 *NVIC_ISER1 |=(1<<(IRQ_NO_EXTI15_10 %32));
-
 
 /* Loop forever */
 	for(;;);
 }//END MAIN
 
+
 void EXTI15_10_IRQHandler(void){
    /// delay(); //200ms . wait till button de-bouncing gets over
 	GPIO_IRQHandling(GPIO_PIN_NO_13); //clear the pending event from exti line
 	GPIO_ToggleOutPin(GPIOA_RegDef,GPIO_PIN_NO_5);
+
 	delay();
 }//EXTI15_10_IRQHandler         			/* EXTI Line[15:10] interrupts
 
@@ -135,9 +138,8 @@ void GPIO_IRQHandling(uint8_t PinNumber){
 	}
 }
 
-void GPIO_ToggleOutPin(GPIO_RegDef_t *GPIOA_RegDef, uint8_t PinNumber)
-{
-	GPIOA_RegDef->ODR  ^= ( 1 << PinNumber);
+void GPIO_ToggleOutPin(GPIO_RegDef_t volatile *GPIOx_RegDef, uint8_t PinNumber){
+	GPIOx_RegDef->ODR  ^= ( 1 << PinNumber);
 }
 
 

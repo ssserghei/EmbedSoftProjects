@@ -377,7 +377,7 @@ each register holds four priority fields.*/
 
 //void GPIO_WriteToOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber, uint8_t Value);	//
 //void GPIO_WriteToOutPort(GPIO_RegDef_t *pGPIOx, uint16_t Value);					//
-void GPIO_ToggleOutPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber);					//
+void GPIO_ToggleOutPin(GPIO_RegDef_t volatile *GPIOx_RegDef, uint8_t PinNumber);					//
 
 /*IRQ Configuration and ISR handling*/
 //void GPIO_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi);		//
