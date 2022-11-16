@@ -43,17 +43,15 @@ void delay(void){
 }
 
 /*****MAIN*******/
-int main(void)
-{
+int main(void){
 
-/*1.Enable Clock for GPIOA-LED and GPIOC-Button*/
+/*************1.Enable Clock for GPIOA-LED and GPIOC-Button*/
 RCC->AHB1ENR |=(1<<0); //GPIOA_PCLK_EN
 RCC->AHB1ENR |=(1<<2); //GPIOC_PCLK_EN
 
-/*2. Configure the mode of GPIO pins*/
+/*************2. Configure the mode of GPIO pins*/
 
 //Configure mode of GOPIO for LED
-
 //Pin mode OUT
 uint32_t temp=0; 		//temp. register
 temp=GPIO_MODE_OUT<<(2*GPIO_PIN_NO_5);
