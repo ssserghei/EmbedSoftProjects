@@ -12,13 +12,11 @@
 #include <stdint.h>
 #include <stddef.h>
 
-/*******************Общие дефайны**********************/
+/*******************Common Macros**********************/
 
 /*<TODO для чего ? */
 #define __vo volatile
 #define __weak __attribute__((weak))
-
-/*******************Common Macros*********************/
 
 /*some generic macros*/
 #define ENABLE			1
@@ -31,7 +29,71 @@
 #define FLAG_SET 		SET
 
 
-/***************GPIO Structures*************************/
+/*******************Reset and Clock Control (RCC) Base Address***********/
+
+#define RCC_BASEADDR			(AHB1PERIPH_BASEADDR+0x3800)
+
+
+/*ARM Cortex Mx Processor NVIC ISERx register Addresses
+ * DUI0553
+ * Table 4-2 NVIC register summary
+ * The NVIC_ISER0-NVIC_ISER7 registers enable interrupts, and show which interrupts are
+enabled.*/
+#define NVIC_ISER0		((__vo uint32_t*)0xE000E100)	/*!< Interrupt Set-enable Registers on page 4-4*/
+#define NVIC_ISER1		((__vo uint32_t*)0xE000E104)
+#define NVIC_ISER2		((__vo uint32_t*)0xE000E108)	/*!<*/
+#define NVIC_ISER3		((__vo uint32_t*)0xE000E10C)	/*!<*/
+
+/*ARM Cortex Mx Processor NVIC ICERx register Addresses
+ *The NVIC_ICER0-NVIC_ICER7 registers disable interrupts, and show which interrupts are
+enabled.*/
+#define NVIC_ICER0		((__vo uint32_t*)0xE000E180)	/*!< Interrupt Clear-enable Registers on page 4-5*/
+#define NVIC_ICER1		((__vo uint32_t*)0xE000E184)
+#define NVIC_ICER2		((__vo uint32_t*)0xE000E188)
+#define NVIC_ICER3		((__vo uint32_t*)0xE000E18C)
+
+/*ARM Cortex Mx Processor Priority Register Address Calculation
+ * The NVIC_IPR0-NVIC_IPR59 registers provide an 8-bit priority field for each interrupt and
+each register holds four priority fields.*/
+#define NVIC_PR_BASE_ADDR ((__vo uint32_t*)0xE000E400)	/*Interrupt Priority Registers on page 4-7*/
+
+
+/*AHBx and APBx Bus Peripheral base addresses*/
+//Table 1. STM32F446xx register boundary addresses
+#define PERIPH_BASEADDR			0x40000000U					/*Первый адрес начала APB1 //TIM2*/
+#define APB1PERIPH_BASEADDR		PERIPH_BASEADDR				//
+#define APB2PERIPH_BASEADDR		0x40010000U					/*TIM1*/
+#define AHB1PERIPH_BASEADDR		0x40020000U					//
+#define AHB2PERIPH_BASEADDR		0x50000000U					//
+
+
+/*******************GPIO Base Address************************/
+
+/*Base addresses of peripherals which are hanging on AHB1 bus*/
+#define GPIOA_BASEADDR 			(AHB1PERIPH_BASEADDR+0x0000)		//0x4002 0000 - 0x4002 03FF GPIOA
+#define GPIOB_BASEADDR 			(AHB1PERIPH_BASEADDR+0x0400)		//0x4002 0400 - 0x4002 07FF GPIOB
+#define GPIOC_BASEADDR 			(AHB1PERIPH_BASEADDR+0x0800)		//0x4002 0800 - 0x4002 0BFF GPIOC
+#define GPIOD_BASEADDR 			(AHB1PERIPH_BASEADDR+0x0C00)		//0x4002 0C00 - 0x4002 0FFF GPIOD
+#define GPIOE_BASEADDR 			(AHB1PERIPH_BASEADDR+0x1000)		//0x4002 1000 - 0x4002 13FF GPIOE
+#define GPIOF_BASEADDR 			(AHB1PERIPH_BASEADDR+0x1400)		//0x4002 1400 - 0x4002 17FF GPIOF
+#define GPIOG_BASEADDR 			(AHB1PERIPH_BASEADDR+0x1800)		//0x4002 1800 - 0x4002 1BFF GPIOG
+#define GPIOH_BASEADDR 			(AHB1PERIPH_BASEADDR+0x1C00)		//0x4002 1C00 - 0x4002 1FFF GPIOH
+
+
+/*******************System Config Base Address*****************/
+
+/*Base addresses of peripherals which are hanging on APB2 bus*/
+#define EXTI_BASEADDR			(APB2PERIPH_BASEADDR+0x3C00)		//0x4001 3C00 - 0x4001 3FFF EXTI
+//#define SPI1_BASEADDR			(APB2PERIPH_BASEADDR+0x3000)
+#define SYSCFG_BASEADDR			(APB2PERIPH_BASEADDR+0x3800)
+//#define USART1_BASEADDR		(APB2PERIPH_BASEADDR+0x1000)
+//#define USART6_BASEADDR		(APB2PERIPH_BASEADDR+0x1400)
+
+#define SYSCFG		((SYSCFG_RegDef_t*)SYSCFG_BASEADDR)
+
+/**************************************************
+ *					 GPIO Structures
+ **************************************************/
 
 /*Note: Register of a peripheral are specific to MCU
 *e.g: Number of Register of SPI peripheral of STM32F4x family of MCUs may be different(more or less)
@@ -55,7 +117,6 @@ typedef struct{	//7.4.11 GPIO register map
 GPIO_RegDef_t volatile *GPIOA_RegDef=((GPIO_RegDef_t*)GPIOA_BASEADDR);
 GPIO_RegDef_t volatile *GPIOC_RegDef=((GPIO_RegDef_t*)GPIOC_BASEADDR);
 
-
 /*Вместо этого
  * GPIO_RegDef_t volatile *GPIOA_RegDef=((GPIO_RegDef_t*)GPIOA_BASEADDR);
  *можно использовать макрос предварительно инициировав его до использования
@@ -64,20 +125,7 @@ GPIO_RegDef_t volatile *GPIOC_RegDef=((GPIO_RegDef_t*)GPIOC_BASEADDR);
  *GPIO_RegDef_t volatile *GPIOA_RegDef=GPIOA;
  * */
 
-
-/*******************GPIO Macros************************/
-
-
-/*Base addresses of peripherals which are hanging on AHB1 bus*/
-#define GPIOA_BASEADDR 			(AHB1PERIPH_BASEADDR+0x0000)		//0x4002 0000 - 0x4002 03FF GPIOA
-#define GPIOB_BASEADDR 			(AHB1PERIPH_BASEADDR+0x0400)		//0x4002 0400 - 0x4002 07FF GPIOB
-#define GPIOC_BASEADDR 			(AHB1PERIPH_BASEADDR+0x0800)		//0x4002 0800 - 0x4002 0BFF GPIOC
-#define GPIOD_BASEADDR 			(AHB1PERIPH_BASEADDR+0x0C00)		//0x4002 0C00 - 0x4002 0FFF GPIOD
-#define GPIOE_BASEADDR 			(AHB1PERIPH_BASEADDR+0x1000)		//0x4002 1000 - 0x4002 13FF GPIOE
-#define GPIOF_BASEADDR 			(AHB1PERIPH_BASEADDR+0x1400)		//0x4002 1400 - 0x4002 17FF GPIOF
-#define GPIOG_BASEADDR 			(AHB1PERIPH_BASEADDR+0x1800)		//0x4002 1800 - 0x4002 1BFF GPIOG
-#define GPIOH_BASEADDR 			(AHB1PERIPH_BASEADDR+0x1C00)		//0x4002 1C00 - 0x4002 1FFF GPIOH
-
+/*************************GPIO Macros and Modes ****************************/
 
 /*@GPIO_PIN_NUMBERS
  * GPIO pin numbers*/
@@ -133,9 +181,30 @@ These bits are written by software to configure the I/O direction mode.
 #define GPIO_PIN_PU			1
 #define GPIO_PIN_PD			2
 
+/*Clock Enable Macros for GPIOx peripherals*/
+#define GPIOA_PCLK_EN()		(RCC->AHB1ENR |=(1<<0))
+#define GPIOB_PCLK_EN()		(RCC->AHB1ENR |=(1<<1))
+#define GPIOC_PCLK_EN()		(RCC->AHB1ENR |=(1<<2))
+#define GPIOD_PCLK_EN()		(RCC->AHB1ENR |=(1<<3))
+#define GPIOE_PCLK_EN()		(RCC->AHB1ENR |=(1<<4))
+#define GPIOF_PCLK_EN()		(RCC->AHB1ENR |=(1<<5))
+#define GPIOG_PCLK_EN()		(RCC->AHB1ENR |=(1<<6))
+#define GPIOH_PCLK_EN()		(RCC->AHB1ENR |=(1<<7))
+
+/*Clock Disable Macros for GPIOx peripherals*/
+#define GPIOA_PCLK_DI()		(RCC->AHB1ENR &=~(1<<0))
+#define GPIOB_PCLK_DI()		(RCC->AHB1ENR &=~(1<<1))
+#define GPIOC_PCLK_DI()		(RCC->AHB1ENR &=~(1<<2))
+#define GPIOD_PCLK_DI()		(RCC->AHB1ENR &=~(1<<3))
+#define GPIOE_PCLK_DI()		(RCC->AHB1ENR &=~(1<<4))
+#define GPIOF_PCLK_DI()		(RCC->AHB1ENR &=~(1<<5))
+#define GPIOG_PCLK_DI()		(RCC->AHB1ENR &=~(1<<6))
+#define GPIOH_PCLK_DI()		(RCC->AHB1ENR &=~(1<<7))
 
 
-/*******************Interrupt Structures****************/
+/*******************************************
+ * 				Interrupt Structures
+ * ****************************************/
 
 /*peripheral definition structure for EXTI
  * 10.3.5 Software interrupt event register (EXTI_SWIER)
@@ -152,7 +221,7 @@ typedef struct{
 EXTI_RegDef_t volatile *EXTI=((EXTI_RegDef_t*)EXTI_BASEADDR);
 
 
-/*******************Interrupt Macros*******************/
+/*******************Interrupt Macros and Modes *******************/
 
 /*IRQ(Interrupt Request) Number of STM32F407x MCU
  * Table 38. Vector table for STM32F446xx*/
@@ -173,7 +242,11 @@ each register holds four priority fields.*/
 #define NVIC_IRQ_PRI0    0
 #define NVIC_IRQ_PRI15    15
 
-/*******************SystemConfig SYSCFG Structure*************/
+
+
+/***********************************************
+ * 			SystemConfig SYSCFG Structure
+ * *********************************************/
 
 /*peripheral register definition structure for SYSCFG
  * 8.2.9 SYSCFG register maps
@@ -188,19 +261,11 @@ typedef struct{
 	__vo uint32_t CFGR;			/*!<TODO, 											Adress ofset: 0x2C*/
 }SYSCFG_RegDef_t;
 
-/*******************System Config Macros*****************/
-
-#define SYSCFG		((SYSCFG_RegDef_t*)SYSCFG_BASEADDR)
-
-/*Base addresses of peripherals which are hanging on APB2 bus*/
-#define EXTI_BASEADDR			(APB2PERIPH_BASEADDR+0x3C00)		//0x4001 3C00 - 0x4001 3FFF EXTI
-//#define SPI1_BASEADDR			(APB2PERIPH_BASEADDR+0x3000)
-#define SYSCFG_BASEADDR			(APB2PERIPH_BASEADDR+0x3800)
-//#define USART1_BASEADDR		(APB2PERIPH_BASEADDR+0x1000)
-//#define USART6_BASEADDR		(APB2PERIPH_BASEADDR+0x1400)
 
 
-/*******************Reset and Clock Control (RCC) Structure***********/
+/***************************************************
+ * 			Reset and Clock Control (RCC) Structure
+ **************************************************/
 
 /*peripheral register definition structure for RCC
  * 6.3.28 RCC register map
@@ -244,65 +309,11 @@ typedef struct{
 RCC_RegDef_t volatile *RCC=((RCC_RegDef_t*)RCC_BASEADDR);
 
 
-/*******************Reset and Clock Control (RCC) Macros***********/
-
-#define RCC_BASEADDR			(AHB1PERIPH_BASEADDR+0x3800)
-
-
-/*ARM Cortex Mx Processor NVIC ISERx register Addresses
- * DUI0553
- * Table 4-2 NVIC register summary
- * The NVIC_ISER0-NVIC_ISER7 registers enable interrupts, and show which interrupts are
-enabled.*/
-#define NVIC_ISER0		((__vo uint32_t*)0xE000E100)	/*!< Interrupt Set-enable Registers on page 4-4*/
-#define NVIC_ISER1		((__vo uint32_t*)0xE000E104)
-#define NVIC_ISER2		((__vo uint32_t*)0xE000E108)	/*!<*/
-#define NVIC_ISER3		((__vo uint32_t*)0xE000E10C)	/*!<*/
-
-/*ARM Cortex Mx Processor NVIC ICERx register Addresses
- *The NVIC_ICER0-NVIC_ICER7 registers disable interrupts, and show which interrupts are
-enabled.*/
-#define NVIC_ICER0		((__vo uint32_t*)0xE000E180)	/*!< Interrupt Clear-enable Registers on page 4-5*/
-#define NVIC_ICER1		((__vo uint32_t*)0xE000E184)
-#define NVIC_ICER2		((__vo uint32_t*)0xE000E188)
-#define NVIC_ICER3		((__vo uint32_t*)0xE000E18C)
-
-/*ARM Cortex Mx Processor Priority Register Address Calculation
- * The NVIC_IPR0-NVIC_IPR59 registers provide an 8-bit priority field for each interrupt and
-each register holds four priority fields.*/
-#define NVIC_PR_BASE_ADDR ((__vo uint32_t*)0xE000E400)	/*Interrupt Priority Registers on page 4-7*/
-
-/*Clock Enable Macros for GPIOx peripherals*/
-#define GPIOA_PCLK_EN()		(RCC->AHB1ENR |=(1<<0))
-#define GPIOB_PCLK_EN()		(RCC->AHB1ENR |=(1<<1))
-#define GPIOC_PCLK_EN()		(RCC->AHB1ENR |=(1<<2))
-#define GPIOD_PCLK_EN()		(RCC->AHB1ENR |=(1<<3))
-#define GPIOE_PCLK_EN()		(RCC->AHB1ENR |=(1<<4))
-#define GPIOF_PCLK_EN()		(RCC->AHB1ENR |=(1<<5))
-#define GPIOG_PCLK_EN()		(RCC->AHB1ENR |=(1<<6))
-#define GPIOH_PCLK_EN()		(RCC->AHB1ENR |=(1<<7))
-
-/*Clock Disable Macros for GPIOx peripherals*/
-#define GPIOA_PCLK_DI()		(RCC->AHB1ENR &=~(1<<0))
-#define GPIOB_PCLK_DI()		(RCC->AHB1ENR &=~(1<<1))
-#define GPIOC_PCLK_DI()		(RCC->AHB1ENR &=~(1<<2))
-#define GPIOD_PCLK_DI()		(RCC->AHB1ENR &=~(1<<3))
-#define GPIOE_PCLK_DI()		(RCC->AHB1ENR &=~(1<<4))
-#define GPIOF_PCLK_DI()		(RCC->AHB1ENR &=~(1<<5))
-#define GPIOG_PCLK_DI()		(RCC->AHB1ENR &=~(1<<6))
-#define GPIOH_PCLK_DI()		(RCC->AHB1ENR &=~(1<<7))
-
+/********************Reset and Clock Control (RCC) Macros and Modes*********************/
 
 /*Clock Enable Macros for SYSCFG peripherals*/
 #define SYSCFG_PCLK_EN() (RCC->APB2ENR |= (1 << 14))
 
-/*AHBx and APBx Bus Peripheral base addresses*/
-//Table 1. STM32F446xx register boundary addresses
-#define PERIPH_BASEADDR			0x40000000U					/*Первый адрес начала APB1 //TIM2*/
-#define APB1PERIPH_BASEADDR		PERIPH_BASEADDR				//
-#define APB2PERIPH_BASEADDR		0x40010000U					/*TIM1*/
-#define AHB1PERIPH_BASEADDR		0x40020000U					//
-#define AHB2PERIPH_BASEADDR		0x50000000U					//
 
 
 /**************************************************************************
@@ -313,6 +324,11 @@ each register holds four priority fields.*/
 void GPIO_ToggleOutPin(GPIO_RegDef_t volatile *GPIOx_RegDef, uint8_t PinNumber);					//
 
 void GPIO_IRQHandling(uint8_t PinNumber);
+
+void delay(void){
+	// this will introduce ~200ms delay when system clock is 16MHz
+	for(uint32_t i = 0 ; i < 50000 ; i ++);
+}
 
 
 #endif /* MAIN_H_ */
