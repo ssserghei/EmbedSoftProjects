@@ -16,6 +16,11 @@
  ******************************************************************************
  */
 
+/*Based on 0.23
+ * PC13 Button, Pressed=LOW
+ *PA5 	LED    ONN=High*/
+
+
 #include <stdint.h>
 #include "main.h"
 
@@ -24,11 +29,31 @@
 #endif
 
 
-volatile int a;
-
+/*************************MAIN***************************/
 int main(void){
 
-	a++;
+
+/*************1.Enable Clock for GPIOA-LED and GPIOC-Button********************/
+//6.3.10 RCC AHB1 peripheral clock enable register (RCC_AHB1ENR)
+RCC->AHB1ENR |=0x5;		//both GPIOA_PCLK_EN and //GPIOC_PCLK_EN
+
+/*************2. Configure the mode of GPIO pins*******************************/
+
+//Configure mode of GOPIO for LED
+//7.4.1 GPIO port mode register (GPIOx_MODER) (x = A..H)
+//Каждый пин занимает 2 бита //00: Input (reset state) 01: General purpose output mode 10: Alternate function mode 11: Analog mode
+//Pin mode OUT
+GPIOA_RegDef->MODER &=0xFFFFF3FF;	//0011 сбрасываем 10 и 11 бит
+GPIOA_RegDef->MODER |=0x400;		//01: General purpose output mode
+
+//Configure mode of GOPIO for BTN
+//Pin mode IN
+//Сбрасываем в снандартное стостояние
+GPIOC_RegDef->MODER &=0x0FFFFF;		//
+
+//PulUp resistor
+GPIOC_RegDef->PUPDR &=0x0FFFFFF;	//
+GPIOC_RegDef->PUPDR |=0x4000000;	//
 
 
 

@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (9-2020-q2-update)
+# Toolchain: GNU Tools for STM32 (10.3-2021.10)
 ################################################################################
 
 -include ../makefile.init
@@ -11,7 +11,6 @@ RM := rm -rf
 -include sources.mk
 -include Startup/subdir.mk
 -include Src/subdir.mk
--include subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -36,21 +35,21 @@ $(wildcard ../makefile.targets) \
 
 BUILD_ARTIFACT_NAME := BluePill_AllON_Bitwise
 BUILD_ARTIFACT_EXTENSION := elf
-BUILD_ARTIFACT_PREFIX := 
-BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME).$(BUILD_ARTIFACT_EXTENSION)
+BUILD_ARTIFACT_PREFIX :=
+BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
 BluePill_AllON_Bitwise.elf \
+
+MAP_FILES += \
+BluePill_AllON_Bitwise.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
 BluePill_AllON_Bitwise.list \
-
-OBJCOPY_BIN += \
-BluePill_AllON_Bitwise.bin \
 
 
 # All Target
@@ -60,8 +59,8 @@ all: main-build
 main-build: BluePill_AllON_Bitwise.elf secondary-outputs
 
 # Tool invocations
-BluePill_AllON_Bitwise.elf: $(OBJS) $(USER_OBJS) D:\GitHub\Embeded-C\target\BluePill_AllON_Bitwise\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "BluePill_AllON_Bitwise.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\GitHub\Embeded-C\target\BluePill_AllON_Bitwise\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BluePill_AllON_Bitwise.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+BluePill_AllON_Bitwise.elf BluePill_AllON_Bitwise.map: $(OBJS) $(USER_OBJS) D:\GitHub\EmbedSoftProjects\Proj_BluePill\BluePill_AllON_Bitwise\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "BluePill_AllON_Bitwise.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\GitHub\EmbedSoftProjects\Proj_BluePill\BluePill_AllON_Bitwise\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BluePill_AllON_Bitwise.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -75,17 +74,12 @@ BluePill_AllON_Bitwise.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOO
 	@echo 'Finished building: $@'
 	@echo ' '
 
-BluePill_AllON_Bitwise.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "BluePill_AllON_Bitwise.bin"
-	@echo 'Finished building: $@'
-	@echo ' '
-
 # Other Targets
 clean:
-	-$(RM) *
+	-$(RM) BluePill_AllON_Bitwise.elf BluePill_AllON_Bitwise.list BluePill_AllON_Bitwise.map default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
@@ -94,7 +88,6 @@ fail-specified-linker-script-missing:
 warn-no-linker-script-specified:
 	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
 
-.PHONY: all clean dependents fail-specified-linker-script-missing warn-no-linker-script-specified
-.SECONDARY:
+.PHONY: all clean dependents main-build fail-specified-linker-script-missing warn-no-linker-script-specified
 
 -include ../makefile.targets

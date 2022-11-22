@@ -369,7 +369,6 @@ void GPIO_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority){
 }//END GPIO_IRQPriorityConfig
 
 
-
 /*********************************
  * @fn					- GPIO_IRQHandling
  *

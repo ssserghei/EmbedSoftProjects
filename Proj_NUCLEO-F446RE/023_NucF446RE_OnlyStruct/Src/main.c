@@ -45,7 +45,7 @@ void delay(void){
 /*****MAIN*******/
 int main(void){
 
-/*************1.Enable Clock for GPIOA-LED and GPIOC-Button*/
+/*************1.Enable Clock for GPIOA-LED and GPIOC-Button********************/
 RCC->AHB1ENR |=(1<<0); //GPIOA_PCLK_EN
 RCC->AHB1ENR |=(1<<2); //GPIOC_PCLK_EN
 
