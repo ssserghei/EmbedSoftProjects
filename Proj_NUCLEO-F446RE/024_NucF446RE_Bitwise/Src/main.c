@@ -56,7 +56,65 @@ GPIOC_RegDef->PUPDR &=0x0FFFFFF;	//
 GPIOC_RegDef->PUPDR |=0x4000000;	//
 
 
+/*****************Configure interrupt*******************************************/
+//1.configure the FTSR
+//10.3.4 Falling trigger selection register (EXTI_FTSR)
+EXTI->FTSR |=0x2000;		//EXTI->FTSR |=(1<<GPIO_PIN_NO_13);
+//Clear the corresponding RTSR bit
+EXTI->RTSR &=0xDFFF;
+
+/*****************Enable the Clock**********************************************/
+//6.3.14 RCC APB2 peripheral clock enable register (RCC_APB2ENR)
+RCC->APB2ENR |=0x4000;		//SYSCFG_PCLK_EN();
+
+//2. configure GPIO port selection in SYSCFG_EXTICR
+//Configuram intreruperea externa de la pinul 13 pentru PortC
+//TODO: poate sa folosesc calculul pozitiei in EXTI registru ?
+/*Bits 15:0 EXTIx[3:0]: EXTI x configuration (x = 12 to 15)
+These bits are written by software to select the source input for the EXTIx external
+interrupt.
+Note: 0000: PA[x] pin
+0001: PB[x] pin
+0010: PC[x] pin
+0011: PD[x] pin
+0100: PE[x] pin
+0101: PF[x] pin
+0110: PG[x] pin
+0110: PG[x] pin*/
+
+SYSCFG->EXTICR[3] |=0x20;
+
+//3. enable the exti interrupt delivery using IMR
+EXTI->IMR |=0x2000;
+
+/***************Starea innitiala a LEDului***************************/
+GPIOA_RegDef->ODR |=0x20;		//LED ON
+
+
+/***************IRQ configurations***********************************/
+//Configure the priority
+/*Luam IRQ No 40  (IRQ_NO_EXTI15_10 	40) si ii atribuim prioritatea 15  (NVIC_IRQ_PRI15    15)
+ * TODO:  treb de calculat pe loc aici pozitia regsitrului si pozitia in registru */
+*(NVIC_PR_BASE_ADDR+10) |=0xF0;
+
+//	GPIO_IRQInterruptConfig(IRQ_NO_EXTI15_10,ENABLE);
+//program ISER0 resgister
+//4.2.2 Interrupt Set-enable Registers
+*NVIC_ISER1 |=0x100;	//Setam in 1 pozitia 8 in registru ce corespunde (IRQ_NO_EXTI15_10 	40)  //*NVIC_ISER1 |=(1<<(IRQ_NO_EXTI15_10 %32));
 
     /* Loop forever */
 	for(;;);
 }//END MAIN
+
+
+void EXTI15_10_IRQHandler(void){
+	//clear the pending register bit
+	EXTI->PR &=0x2FFF;		//Clear 13'th bit <10.3.6 Pending register (EXTI_PR),
+	//toggle LED
+	GPIOA_RegDef->ODR ^=0x20;		//Inverting LED state
+	delay();
+}//EXTI15_10_IRQHandler         			/* EXTI Line[15:10] interrupts
+
+
+
+

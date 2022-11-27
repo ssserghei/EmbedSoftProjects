@@ -346,7 +346,8 @@ typedef struct
 
 /*ARM Cortex Mx Processor Priority Register Address Calculation
  * The NVIC_IPR0-NVIC_IPR59 registers provide an 8-bit priority field for each interrupt and
-each register holds four priority fields.*/
+each register holds four priority fields.
+Table 4-2 NVIC register summary*/
 #define NVIC_PR_BASE_ADDR ((__vo uint32_t*)0xE000E400)	/*Interrupt Priority Registers on page 4-7*/
 
 /*ARM Cortex Mx Processor number of priority bits implemented in Priority Register
