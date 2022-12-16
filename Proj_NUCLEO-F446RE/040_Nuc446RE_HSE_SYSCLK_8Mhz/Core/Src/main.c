@@ -5,9 +5,13 @@
  *      Author: Serghei
  */
 
-/*lucreaza
- *tot ce primeste prin uart intoarce inapoi dar cu majuscule
- * */
+/*Exercise
+ * Using HSE Configure the SYSCLK as 8MHz.
+ * AHB	as 4MHZ (HCLK)
+ * APB1	as 2MHz	(PCLK1)
+ * APB2	as 2MHz	(PCLK2)*/
+
+
 #include <string.h>
 #include "stm32f4xx_hal.h"
 #include "main.h"
@@ -30,14 +34,19 @@ int main (void){
 	HAL_Init();
 	UART2_Init();
 
-	osc_init.OscillatorType=RCC_OSCILLATORTYPE_HSE;
+	memset (&osc_init, 0, sizeof(osc_init));
 
+	osc_init.OscillatorType=RCC_OSCILLATORTYPE_HSE;
+	osc_init.HSEState=RCC_HSE_BYPASS;
+	if (HAL_RCC_OscConfig(&osc_init) !=HAL_OK)
+	{
+		Error_handler();
+	}
 
 	while(1);
 
 	return 0;
 }//END MAIN
-
 
 
 
