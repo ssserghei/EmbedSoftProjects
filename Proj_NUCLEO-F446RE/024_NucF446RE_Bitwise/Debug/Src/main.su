@@ -1,3 +1,0 @@
-../Src/main.h:328:6:delay	16	static
-../Src/main.c:33:5:main	4	static
-../Src/main.c:110:6:EXTI15_10_IRQHandler	8	static
