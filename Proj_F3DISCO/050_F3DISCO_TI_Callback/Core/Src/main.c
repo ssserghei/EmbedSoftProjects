@@ -39,20 +39,10 @@ int main (void){
 	uint16_t len_of_data=strlen(user_data);
 	HAL_UART_Transmit(&huart1, (uint8_t*)user_data, len_of_data, HAL_MAX_DELAY);
 
-	while(reception_complete != TRUE)
-	{
-		HAL_UART_Receive_IT(&huart1, &recvd_data, 1);
-	}
 
-	while(1);
 
 	return 0;
 }//END MAIN
-
-
-
-
-
 
 
 
@@ -75,29 +65,6 @@ void UART1_Init(void){
 	}
 }
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-	if(recvd_data=='\r')
-	{
-		reception_complete=TRUE;
-		data_buffer[count++]='\r';
-		HAL_UART_Transmit(huart, data_buffer, count, HAL_MAX_DELAY);
-	}
-	else
-	{
-	data_buffer[count++]=recvd_data;
-	}
-}
-
-
-uint8_t convert_to_capital (uint8_t data)
-{
-	if (data >='a' && data <='z')
-	{
-		data=data -('a'-'A');
-	}
-		return data;
-}
 
 void Error_handler(void){
 	while(1);
