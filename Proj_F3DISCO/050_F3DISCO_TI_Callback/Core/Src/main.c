@@ -1,13 +1,15 @@
 /*
- * main.c
- *
- *  Created on: Dec 4, 2022
- *      Author: Serghei
+ LED's Расположены по часовой стрелке сверху вниз начиная с 00 часов
+PE9 	LD3		Red		N
+PE10	LD5		Orange
+PE11 	LD7		Green	E
+PE12 	LD9		Blue
+PE13 	LD10	Red		S
+PE14 	LD8		Orange
+PE15 	LD6		Green	W
+PE8 	LD4		Blue
  */
 
-/*lucreaza
- *tot ce primeste prin uart intoarce inapoi dar cu majuscule
- * */
 #include <string.h>
 #include "stm32f3xx_hal.h"
 #include "main.h"
@@ -18,8 +20,12 @@
 void SystemClockConfig(void);
 void UART1_Init(void);
 void Error_handler(void);
+void GPIO_Init(void);
 
-uint8_t convert_to_capital (uint8_t);
+void delay(void){
+	// this will introduce ~200ms delay when system clock is 16MHz
+	for(uint32_t i = 0 ; i < 50000 ; i ++);
+}
 
 UART_HandleTypeDef huart1;
 
@@ -34,10 +40,34 @@ int main (void){
 
 	HAL_Init();
 	SystemClockConfig();
+	GPIO_Init();
+
 	UART1_Init();
 
 	uint16_t len_of_data=strlen(user_data);
 	HAL_UART_Transmit(&huart1, (uint8_t*)user_data, len_of_data, HAL_MAX_DELAY);
+
+while(1){
+
+	HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_9);
+	delay();
+	HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_10);
+	delay();
+	HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_11);
+	delay();
+	HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_12);
+	delay();
+	HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_13);
+	delay();
+	HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_14);
+	delay();
+	HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_15);
+	delay();
+	HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_8);
+	delay();
+
+}
+
 
 
 
@@ -45,6 +75,15 @@ int main (void){
 }//END MAIN
 
 
+void GPIO_Init(void)
+{
+    __HAL_RCC_GPIOE_CLK_ENABLE();
+	GPIO_InitTypeDef ledgpio;
+	ledgpio.Pin = GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15 | GPIO_PIN_8;
+	ledgpio.Mode = GPIO_MODE_OUTPUT_PP;
+	ledgpio.Pull = GPIO_NOPULL;
+	HAL_GPIO_Init(GPIOE,&ledgpio);
+}
 
 void SystemClockConfig(void){
 
