@@ -44,8 +44,22 @@ int main (void){
 
 	UART1_Init();
 
-	uint16_t len_of_data=strlen(user_data);
-	HAL_UART_Transmit(&huart1, (uint8_t*)user_data, len_of_data, HAL_MAX_DELAY);
+//	uint16_t len_of_data=strlen(user_data);
+//	HAL_UART_Transmit(&huart1, (uint8_t*)user_data, len_of_data, HAL_MAX_DELAY);
+
+	uint8_t str[] = "Prived medved\r\n\0";
+
+//	uint16_t len_of_data=strlen(str);
+//	HAL_UART_Transmit(&huart1, (uint8_t*)str, len_of_data, HAL_MAX_DELAY);
+
+
+	uint8_t userdata[] = "6\r\n\0"; //ASCHI 6
+
+	uint8_t len_of_data = strlen(userdata);
+
+	HAL_UART_Transmit(&huart1, &userdata, len_of_data, HAL_MAX_DELAY);
+
+
 
 while(1){
 
