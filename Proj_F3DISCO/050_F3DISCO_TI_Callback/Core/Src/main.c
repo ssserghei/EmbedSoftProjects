@@ -47,17 +47,21 @@ int main (void){
 //	uint16_t len_of_data=strlen(user_data);
 //	HAL_UART_Transmit(&huart1, (uint8_t*)user_data, len_of_data, HAL_MAX_DELAY);
 
-	uint8_t str[] = "Prived medved\r\n\0";
-
-//	uint16_t len_of_data=strlen(str);
-//	HAL_UART_Transmit(&huart1, (uint8_t*)str, len_of_data, HAL_MAX_DELAY);
 
 
-	uint8_t userdata[] = "6\r\n\0"; //ASCHI 6
 
-	uint8_t len_of_data = strlen(userdata);
+uint8_t count=0;
 
-	HAL_UART_Transmit(&huart1, &userdata, len_of_data, HAL_MAX_DELAY);
+while(1)
+{
+
+HAL_UART_Transmit(&huart1, &count, 1, HAL_MAX_DELAY);
+count++;
+HAL_Delay(500);
+}
+/*
+ http://www.customelectronics.ru/wp-content/uploads/2018/08/10.jpg
+ * */
 
 
 
@@ -79,6 +83,7 @@ while(1){
 	delay();
 	HAL_GPIO_TogglePin(GPIOE,GPIO_PIN_8);
 	delay();
+
 
 }
 
