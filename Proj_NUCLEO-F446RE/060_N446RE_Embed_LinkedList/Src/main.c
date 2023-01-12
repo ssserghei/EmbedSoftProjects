@@ -22,7 +22,7 @@ int main(void)
 	list = &a;
 	a.next = &b;
 	b.next = &c;
-	b.next = NULL;
+	c.next = NULL;
 
 	printf("Hello\n");				fflush(stdout);
 
