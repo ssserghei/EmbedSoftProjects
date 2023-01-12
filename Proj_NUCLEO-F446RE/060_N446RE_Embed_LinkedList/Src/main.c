@@ -265,7 +265,7 @@ int main(void)
 }//END MAIN
 #endif
 
-#if 1
+#if 0
 /*acum creem funtia push care adauga un element nou*/
 #include <stdio.h>
 #include <stdlib.h>
@@ -392,4 +392,92 @@ int main(void)
 	return 0;
 }//END MAIN
 #endif
+
+
+#if 0
+/*************************POINTERS**********************************************
+ * cream o variabila si doua pointere
+ * afisam adresa si valoare variabilei
+ * initiem aldoilea pointer cu adresa variabilei
+ * afisam adresa si valoarea pointelor
+ * */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+/***************************MAIN*******************/
+int main(void)
+{
+	printf("Hello\n");	fflush(stdout);
+
+	uint32_t TestVariable =100;
+
+	uint32_t *pPointer=(uint32_t *) 0x2001fff5;
+
+	uint32_t *pPointertoVar=&TestVariable;
+
+
+	printf("TestVariable value=%d\n", TestVariable);	fflush(stdout);
+	printf("TestVariable address=%x\n",&TestVariable);	fflush(stdout);
+
+	printf("pPointer value=%p\n",pPointer);				fflush(stdout);	//печатаем значение указателя
+	printf("pPointer address=%x\n",&pPointer);			fflush(stdout); //печатем адрес указателя.
+	uint32_t pointAddresVariable;
+
+	pointAddresVariable=*pPointer;
+
+	printf("\r\n");		fflush(stdout);
+	printf("pointAddresVariable value=%x\n",pointAddresVariable);	fflush(stdout); //печатаем содержание на котром указывает указатель
+
+	printf("pPointertoVar value=%p\n",pPointertoVar);		fflush(stdout);
+	printf("pPointertoVar address=%x\n",&pPointertoVar);	fflush(stdout);
+	printf("\r\n");		fflush(stdout);
+
+	printf("Type long unsigned int - %u byte\r\n", sizeof(long unsigned int)); fflush(stdout);
+	printf("Type long  - %u byte\r\n", sizeof(long)); fflush(stdout);
+	printf("Type int  - %u byte\r\n", sizeof(int)); fflush(stdout);
+	return 0;
+}//END MAIN
+#endif
+
+#if 1
+/*************************POINTERS**********************************************
+ * cream o variabila si doua pointere
+ * afisam adresa si valoare variabilei
+ * initiem aldoilea pointer cu adresa variabilei
+ * afisam adresa si valoarea pointelor
+ * */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+/***************************MAIN*******************/
+int main(void)
+{
+	printf("Hello\n");	fflush(stdout);
+
+	uint32_t *pPointer=(uint32_t *) 0x20000008;
+
+	uint32_t pointAddresVariable=*pPointer;	//эта опереация называется разыменование указателя
+
+	printf("\r\n");		fflush(stdout);
+
+	printf("pPointer address (location)=%x\n",&pPointer);	fflush(stdout);
+
+	printf("pPointer value=%p\n",pPointer);	fflush(stdout);
+
+	printf("pointAddresVariable value=%x\n",pointAddresVariable);	fflush(stdout); //печатаем содержание на котром указывает указатель
+
+	printf("dereferencing value=%x\n",*pPointer);				fflush(stdout); //печатаем содержание на котром указывает указатель
+
+	printf("adr = %08x\n", &pPointer);
+
+	printf("\r\n");		fflush(stdout);
+
+
+}//END MAIN
+#endif
+
 
