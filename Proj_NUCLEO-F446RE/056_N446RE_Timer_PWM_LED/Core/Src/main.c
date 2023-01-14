@@ -4,7 +4,7 @@
  *  Created on: 02-Jun-2018
  *      Author: kiran
  */
-/*Lucreaza/ formeaza  la 4 iesiri
+/*Lucreaza/ formeaza  Dimeaza LEDUL built in
  * */
 
 #include <string.h>

@@ -1,4 +1,6 @@
-/**/
+
+
+/*********************************LINKED LIST*/
 
 #if 0
 #include <stdio.h>
@@ -441,9 +443,10 @@ int main(void)
 }//END MAIN
 #endif
 
-#if 1
-/*************************POINTERS**********************************************
- * cream o variabila si doua pointere
+
+/*************************POINTERS**********************************************/
+#if 0
+/* cream o variabila si doua pointere
  * afisam adresa si valoare variabilei
  * initiem aldoilea pointer cu adresa variabilei
  * afisam adresa si valoarea pointelor
@@ -480,4 +483,88 @@ int main(void)
 }//END MAIN
 #endif
 
+/******************************ARRAYS************************/
+//is a c ollection on data of same datatime
+#if 0
+/*
+ * */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+/***************************MAIN*******************/
+int main(void)
+{
+	printf("Begin\n");	fflush(stdout);
+
+	uint32_t someData[10]={0xA, 0xB, 0xC};
+
+	printf("someData %ld\n", *someData+1);		fflush(stdout);
+
+	*(someData+2)='D';
+
+	printf("someData %x\n", someData+2);		fflush(stdout);
+
+	//tiparim toate elementele taqbloului
+	for(uint8_t i=0; i<10; i++){
+		printf("%x\t",someData[i]);				fflush(stdout);
+	}
+	printf("\r\n");		fflush(stdout);
+
+	someData[2]=0x33;
+
+	for(uint8_t i=0; i<10; i++){
+			printf("%x\t",someData[i]);			fflush(stdout);
+		}
+	printf("\r\n");		fflush(stdout);
+
+
+}//END MAIN
+#endif
+
+#if 1
+/*passing array to a function
+ * */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void array_display(uint8_t const *const pArray, uint32_t nItems);
+
+/***************************MAIN*******************/
+int main(void)
+{
+	printf("Begin\n");	fflush(stdout);
+
+	uint8_t someData[10]={0xaa, 0xab, 0xba, 0xbb, 0xac, 0xca, 0xcc, 0xad, 0xda,0xdd};
+
+	for(uint8_t i=0; i<10; i++)
+	{
+		printf("%x\t",someData[i]);			fflush(stdout);
+	}
+	printf("\r\n");		fflush(stdout);
+
+
+	uint32_t nItems = sizeof(someData) / sizeof(uint8_t);
+
+	array_display(someData+2, nItems-2);
+
+	printf("\r\n");		fflush(stdout);
+
+return 0;
+}//END MAIN
+
+void array_display(uint8_t const *const pArray, uint32_t nItems)
+{
+	//lets diplay the conmtent of the received
+	for(uint8_t i=0; i<nItems; i++)
+	{
+	//	both statements are identical
+	//	printf("%x\t", *(pArray+i));			fflush(stdout);
+		printf("%x\t", pArray[i]);			fflush(stdout);
+	}
+}
+
+#endif
 

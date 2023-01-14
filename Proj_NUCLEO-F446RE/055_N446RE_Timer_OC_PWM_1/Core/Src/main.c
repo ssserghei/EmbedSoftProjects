@@ -154,9 +154,6 @@ void SystemClock_Config_HSE(uint8_t clock_freq)
 
 	/* SysTick_IRQn interrupt configuration */
 	HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
-
-
-
  }
 
 void GPIO_Init(void)
@@ -185,8 +182,6 @@ void UART2_Init(void)
 		//There is a problem
 		Error_handler();
 	}
-
-
 }
 
 

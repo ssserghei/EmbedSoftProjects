@@ -32,7 +32,8 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef *htim)
 	 __HAL_RCC_GPIOB_CLK_ENABLE();
 
 	 //2. Configure gpios to behave as timer2 channel 1,2,3 and 4
-	 /* PA0 --> TIM2_CH1
+	 /*
+	 PA0 --> TIM2_CH1
 	 PA1 --> TIM2_CH2
 	 PB10 --> TIM2_CH3
 	 PB2 --> TIM2_CH4 */
