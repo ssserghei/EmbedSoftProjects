@@ -91,6 +91,7 @@ each register holds four priority fields.*/
 /*Base addresses of peripherals which are hanging on APB2 bus*/
 #define EXTI_BASEADDR			(APB2PERIPH_BASEADDR+0x3C00)		//0x4001 3C00 - 0x4001 3FFF EXTI
 #define SPI1_BASEADDR			(APB2PERIPH_BASEADDR+0x3000)
+#define SPI4_BASEADDR			(APB2PERIPH_BASEADDR+0x3400)		/*SPI4*/
 #define SYSCFG_BASEADDR			(APB2PERIPH_BASEADDR+0x3800)
 #define USART1_BASEADDR			(APB2PERIPH_BASEADDR+0x1000)
 #define USART6_BASEADDR			(APB2PERIPH_BASEADDR+0x1400)
@@ -249,6 +250,8 @@ typedef struct{
 #define SPI1  		((SPI_RegDef_t*)SPI1_BASEADDR)
 #define SPI2  		((SPI_RegDef_t*)SPI2_BASEADDR)
 #define SPI3  		((SPI_RegDef_t*)SPI3_BASEADDR)
+#define SPI4  		((SPI_RegDef_t*)SPI4_BASEADDR)
+
 
 #define I2C1  		((I2C_RegDef_t*)I2C1_BASEADDR)
 #define I2C2  		((I2C_RegDef_t*)I2C2_BASEADDR)
@@ -278,8 +281,13 @@ typedef struct{
 #define I2C3_PCLK_EN() (RCC->APB1ENR |= (1 << 23))
 
 /*Clock Enable Macros for SPIx peripherals
+ * 6.3.13 RCC APB1 peripheral clock enable register (RCC_APB1ENR)
  * 6.3.14 RCC APB2 peripheral clock enable register (RCC_APB2ENR)*/
 #define SPI1_PCLK_EN()		(RCC->APB2ENR |=(1<<12))
+#define SPI2_PCLK_EN()		(RCC->APB1ENR |=(1<<14))
+#define SPI3_PCLK_EN()		(RCC->APB1ENR |=(1<<15))
+#define SPI4_PCLK_EN()		(RCC->APB2ENR |=(1<<13))
+
 //#define I2C1_PCLK_EN() (RCC->APB1ENR |= (1 << 21))
 //#define I2C2_PCLK_EN() (RCC->APB1ENR |= (1 << 22))
 //#define I2C3_PCLK_EN() (RCC->APB1ENR |= (1 << 23))
@@ -315,6 +323,7 @@ typedef struct{
 //#define SYSCFG_PCLK_EN() (RCC->APB2ENR) |=(1<<14))
 
 /*Clock Disable Macros for SPIx peripherals*/
+
 
 /*Macros to reset GPIO peripherals*/
 #define GPIOA_REG_RESET()	do{(RCC->AHB1RSTR |= (1<<0)); (RCC->AHB1RSTR &=~(1<<0));}while(0)
@@ -372,5 +381,8 @@ typedef struct{
 #define GPIO_PIN_RESET	RESET
 #define FLAG_RESET      RESET
 #define FLAG_SET 		SET
+
+#include "stm32f446xx_gpio_driver.h"
+#include "stm32f446xx_spi_driver.h"
 
 #endif /* INC_STM32F446XX_H_ */
