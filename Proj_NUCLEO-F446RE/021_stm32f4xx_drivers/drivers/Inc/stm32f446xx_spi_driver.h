@@ -14,7 +14,7 @@
 //26.3.7 SPI configuration
 typedef struct
 {
-	uint8_t SPI_DeviceMode;	//
+	uint8_t SPI_DeviceMode;	// MSTR: Master selection 0: Slave configuration 1: Master configuration
 	uint8_t SPI_BusConfig;	//
 	uint8_t	SPI_SclkSpeed;	//
 	uint8_t	SPI_DFF;		//		Bit 11 DFF: Data frame format

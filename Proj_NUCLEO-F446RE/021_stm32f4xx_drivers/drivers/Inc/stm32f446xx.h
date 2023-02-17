@@ -174,7 +174,7 @@ typedef struct{
  * 26.7.10 SPI register map
  * */
 typedef struct{
-	__vo uint32_t CR1;        /*!< TODO,     										Address offset: 0x00 */
+	__vo uint32_t CR1;        /*!< 26.7.1 SPI control register 1 (SPI_CR1) (not used in I2S mode),     										Address offset: 0x00 */
 	__vo uint32_t CR2;        /*!< TODO,     										Address offset: 0x04 */
 	__vo uint32_t SR;         /*!< TODO,     										Address offset: 0x08 */
 	__vo uint32_t DR;         /*!< TODO,     										Address offset: 0x0C */
@@ -390,11 +390,11 @@ typedef struct{
 #define SPI_CR1_CPHA		0
 #define SPI_CR1_CPOL		1
 #define SPI_CR1_MSTR		2
-#define SPI_CR1_BR1			3
+#define SPI_CR1_BR			3
 #define SPI_CR1_SPE			6
 #define SPI_CR1_LSB			7
 #define SPI_CR1_SSI			8
-#define SPI_CR1_SSM			9
+#define SPI_CR1_SSM			9		//SSM: Software slave management When the SSM bit is set, the NSS pin input is replaced with the value from the SSI bit.
 #define SPI_CR1_RXONLY		10
 #define SPI_CR1_DFF			11
 #define SPI_CR1_CRCNEXT		12
