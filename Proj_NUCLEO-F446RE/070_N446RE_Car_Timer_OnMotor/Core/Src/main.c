@@ -315,26 +315,26 @@ void UART2_Init(void)
 	 tim2PWM_Config.OCPolarity = TIM_OCPOLARITY_HIGH;
 
 
-	tim2PWM_Config.Pulse =  (htimer2.Init.Period * 35 ) /100;		//25
+	tim2PWM_Config.Pulse =  (htimer2.Init.Period * 50 ) /100;		//25
 
 	 if( HAL_TIM_PWM_ConfigChannel(&htimer2,&tim2PWM_Config,TIM_CHANNEL_1) != HAL_OK)
 	 {
 		 Error_handler();
 	 }
 
-	 tim2PWM_Config.Pulse =  (htimer2.Init.Period * 35 ) /100;		//45
+	 tim2PWM_Config.Pulse =  (htimer2.Init.Period * 50 ) /100;		//45
 	 if( HAL_TIM_PWM_ConfigChannel(&htimer2,&tim2PWM_Config,TIM_CHANNEL_2) != HAL_OK)
 	 {
 		 Error_handler();
 	 }
 
-	 tim2PWM_Config.Pulse =  (htimer2.Init.Period * 35 ) /100;		//75
+	 tim2PWM_Config.Pulse =  (htimer2.Init.Period * 50 ) /100;		//75
 	 if( HAL_TIM_PWM_ConfigChannel(&htimer2,&tim2PWM_Config,TIM_CHANNEL_3) != HAL_OK)
 	 {
 		 Error_handler();
 	 }
 
-	 tim2PWM_Config.Pulse =  (htimer2.Init.Period * 35 ) /100;		//95
+	 tim2PWM_Config.Pulse =  (htimer2.Init.Period * 50 ) /100;		//95
 	 if( HAL_TIM_PWM_ConfigChannel(&htimer2,&tim2PWM_Config,TIM_CHANNEL_4) != HAL_OK)
 	 {
 		 Error_handler();
