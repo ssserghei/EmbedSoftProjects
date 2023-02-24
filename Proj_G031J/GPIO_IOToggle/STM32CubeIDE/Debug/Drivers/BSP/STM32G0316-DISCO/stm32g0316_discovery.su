@@ -1,0 +1,6 @@
+D:/GitHub/EmbedSoftProjects/Proj_G031J/GPIO_IOToggle/Drivers/BSP/STM32G0316-DISCO/stm32g0316_discovery.c:75:10:BSP_GetVersion	8	static
+D:/GitHub/EmbedSoftProjects/Proj_G031J/GPIO_IOToggle/Drivers/BSP/STM32G0316-DISCO/stm32g0316_discovery.c:90:6:BSP_LED_Init	48	static
+D:/GitHub/EmbedSoftProjects/Proj_G031J/GPIO_IOToggle/Drivers/BSP/STM32G0316-DISCO/stm32g0316_discovery.c:115:6:BSP_LED_DeInit	16	static
+D:/GitHub/EmbedSoftProjects/Proj_G031J/GPIO_IOToggle/Drivers/BSP/STM32G0316-DISCO/stm32g0316_discovery.c:127:6:BSP_LED_On	16	static
+D:/GitHub/EmbedSoftProjects/Proj_G031J/GPIO_IOToggle/Drivers/BSP/STM32G0316-DISCO/stm32g0316_discovery.c:139:6:BSP_LED_Off	16	static
+D:/GitHub/EmbedSoftProjects/Proj_G031J/GPIO_IOToggle/Drivers/BSP/STM32G0316-DISCO/stm32g0316_discovery.c:151:6:BSP_LED_Toggle	16	static
