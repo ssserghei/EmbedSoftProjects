@@ -254,7 +254,7 @@ void I2C_Init(I2C_Handle_t *pI2CHandle)
 	pI2CHandle->pI2Cx->CR1 = tempreg;
 
 	//configure the FREQ field of CR2
-	tempreg = 0;
+//	tempreg = 0;
 	tempreg |= RCC_GetPCLK1Value() /1000000U ;
 	pI2CHandle->pI2Cx->CR2 =  (tempreg & 0x3F);
 
