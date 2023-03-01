@@ -43,7 +43,7 @@ void I2C1_GPIOInits(void)
 	 */
 	I2CPins.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PU;
 	I2CPins.GPIO_PinConfig.GPIO_PinAltFunMode = 4;
-	I2CPins. GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
+	I2CPins. GPIO_PinConfig.GPIO_PinSpeed = GPOI_SPEED_HIGH;
 
 	//scl
 	I2CPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_6;
