@@ -76,7 +76,7 @@ each register holds four priority fields.*/
 
 /*Base addresses of peripherals which are hanging on APB1 bus
  * Table 1. STM32F446xx register boundary addresses (continued)*/
-#define	I2C1_BASEADDR			(AHB1PERIPH_BASEADDR+0x5400)		//0x4000 5400 - 0x4000 57FF I2C1
+#define	I2C1_BASEADDR			(APB1PERIPH_BASEADDR+0x5400)		//0x4000 5400 - 0x4000 57FF I2C1
 #define I2C2_BASEADDR			(APB1PERIPH_BASEADDR+0x5800)
 #define I2C3_BASEADDR			(APB1PERIPH_BASEADDR+0x5C00)
 
