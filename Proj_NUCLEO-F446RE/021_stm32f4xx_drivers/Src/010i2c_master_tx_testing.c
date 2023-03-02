@@ -43,7 +43,7 @@ void I2C1_GPIOInits(void)
 	 */
 	I2CPins.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PU;
 	I2CPins.GPIO_PinConfig.GPIO_PinAltFunMode = 4;
-	I2CPins. GPIO_PinConfig.GPIO_PinSpeed = GPOI_SPEED_HIGH;
+	I2CPins. GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;	//GPOI_SPEED_HIGH
 
 	//scl
 	I2CPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_6;
@@ -60,7 +60,7 @@ void I2C1_GPIOInits(void)
 void I2C1_Inits(void)
 {
 	I2C1Handle.pI2Cx = I2C1;
-	I2C1Handle.I2C_Config.I2C_AckControl = I2C_ACK_ENABLE;
+	I2C1Handle.I2C_Config.I2C_AckControl = I2C_ACK_ENABLE;		//I2C_ACK_ENABLE	//I2C_ACK_DISABLE
 	I2C1Handle.I2C_Config.I2C_DeviceAddress = MY_ADDR;
 	I2C1Handle.I2C_Config.I2C_FMDutyCycle = I2C_FM_DUTY_2;
 	I2C1Handle.I2C_Config.I2C_SCLSpeed = I2C_SCL_SPEED_SM;
@@ -74,8 +74,8 @@ void GPIO_ButtonInit(void)
 	GPIO_Handle_t GPIOBtn;
 
 	//this is btn gpio configuration
-	GPIOBtn.pGPIOx = GPIOA;
-	GPIOBtn.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_0;
+	GPIOBtn.pGPIOx = GPIOC;
+	GPIOBtn.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_13;
 	GPIOBtn.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IN;
 	GPIOBtn.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
 	GPIOBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
@@ -103,7 +103,7 @@ int main(void)
 	while(1)
 	{
 		//wait till button is pressed
-		while( ! GPIO_ReadFromInputPin(GPIOA,GPIO_PIN_NO_0) );
+		while( ! GPIO_ReadFromInputPin(GPIOC,GPIO_PIN_NO_13) );
 
 		//to avoid button de-bouncing related issues 200ms of delay
 		delay();
