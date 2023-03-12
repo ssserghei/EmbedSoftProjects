@@ -3,6 +3,8 @@
  *
  *  Created on: 18 февр. 2023 г.
  *      Author: Serghei
+ *       * LED connected on PA5
+ *BUT is connected on PC13
  */
 
 
@@ -12,7 +14,7 @@
 
 #define MY_ADDR 0x61;
 
-#define SLAVE_ADDR  0x68
+#define SLAVE_ADDR  0x34
 
 void delay(void)
 {
@@ -22,7 +24,7 @@ void delay(void)
 I2C_Handle_t I2C1Handle;
 
 //some data
-uint8_t some_data[] = "We are testing I2C master Tx\n";
+uint8_t some_data[] = "Hello Alexander!! \n";
 /*
  * PB6-> SCL
  * PB9 or PB7 -> SDA
@@ -52,7 +54,7 @@ void I2C1_GPIOInits(void)
 
 	//sda
 	//Note : since we found a glitch on PB9 , you can also try with PB7
-	I2CPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_9;
+	I2CPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_7;
 
 	GPIO_Init(&I2CPins);
 }
@@ -81,7 +83,6 @@ void GPIO_ButtonInit(void)
 	GPIOBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
 
 	GPIO_Init(&GPIOBtn);
-
 }
 
 
@@ -103,7 +104,7 @@ int main(void)
 	while(1)
 	{
 		//wait till button is pressed
-		while( ! GPIO_ReadFromInputPin(GPIOC,GPIO_PIN_NO_13) );
+		while(GPIO_ReadFromInputPin(GPIOC,GPIO_PIN_NO_13) );
 
 		//to avoid button de-bouncing related issues 200ms of delay
 		delay();
@@ -111,5 +112,4 @@ int main(void)
 		//send some data to the slave
 		I2C_MasterSendData(&I2C1Handle,some_data,strlen((char*)some_data),SLAVE_ADDR,0);
 	}
-
 }
