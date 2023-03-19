@@ -12,6 +12,10 @@
 #include<string.h>
 #include "stm32f446xx.h"
 
+//extern void initialise_monitor_handles();
+
+
+
 #define MY_ADDR 0x61;
 
 #define SLAVE_ADDR  0x34
@@ -23,11 +27,12 @@ void delay(void)
 
 I2C_Handle_t I2C1Handle;
 
-//some data
-uint8_t some_data[] = "Hello Alexander!! \n";
+//rcv buffer
+uint8_t rcv_buf[32]; //uint8_t rcv_buf[];
+
 /*
  * PB6-> SCL
- * PB9 or PB7 -> SDA
+ * PB7 -> SDA
  */
 
 void I2C1_GPIOInits(void)
@@ -54,7 +59,7 @@ void I2C1_GPIOInits(void)
 
 	//sda
 	//Note : since we found a glitch on PB9 , you can also try with PB7
-	I2CPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_7;
+	I2CPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_9;
 
 	GPIO_Init(&I2CPins);
 }
@@ -85,9 +90,16 @@ void GPIO_ButtonInit(void)
 	GPIO_Init(&GPIOBtn);
 }
 
-
 int main(void)
 {
+
+	uint8_t commandcode;
+
+	uint8_t len;
+
+	//initialise_monitor_handles();
+
+	//printf("Application is running\n");
 
 	GPIO_ButtonInit();
 
@@ -100,6 +112,8 @@ int main(void)
 	//enable the i2c peripheral
 	I2C_PeripheralControl(I2C1,ENABLE);
 
+	//ack bit is made 1 after PE=1
+	I2C_ManageAcking(I2C1,I2C_ACK_ENABLE);
 
 	while(1)
 	{
@@ -109,7 +123,22 @@ int main(void)
 		//to avoid button de-bouncing related issues 200ms of delay
 		delay();
 
-		//send some data to the slave
-		I2C_MasterSendData(&I2C1Handle,some_data,strlen((char*)some_data),SLAVE_ADDR,0);
+		commandcode = 0x51;
+
+		I2C_MasterSendData(&I2C1Handle,&commandcode,1,SLAVE_ADDR,I2C_ENABLE_SR);
+
+		I2C_MasterReceiveData(&I2C1Handle,&len,1,SLAVE_ADDR,I2C_ENABLE_SR);
+
+		commandcode = 0x52;
+		I2C_MasterSendData(&I2C1Handle,&commandcode,1,SLAVE_ADDR,I2C_ENABLE_SR);
+
+
+		I2C_MasterReceiveData(&I2C1Handle,rcv_buf,len,SLAVE_ADDR,I2C_DISABLE_SR);
+
+		rcv_buf[len+1] = '\0';
+
+		//printf("Data : %s",rcv_buf);
+
 	}
+
 }

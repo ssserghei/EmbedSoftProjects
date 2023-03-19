@@ -442,7 +442,7 @@ void I2C_MasterReceiveData(I2C_Handle_t *pI2CHandle,uint8_t *pRxBuffer, uint8_t 
 				I2C_ManageAcking(pI2CHandle->pI2Cx,I2C_ACK_DISABLE);
 
 				//generate STOP condition
-				if(Sr == I2C_DISABLE_SR )
+		//		if(Sr == I2C_DISABLE_SR )			//in video nui asta
 					I2C_GenerateStopCondition(pI2CHandle->pI2Cx);
 
 			}
